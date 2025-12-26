@@ -54,4 +54,9 @@ console.groupEnd()
 // 연습: 콘솔 로그에 CSS 설정 추가 (웹 브라우저 콘솔 패널에서 확인 가능)
 // --------------------------------------------------------------------------
 
-console.log('%c재미있어요', 'background:gray; font-weight:700;');
+console.log('%c재미있어요', 'background:gray; ,font-weight:700;');
+console.log('%c멋사 프론트엔드 16기 화이팅!', 
+  `color:pink;
+  font-size:2rem;
+  font-weight:700;
+  `)
