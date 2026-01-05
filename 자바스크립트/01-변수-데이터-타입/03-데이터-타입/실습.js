@@ -188,11 +188,19 @@ console.log('심볼을 사용할 때 고유하지 않다?', productAIdSymbol==pr
 // * +2 정확하지 않음
 
 // BigInt 생성 - 숫자 뒤에 n 붙이기
+const bigIntLiteral = 1000n
+console.log(bigIntLiteral)
 
-// BigInt() 사용
+// BigInt() 사용 -> 빅인트(큰 정수) 변환
+const bigInt = BigInt(1000)
+console.log(bigInt
 
+)
 // BigInt와 Number는 섞을 수 없음
 // ❌ 숫자와 빅인트를 더할 경우 에러!
+// console.log(1000 + 100n) ❌  BigInt와 숫자형을 섞어서 쓰는 경우 타입이 달라서 연산이 불가
+// 숫자형과 빅인트형을 더하고싶을 경우 빅인트화 시켜서 더하면 됨
+console.log(BigInt(1000)+100n) //✅
 // ✅ 빅인트끼리 더할 경우 가능
 
 
