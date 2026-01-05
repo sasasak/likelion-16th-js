@@ -51,26 +51,67 @@ console.log('탭\t문자')
 console.log('줄바꿈\n\t문자')
 console.log('백슬래시(\\)')
 
+// 문자 + 문자 (문자 연결)
+const MATERIAL_TYPE='아이언'
+const HERO_GENDER ='맨'
+const HERO = MATERIAL_TYPE + HERO_GENDER
+console.log(HERO) // '아이언' + '맨' = '아이언맨'
+console.log('Java' + 'Script') // 'Java' + 'Script' = 'JavaScript'
+
+
 // --------------------------------------------------------------------------
 // 숫자 (Number)
 // --------------------------------------------------------------------------
 
 // 정수
+console.log(123_456)
 
 // 실수 (정수 + 소수)
+console.log(823 + 0.73)
 
 // 음수
+console.log(-100)
 
-// 큰 숫자
-
-// 과학적 표기법
+// 과학적(지수) 표기법
 // 2.5 × 10^6 = 2,500,000
+console.log(2.5e6)
+console.log(25e5)
 
 // 특수 숫자 값
 // * Infinity
 // * -Infinity
 // * NaN
 
+// JavaScript 에서 사용하는 가장 큰 정수값 Number.MAX_SAFE_INTEGER
+// JavaScript 에서 사용하는 가장 작은 정수값 Number.MIN_SAFE_INTEGER
+console.log(Number.MAX_SAFE_INTEGER)
+console.log(Number.MIN_SAFE_INTEGER)
+
+// 큰 숫자
+
+// 수학 산술 연산자(+, -, x, ÷)
+// 프로그래밍 산술 연산자 (+, -, *, /)
+// 산술 연산 (숫자 값 끼리 계산)
+// * 덧셈(add) 연산 
+console.log(9 + 1) // 10
+console.log(100 + (-20)) // 80
+console.log(0.9 + 0.2) // 1.1
+// * 뺄셈(minus) 연산
+console.log(9 - 1) // 8
+console.log(100 - 20) // 80
+console.log(0.9 - 0.2) // 0.7
+// * 곰셉(multiply) 연산
+console.log(9 * 1) // 9
+console.log(100 * 20) // 2e3(2000, 2_000)
+console.log(0.9 * 0.2) //0.18000000000000002
+// * 나눗셈(divide) 연산
+console.log(9 / 1) // 9
+console.log(100 / 20) // 5
+console.log(0.9 / 0.2) // 4.5
+// * 나머지(modulus) 연산
+console.log(9 % 1) // 0
+console.log(100 % 20) // 0
+console.log(0.9 % 0.2) // 0.09999999999999998
 
 // --------------------------------------------------------------------------
 // 불리언 (Boolean)
