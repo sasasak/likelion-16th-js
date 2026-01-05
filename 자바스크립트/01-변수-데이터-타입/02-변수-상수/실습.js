@@ -166,7 +166,7 @@ let user_password
 
 // 카멜 케이스 (camelCase) - 변수 또는 함수 이름 권장
 let paddingInlineEnd
-let userName, getTotalPrice
+let getTotalPrice
 
 // 파스칼 케이스 (PascalCase) - 클래스, 생성자
 let SuperMarioM, User, ShoppingCart
@@ -179,20 +179,38 @@ let SuperMarioM, User, ShoppingCart
 // --------------------------------------------------------------------------
 // 사용자 정보 관리
 // --------------------------------------------------------------------------
-
+// 블록 -> 범위(scope)
+{
 // 사용자 기본 정보 (let 사용 - 변경 가능)
 // * 이름
+let userName = '근영'
 // * 나이
+let userAge = 24
 // * 이메일
+let userEmail = 'geun02young@naver.com'
+
+console.log('변경 전 : ',userName, userAge, userEmail)
 
 // 정보 업데이트
+userName = '김근영'
+userAge = 25
+userEmail = 'geun02young@email.com'
+console.log('변경 후 : ',userName, userAge, userEmail)
+}
 
 // 시스템 설정 (const 사용 - 변경 불가)
 // * 시스템 이름
+const SYSTEM_NAME = 'Windows'
 // * 시스템 버전
+const SYSTEM_VERSION = '11'
 // * 최대 로그인 시도 횟수
+// const 최대_로그인_시도_횟수 = 5
+const MAX_LOGIN_ATTEMPTS = 5
 // * 세션 타임아웃
+const SESSION_TIMEOUT = 3000 //3s (3000ms)
 
+// ❌ TypeError 상수에 다른 값을 할당하려 했기 때문
+// SYSTEM_NAME = 'MacOS'
 
 // --------------------------------------------------------------------------
 // 쇼핑몰 상품 관리
@@ -200,14 +218,21 @@ let SuperMarioM, User, ShoppingCart
 
 // 상품 정보 (변경 가능한 변수)
 // * 상품 이름
+let productName = '노트북'
 // * 상품 가격
+let productPrice = 100_000
 // * 상품 재고
+let productInventory = 50
 // * 상품 카테고리
+let productCategory = '디지털 기기/ 랩탑'
 
 // 시스템 상수 (변경 불가)
 // * 부가세 10%
+const SURTAX = 0.1
 // * 무료배송 기준 40,000원
+const SHIPPING_FREE = 40_000
 // * 최소 주문 금액 10,000원
+const MIN_ORDER_AMOUNT = 10_000
 
 
 // --------------------------------------------------------------------------
@@ -216,10 +241,12 @@ let SuperMarioM, User, ShoppingCart
 
 // const 사용
 // 변경할 필요 없는 값
+const userSecrettKey = 'abc'
 
 // let 사용
 // 값이 변경될 수 있는 값
-
+let phoneNumber = '010-0000-0000'
+phoneNumber = '010-1234-5678'
 
 // --------------------------------------------------------------------------
 // 실습 문제
@@ -227,21 +254,35 @@ let SuperMarioM, User, ShoppingCart
 
 // 문제 1: 학생 정보를 저장하는 변수를 만드세요.
 // - 이름 (변경 가능)
+let studentName = '홍길동'
 // - 학년 (변경 가능)
+let studentGrade = 3
 // - 학번 (변경 불가)
+let studentNumber = 12345
 // - 학교 이름 (변경 불가)
+const SCHOOL_NAME = '멋사대학교'
 
 // 문제 2: 도서관 책 정보를 저장하는 변수를 만드세요.
 // - 책 제목 (변경 불가)
+const BOOK_NAME = '프론트엔드 성능 최적화 가이드'
 // - 저자 (변경 불가)
+const AUTHOR = '유동균'
 // - 대출 가능 여부 (변경 가능)
+let loanAvailability = true
+loanAvailability = false
 // - 대출 횟수 (변경 가능)
+let loansCount = 3
+
 
 // 문제 3: 온라인 쇼핑몰 장바구니를 만드세요.
 // - 상품명 (변경 불가)
+const PRODUCT_NAME = '키보드'
 // - 가격 (변경 불가)
+const PRODUCT_PRICE = 50_000
 // - 수량 (변경 가능)
+let productQuantity = 7
 // - 총 금액 (변경 가능)
+let totalPrice = 350_000
 
 
 // --------------------------------------------------------------------------
