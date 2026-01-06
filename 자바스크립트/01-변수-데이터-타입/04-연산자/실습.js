@@ -76,27 +76,10 @@ console.log(Math.pow(2, 8) === 2 ** 8) // 2의 8제곱와 아
 //복리 계산 
 const principal = 1_000_000 //원금 100만원
 const rate = 0.05 // 연 5% 이자율 
-const years = 3 // 3년
+const years = 3 // 3년 
 const amount = principal * (1 + rate) ** years
 
 console.log(amount)
-
-
-
-
-// --------------------------------------------------------------------------
-// [산술 연산] 증가/감소 연산자
-// --------------------------------------------------------------------------
-
-let count = 0
-
-// 후 증가 (Post-increment)
-
-// 전 증가 (Pre-increment)
-
-// 후 감소 (Post-decrement)
-
-// 전 감소 (Pre-decrement)
 
 
 // --------------------------------------------------------------------------
@@ -104,20 +87,68 @@ let count = 0
 // --------------------------------------------------------------------------
 
 let x = 10
+console.log(x)
 
 // 기본 할당
+x = 8
+console.log(x)
 
 // 더한 후, 할당
+x += 2 // x = x + 2
+console.log(x)
 
 // 뺀 후, 할당
+x -= 3 // x = x -3
+console.log(x)
 
 // 곱한 후, 할당
+x *= 3 // x = x * 3
+console.log(x)
 
 // 나눈 후, 할당
+x /= 3 // x = x / 3
+console.log(x)
 
 // 나머지 후, 할당
+x %= 4 // x = x % 4
+console.log(x)
 
 // 거듭제곱 후, 할당
+x **= 3 // x = x ** 3
+console.log(x)
+
+
+// --------------------------------------------------------------------------
+// [산술 연산] 증가/감소 연산자
+// --------------------------------------------------------------------------
+
+// 증가(++) 연산자
+// 감소(--) 연산자
+// 주의! 전위(앞)/후위(뒤) 위치에 따라 작동 방식이 달라짐
+
+let count = 3
+console.log(count)
+
+// 후 증가 (Post-increment)
+//count = count + 1 // count += 1 
+
+count++ // count = 3
+console.log(count)
+
+// 선 증가 (Pre-increment)
+
+++count // count = 5
+console.log(count)
+
+// 후 감소 (Post-decrement)
+
+count-- // count = 5
+console.log(count)
+
+// 전 감소 (Pre-decrement)
+
+--count // count = 3
+console.log(count)
 
 
 // --------------------------------------------------------------------------
