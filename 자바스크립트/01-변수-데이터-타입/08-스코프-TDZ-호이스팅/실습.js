@@ -73,6 +73,21 @@ function 표_만들기(표_제목) {
 console.log(표_만들기('JavaScript로 마크업하기!'))
 console.log(표_만들기('HTML로 마크업하기!'))
 
+// 컴퓨터 메모리는 이미 sayHello 함수를 기억합니다.
+// 마치, 해당 영역의 가장 상위로 함수 선언문을 끌어올린 것처럼 보이죠?
+// 그래서 호이스팅(Hoisting)이라고 불러요. (용어 해설)
+// function myHouse() {
+//   // - 지역 변수 desk 선언 ('책상 위의 노트북')
+//   const desk = '책상 위의 노트북'
+//   // - 전역 변수 garden, 지역 변수 desk 콘솔에 출력
+//   console.log('garden:', garden)
+//   console.log('desk:', desk)
+// }
+
+// var 변수는 선언과 초기화가 동시 진행 (JS 엔진이 undefined 설정)
+// var sayBye 
+
+
 // --------------------------------------------------------------------------
 // 실습: 변수의 범위와 안전 수칙 (Scope & TDZ)
 // --------------------------------------------------------------------------
@@ -81,6 +96,7 @@ console.log(표_만들기('HTML로 마크업하기!'))
 // * 호이스팅(Hoisting) : 선언문이 코드 최상단으로 끌어올려진 것처럼 작동하는 현상입니다.
 // --------------------------------------------------------------------------
 
+
 // --------------------------------------------------------------------------
 // 스코프 (Scope) - 전역과 지역
 // --------------------------------------------------------------------------
@@ -88,34 +104,43 @@ console.log(표_만들기('HTML로 마크업하기!'))
 // 전역 변수 garden 선언 ('마당의 꽃')
 const garden = '마당의 꽃'
 
-// 블록(Block, {...}) - 지역 생성
+// --------------------------------------------------------------------------
+// 블록 스코프
+// 블록(Block, { ... }) - 지역 생성
 {
-  // 블록 내부의 범위(scope)에서만
-  // 사용 가능한 지역 변수(local variable)
+  // 블록 내부의 범위(scope)에서만 
+  // 사용 가능한 지역변수(local variable)
+  // let, const 키워드로 정의된 변수 (✅ 외부에서 접근 불가능)
+  // 하지만, var 키워드로 정의된 변수는 지역 만들지 않음 (⚠️ 외부에서 접근 가능)
   const blockVariable = '블록 내부의 변수'
   console.log(blockVariable)
 }
 
-// console.log(blockVariable) // blockVariable is not defined - 블록 외부에서는 사용 불가 
+// console.log(blockVariable)
 
+// --------------------------------------------------------------------------
+// 함수 스코프
 // 함수 myHouse 선언
-function myHouse(){
+function myHouse() {
   // - 지역 변수 desk 선언 ('책상 위의 노트북')
   const desk = '책상 위의 노트북'
   // - 전역 변수 garden, 지역 변수 desk 콘솔에 출력
-  console.log('garden : ', garden)
-  console.log('desk : ' , desk)
+  console.log('garden:', garden)
+  console.log('desk:', desk)
 }
 
 myHouse()
+
 
 // 전역에서 garden, desk 변수 값 콘솔에 출력
 // - 함수 내부(지역)에서는 외부(전역) 변수에 접근할 수 있습니다.
 // - 외부(전역)에서는 함수 내부(지역) 변수에 접근할 수 없습니다. (ReferenceError)
 
 // garden 출력 결과
+console.log(garden)
 
 // desk 출력 결과
+// console.log(desk)
 
 
 // --------------------------------------------------------------------------
@@ -126,9 +151,9 @@ myHouse()
 const outer = function() {
   // - 지역 변수 livingRoom 선언 ('거실의 소파')
   const livingRoom = '거실의 소파'
-
+  
   // - 내부 함수 inner 선언
-  const inner = function(){
+  const inner = function () {
     //   - 지역 변수 myRoom 선언 ('내 방의 침대')
     const myRoom = '내 방의 침대'
     //   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
@@ -138,18 +163,20 @@ const outer = function() {
   }
   // - 내부 함수 inner 호출
   inner()
-//   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
-    console.log(garden)
-    console.log(livingRoom)
-    // console.log(myRoom)
+
+  //   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
+  console.log(garden)
+  console.log(livingRoom)
+  // console.log(myRoom)
 }
+
 // 함수 outer 호출
 outer()
-//   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
-    console.log(garden)
-    // console.log(livingRoom)
-    // console.log(myRoom)
 
+//   - 전역 변수 garden, 상위 함수 변수 livingRoom, 지역 변수 myRoom 출력
+console.log(garden)
+// console.log(livingRoom)
+// console.log(myRoom)
 
 // 설명: 변수를 찾을 때 현재 범위에 없으면, 점점 더 바깥 범위로 나가며 찾습니다.
 // 출력 결과:
@@ -157,17 +184,39 @@ outer()
 // - outer 함수 내부 지역 변수: '거실의 소파'
 // - inner 함수 내부 지역 변수: '내 방의 침대'
 
+// --------------------------------------------------------------------------
+// 안전펜스 (TDZ, 일시적 사각지대)
+// --------------------------------------------------------------------------
+
+// 변수 선언(생성, 초기화)
+// 생성만 한 시점
+
+// var 변수로 정의된 것은 호이스팅(끌어올려는 것처럼 보여요)
+// var 변수의 초기화가 없다면? JS 엔진이 undefined로 초기 값을 설정
+console.log(notTdz)
+
+// tdz (초기화 이전 상태: <Uninitialized>)
+// console.log(tdz)
+
+let tdz // = '✅ let, const 변수는 "안전펜스(TDZ)" 생성'
+var notTdz = '⚠️ var 변수는 TDZ를 만들지 않아요.'
+
+console.log(tdz)
 
 // --------------------------------------------------------------------------
 // 호이스팅 (Hoisting) - 함수 선언문
 // --------------------------------------------------------------------------
 
 // 함수 선언보다 호출을 먼저 작성 (sayHello)
+console.log(sayHello())
 
-// 함수 sayHello 선언 ('안녕! JavaScript 🌼' 출력)
+// sayHello 함수 선언 ('안녕! JavaScript 🌼' 출력)
+function sayHello() {
+  return '안녕! JavaScript 🌼'
+}
 
-// 설명: 함수 선언문은 코드 맨 위로 끌어올려지므로, 
-//      선언 전에도 호출이 가능하도록 작동합니다.
+// 설명: 함수 선언문은 코드 맨 위로 끌어올려지는 것처럼 보이므로, 
+//      선언 전에도 호출이 가능하도록 작동합니다. (왜? 이미 메모리되어 있으므로)
 // 출력 결과: '안녕! JavaScript 🌼'
 
 
@@ -194,10 +243,18 @@ outer()
 // --------------------------------------------------------------------------
 
 // 함수 표현식 선언 전, sayBye 호출 (ReferenceError 발생)
+// console.log(undefined()????) 
+// console.log(sayBye())
 
 // const 키워드를 사용해 sayBye 변수에 함수 표현식 할당 ('잘 가! JavaScript 👋' 출력)
+// let, const 선언 시, 메모리에 이름만 등록 [TDZ, 안전펜스] 초기화 [TDZ 해제]
+// var 선언 시, 메모리에 이름이 등록됨과 동시에 초기화(초기값이 없으면 undefined 설정) 함께 진행
+var sayBye = function() {
+  return '잘 가! JavaScript 👋'
+}
 
 // 함수 표현식 선언 후 sayBye 호출
+console.log(sayBye())
 
 // 설명:
 // 함수 표현식은 '변수 호이스팅' 규칙을 따릅니다.
