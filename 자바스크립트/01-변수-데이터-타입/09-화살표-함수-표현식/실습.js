@@ -257,3 +257,16 @@ console.log(길음동_오피스텔)
 // 2. 매개변수가 1개면 소괄호 생략 가능, 0개거나 2개 이상이면 필수입니다.
 // 3. 중괄호 {}를 생략하면 return 없이도 값이 자동으로 반환(암묵적 반환)됩니다.
 // 4. 객체를 바로 반환할 때는 소괄호 ()로 감싸주어야 합니다.
+
+
+const ten = () => 10
+console.log(ten());
+
+const logger = message => message
+console.log(logger('화살표 함수 아직은 생소하지만 친해져볼게요!'))
+
+const pxtoRem = pxValue => parseFloat(pxValue) / 16 + 'rem'
+console.log(pxtoRem(648))
+
+const percentage = (n1, n2) => n1 / n2 * 100 + '%'
+console.log(percentage(360, 1280))
