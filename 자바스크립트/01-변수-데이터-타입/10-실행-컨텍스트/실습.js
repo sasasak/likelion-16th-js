@@ -14,10 +14,13 @@
 
 // 전역 변수 선언
 // restaurantName 변수에 '이탈리안 키친' 할당
+const restaurantName = '이탈리안 키친'
 // isOpen 변수에 true 할당
-
+const isOpen = true /* 레스토랑이 열린 상태 */
 
 // 전역 변수 출력
+console.log('restaurantName:', restaurantName)
+console.log('isOpen:', isOpen)
 
 
 // 설명:
@@ -36,12 +39,15 @@
 // makePasta 함수 선언
 // 매개변수: pastaType
 // 기능: '[pastaType] 파스타를 만들고 있습니다.' 출력
-
+const makePasta = function (pastaType) {
+  return pastaType + ' 파스타를 만들고 있습니다.'
+}
 
 // makePasta 함수 호출 ('까르보나라' 전달)
-
+console.log(makePasta('까르보나라'))
 
 // makePasta 함수 호출 ('알리오 올리오' 전달)
+console.log(makePasta('알리오 올리오'))
 
 
 // 설명:
@@ -67,21 +73,24 @@
 // - finalPrice : <Uninitialized> (TDZ 진입)
 
 // menuPrice 변수에 50000 할당
-
+const menuPrice = 50_000
 
 // discount 변수에 0.1 할당
-
+const discount = 0.1
 
 // calculatePrice 함수 선언
 // 매개변수: price, discountRate
 // 기능: price에서 할인을 적용한 금액을 계산하여 반환
 // 지역 변수 discountedPrice 사용
-
+function calculatePrice(price, discountRate) {
+  return price - (price * discountRate)
+}
 
 // finalPrice 변수에 calculatePrice 함수 호출 결과 할당 (menuPrice, discount 전달)
-
+const finalPrice = calculatePrice(menuPrice, discount)
 
 // finalPrice 출력
+console.log(finalPrice)
 
 
 // 설명:
@@ -122,11 +131,14 @@
 
 // 함수 선언은 호이스팅되어 선언 전에 호출 가능
 // greet 함수 호출 ('손님' 전달)
-
+console.log(greet('손님'))
 
 // greet 함수 선언
 // 매개변수: name
 // 기능: '어서오세요, [name]님!' 반환
+function greet(name) {
+  return '어서오세요, ' + name + '!'
+}
 
 
 // 설명:
@@ -145,9 +157,10 @@
 // console.log(dishName) // ReferenceError: Cannot access 'dishName' before initialization
 
 // dishName 변수에 '라자냐' 할당
-
+const dishName = '라자냐'
 
 // dishName 출력
+console.log(dishName)
 
 
 // 설명:
@@ -164,7 +177,7 @@
 
 // 전역 변수 선언
 // chefName 변수에 '김셰프' 할당
-
+const chefName = '김셰프'
 
 // cookDish 함수 선언
 // 매개변수: dish
@@ -173,9 +186,30 @@
 //   - serveDish 함수 선언 (내부 함수)
 //     - 기능: '[chefName]님이 [dish]를 [cookingTime]분만에 완성했습니다!' 출력
 //   - serveDish 함수 호출
+function cookDish(dish) {
+  const cookingTime = 30
 
+  function serveDish() {
+    // return '[chefName]님이 [dish]를 [cookingTime]분만에 완성했습니다!'
+    let message = chefName
+        message += '님이 '
+        message += dish
+        message += '를 '
+        message += cookingTime
+        message += '분만에 완성했습니다!'
+    
+    return message
+  }
+
+  console.log(serveDish())
+
+  // 암묵적 반환
+  // return undefined
+}
 
 // cookDish 함수 호출 ('스파게티' 전달)
+console.log(cookDish('스파게티'))
+console.log(chefName)
 
 
 // 설명:
@@ -192,22 +226,27 @@
 // --------------------------------------------------------------------------
 
 // x 변수에 100 할당
-
+const x = 100
 
 // y 변수에 50 할당
-
+const y = 50
 
 // getSum 함수 선언
 // 매개변수: n1, n2
 // 기능:
 //   - 지역 변수 sum에 n1 + n2 할당
 //   - sum 반환
+function getSum(n1, n2) {
+  const sum = n1 + n2
+  return sum
+}
 
 
 // result 변수에 getSum 함수 호출 결과 할당 (x, y 전달)
-
+const result = getSum(x, y)
 
 // result 출력
+console.log(result)
 
 
 // 설명:
