@@ -11,14 +11,15 @@
 // Undefined - 변수 선언만 하고 값을 할당하지 않은 경우
 // --------------------------------------------------------------------------
 
+// TDZ (Uninitialized, 초기화 되지 않은 상태, 접근 불가)
 // data 변수 선언 (값 할당하지 않음)
-
+let data // JS 엔진이 초기화(Initialization, undefined 할당. 개발자 의도 없음)
 
 // data 변수 출력
-
+console.log(data)
 
 // data 변수의 타입 출력 (typeof 연산자 사용)
-
+console.log(typeof data, String(data), '' + data)
 
 // 설명:
 // 변수를 선언하고 값을 할당하지 않으면 JavaScript 엔진이 자동으로 undefined를 할당합니다.
@@ -34,12 +35,17 @@
 // --------------------------------------------------------------------------
 
 // doNothing 함수 선언 (아무것도 하지 않는 빈 함수)
-
+function doNothing() {
+  // 개발자가 아무 것도 명시적으로 반환하지 않음
+  // JS 엔진이 암묵적으로 undefined 값을 반환
+  // return undefined
+}
 
 // doNothing 함수 호출 결과를 result 변수에 할당
-
+const result = doNothing()
 
 // result 변수 출력
+console.log(result)
 
 
 // 설명:
@@ -56,16 +62,23 @@
 // user 객체 생성
 // name 속성: '이준'
 // age 속성: 20
-
+const user = {
+  name: '이준',
+  age: 20,
+}
 
 // user 객체의 name 속성 출력
+console.log(user.name)
 
+// console.log(user['name'])
+// const propName = 'age'
+// console.log(user[propName])
 
 // user 객체의 email 속성 출력 (존재하지 않는 속성)
-
+console.log(user.email)
 
 // user 객체의 address 속성 출력 (존재하지 않는 속성)
-
+console.log(user.address)
 
 // 설명:
 // 객체에 존재하지 않는 속성에 접근하면 undefined가 반환됩니다.
@@ -81,16 +94,16 @@
 // --------------------------------------------------------------------------
 
 // fruits 배열 생성 ['천혜향', '애플망고']
-
+const fruits = ['천혜향', '애플망고']
 
 // fruits 배열의 0번 인덱스 출력
-
+console.log(fruits[0])
 
 // fruits 배열의 1번 인덱스 출력
-
+console.log(fruits[1])
 
 // fruits 배열의 2번 인덱스 출력 (존재하지 않는 인덱스)
-
+console.log(fruits[2])
 
 // 설명:
 // 배열에 존재하지 않는 인덱스에 접근하면 undefined가 반환됩니다.
@@ -108,10 +121,12 @@
 // greet 함수 선언
 // 매개변수: name, age
 // 기능: name과 age를 각각 출력
-
+function greet(name, age) {
+  return 'name = ' + name + ' / age = ' + age
+}
 
 // greet 함수 호출 ('현정'만 전달, age는 전달하지 않음)
-
+console.log(greet('현정'))
 
 // 설명:
 // 함수 매개변수에 값을 전달하지 않으면 해당 매개변수는 undefined가 됩니다.
