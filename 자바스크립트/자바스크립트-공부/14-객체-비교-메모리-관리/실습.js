@@ -41,18 +41,22 @@
 
 // 야무 객체 생성
 // isHavingFun 속성: true
-
+const yamoo = { isHavingFun: true }
 
 // 지니 객체 생성
 // isHavingFun 속성: true
-
+const jini = { isHavingFun: true }
 
 // 야무와 지니를 === 연산자로 비교한 결과 출력
-
+console.log(yamoo == jini)
+console.log(yamoo === jini)
 
 // 설명:
 // 두 객체의 내용은 같지만, 메모리의 서로 다른 위치에 저장되어 있습니다.
 // === 연산자는 객체의 주소(참조)를 비교하므로 false가 반환됩니다.
+
+// console.log({ isHavingFun: true } === { isHavingFun: true })
+// console.log('0x0010101010' === '0x0010101011')
 
 // 출력 결과:
 // false
@@ -63,19 +67,25 @@
 // --------------------------------------------------------------------------
 
 // name 변수에 '네무' 할당
-
+const name = '네무'
+console.log(name)
 
 // new_name 변수에 name 값 복사
+let new_name = name
+console.log(new_name)
 
+console.log(name === new_name)
 
 // new_name 변수를 '야무'로 변경
-
+new_name = '야무'
 
 // name 변수 출력
-
+console.log(name)
 
 // new_name 변수 출력
+console.log(new_name)
 
+console.log(name === new_name)
 
 // 설명:
 // 기본 타입은 스택(Stack)에 값 자체가 저장됩니다.
@@ -90,21 +100,34 @@
 // 객체 타입 저장 방식 (Heap) - 주소 복사
 // --------------------------------------------------------------------------
 
+// Heap에 저장 (크고 변경 가능한 데이터: 객체)
+// 객체의 주소: 0x0010101010
+// {
+//   name: '성준일',
+//   age: 57,
+// }
+
 // person 객체 생성
 // name 속성: '성준일'
 // age 속성: 57
-
+// const person = 0x0010101010
+const person = { name: '성준일', age: 57, }
 
 // new_person 변수에 person 객체 할당 (주소 복사)
-
+// const new_person = 0x0010101010
+const new_person = person
 
 // new_person 객체의 age 속성을 21로 변경
-
+// 변형 가능한(mutable) 객체를 참조하고 있는 변수를 통해 데이터 값 변경함
+// 객체의 주소를 공유하는 다른 변수 또한 동일한 객체를 참조(가리킴)하므로
+// 다른 변수를 통해 접근해도 동일 대상이므로 값이 변경되어 있다.
+new_person.age = 21 
 
 // person 객체의 age 속성 출력
-
+console.log(person.age)
 
 // new_person 객체의 age 속성 출력
+console.log(new_person.age)
 
 
 // 설명:
@@ -123,13 +146,15 @@
 
 // 야무2 객체 생성
 // isHavingFun 속성: true
+const yamoo2 = { isHavingFun: true }
 
 
 // 지니2 객체 생성
 // isHavingFun 속성: true
-
+const jini2 = { isHavingFun: true }
 
 // 야무2와 지니2를 === 연산자로 비교한 결과 출력
+console.log(yamoo2 === jini2)
 
 
 // 설명:
@@ -146,12 +171,13 @@
 
 // 야무3 객체 생성
 // isHavingFun 속성: true
-
+const yamoo3 = { isHavingFun: true }
 
 // 지니3 변수에 야무3 객체 할당 (주소 복사)
-
+const jini3 = yamoo3 // 실제 데이터의 참조 주소(힙의 주소) 복사
 
 // 야무3와 지니3를 === 연산자로 비교한 결과 출력
+console.log(yamoo3 === jini3)
 
 
 // 설명:
@@ -167,19 +193,19 @@
 // --------------------------------------------------------------------------
 
 // a 변수에 10 할당
-
+let a = 10
 
 // b 변수에 a 값 복사
-
+let b = a // a 변수의 기본값인 10 복사
 
 // a 변수를 20으로 변경
-
+a = 20
 
 // a 변수 출력
-
+console.log(a)
 
 // b 변수 출력
-
+console.log(b)
 
 // 설명:
 // 기본 타입은 값이 복사되므로 a를 변경해도 b는 영향을 받지 않습니다.
@@ -196,18 +222,19 @@
 // obj1 객체 생성
 // x 속성: 10
 // y 속성: 24
-
+const obj1 = { x: 10, y: 24 }
 
 // obj2 변수에 obj1 객체 할당 (주소 복사)
-
+const obj2 = obj1 // 실제 데이터(힙에 저장)의 주소 복사
 
 // obj1 객체의 x 속성을 40으로 변경
-
+obj1.x = 40
 
 // obj1 객체 출력
-
+console.log(obj1)
 
 // obj2 객체 출력
+console.log(obj2)
 
 
 // 설명:
@@ -257,18 +284,22 @@
 // 배열도 객체 타입입니다 - 주소 복사 확인
 
 // arr1 배열 생성 [1, 2, 3]
-
+const arr1 = [1, 2, 3]
+console.log(arr1)
 
 // arr2 변수에 arr1 배열 할당 (주소 복사)
+const arr2 = arr1
+console.log(arr2)
 
 
 // arr1 배열의 0번 인덱스를 100으로 변경
-
+arr1[0] = 100
 
 // arr1 배열 출력
-
+console.log(arr1)
 
 // arr2 배열 출력
+console.log(arr2)
 
 
 // 설명:
@@ -280,24 +311,26 @@
 // [100, 2, 3]
 
 
-// 함수도 객체 타입입니다
+// 함수도 객체 타입입니다.
 
 // greet 함수 선언
 // 매개변수: name
 // 기능: 'Hello, [name]!' 반환
-
+function greet(name) {
+  return 'Hello, ' + name + '!'
+}
 
 // greet2 변수에 greet 함수 할당 (주소 복사)
-
+const greet2 = greet
 
 // greet 함수 호출 ('Alice' 전달) 및 결과 출력
-
+console.log(greet('Alice'))
 
 // greet2 함수 호출 ('Bob' 전달) 및 결과 출력
-
+console.log(greet2('Bob'))
 
 // greet와 greet2를 === 연산자로 비교한 결과 출력
-
+console.log(greet === greet2)
 
 // 설명:
 // 함수도 객체 타입이므로 주소가 복사됩니다.
@@ -307,32 +340,3 @@
 // 'Hello, Alice!'
 // 'Hello, Bob!'
 // true
-
-
-// 독립적인 객체 만들기 - 스프레드 연산자 사용
-
-// original 객체 생성
-// name 속성: '철수'
-// age 속성: 25
-
-
-// copy 변수에 original 객체를 스프레드 연산자로 복사
-// const copy = { ...original }
-
-
-// copy 객체의 age 속성을 30으로 변경
-
-
-// original 객체 출력
-
-
-// copy 객체 출력
-
-
-// 설명:
-// 스프레드 연산자(...)를 사용하면 객체의 내용을 복사하여 새로운 객체를 만듭니다.
-// 이 경우 두 객체는 서로 다른 주소를 가지므로 독립적입니다.
-
-// 출력 결과:
-// { name: '철수', age: 25 } (원본은 변경되지 않음)
-// { name: '철수', age: 30 }
