@@ -119,17 +119,17 @@ const doc = document, htmlDoc = document
 console.log('현재 웹 페이지의 제목:', document.title) // 웹 페이지 제목 읽기
 
 // 2. 현재 문서의 전체 URL 주소를 출력하세요.
-
+console.log(document.URL)
 
 // 3. 현재 문서의 도메인(domain) 정보를 출력하세요.
-
+console.log(document.domain)
 
 // 4. [수정] 브라우저 상단 탭의 제목(title)을 '학습 중인 새로운 제목'으로 변경해 보세요.
+document.title = '멋사 FE.16 JavaScript 학습!' // 웹 페이지 제목 쓰기
 
 
 // 설명:
 // DOM 객체의 속성에 새로운 값을 할당하면 실제 브라우저의 렌더링 상태가 즉시 변경됩니다.
-document.title = '멋사 FE.16 JavaScript 학습!' // 웹 페이지 제목 쓰기
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
