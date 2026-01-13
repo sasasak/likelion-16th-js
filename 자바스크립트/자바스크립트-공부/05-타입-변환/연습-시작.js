@@ -13,26 +13,33 @@ const LOAN_PERIOD = '14'    // 대출 기간
 // --------------------------------------------------------------------------
 
 // parseInt()를 사용해서 BOOK_PAGE를 숫자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
+const bookPage = parseInt(BOOK_PAGE)
+console.log(bookPage, typeof(bookPage))
 
 // Number()를 사용해서 SHELF_NUMBER를 숫자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
+const shelfNumber = Number(SHELF_NUMBER)
+console.log(shelfNumber, typeof(shelfNumber))
 
 // + 연산자를 사용해서 LOAN_PERIOD를 숫자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
+const loanPeriod = + LOAN_PERIOD
+console.log(loanPeriod, typeof(loanPeriod))
 
 // --------------------------------------------------------------------------
 // 연습 문제: 숫자 → 문자 변환
 // --------------------------------------------------------------------------
 
 // toString()을 사용해서 BOOK_COUNT를 문자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
-
+let bookCount = BOOK_COUNT.toString()
+console.log(bookCount, typeof(bookCount))
 // String()을 사용해서 BOOK_COUNT를 문자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
+console.log(BOOK_COUNT, typeof(BOOK_COUNT))
 
+bookCount = String(BOOK_COUNT)
+console.log(bookCount, typeof(bookCount))
 
 // 빈 문자('')를 더해서 BOOK_COUNT를 문자로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
+bookCount = BOOK_COUNT + ''
+console.log(bookCount, typeof(bookCount))
 
 // --------------------------------------------------------------------------
 // 연습 문제: 문자 → 실수 변환
@@ -42,10 +49,10 @@ const PRICE = '81.56만원'
 const RATING = '4.8점'
 
 // parseFloat()를 사용해서 PRICE를 실수로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
+console.log(parseFloat(PRICE),typeof(parseFloat(PRICE)))
 
 // parseFloat()를 사용해서 RATING을 실수로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
+console.log(parseFloat(RATING), typeof(parseFloat(RATING)))
 
 // --------------------------------------------------------------------------
 // 연습 문제: 숫자 → 불리언 변환
@@ -55,10 +62,11 @@ const STOCK = 10
 const SOLD_OUT = 0
 
 // Boolean()을 사용해서 STOCK을 불리언으로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
+console.log(Boolean(STOCK), typeof(Boolean(STOCK)))
 
 // Boolean()을 사용해서 SOLD_OUT을 불리언으로 변환하고, 변환된 값과 값의 타입을 확인합니다.
-
+const soldOut = Boolean(SOLD_OUT)
+console.log(soldOut, typeof(soldOut))
 
 // --------------------------------------------------------------------------
 // 연습 문제: Falsy 값 → 불리언 변환
@@ -66,16 +74,20 @@ const SOLD_OUT = 0
 
 // 다음 값들을 Boolean()으로 변환하고 결과를 예측하세요.
 
-// Boolean(0)           // 예측:
-// Boolean('')          // 예측:
-// Boolean(false)       // 예측:
-// Boolean(null)        // 예측:
-// Boolean(undefined)    // 예측:
-// Boolean(NaN)         // 예측:
+// Boolean(0)           // 예측: false
+// Boolean('')          // 예측: false
+// Boolean(false)       // 예측: false
+// Boolean(null)        // 예측: false
+// Boolean(undefined)    // 예측: false
+// Boolean(NaN)         // 예측: false
 
 
 // 위 코드의 실제 결과를 확인하세요.
-
+console.log(Boolean(0))
+console.log(Boolean(false))
+console.log(Boolean(null))
+console.log(Boolean(undefined))
+console.log(Boolean(NaN))
 
 // --------------------------------------------------------------------------
 // 연습 문제: 숫자가 아님(NaN)
@@ -83,16 +95,16 @@ const SOLD_OUT = 0
 
 
 // Math.sqrt(-1)을 사용해서 NaN을 만드세요.
-
+console.log(Math.sqrt(-1))
 
 // 1 + NaN을 사용해서 NaN을 만드세요.
-
+console.log(1+NaN)
 
 // undefined + undefined를 사용해서 NaN을 만드세요.
-
+console.log(undefined + undefined)
 
 // '안녕' / 2를 사용해서 NaN을 만드세요.
-
+console.log('안녕' / 2)
 
 // --------------------------------------------------------------------------
 // 연습 문제: NaN 확인
@@ -103,13 +115,13 @@ const INVALID_NUMBER = '안녕' * 3
 
 // typeof 연산자로 INVALID_NUMBER의 타입을 확인하세요.
 // (힌트: NaN도 'number' 타입입니다!)
-
+console.log(typeof(INVALID_NUMBER))
 
 // isNaN()을 사용해서 INVALID_NUMBER가 NaN인지 확인하세요.
-
+console.log(isNaN(INVALID_NUMBER))
 
 // Number.isNaN()을 사용해서 INVALID_NUMBER가 NaN인지 확인하세요.
-
+console.log(Number.isNaN(INVALID_NUMBER))
 
 // --------------------------------------------------------------------------
 // 연습 문제: 상품 가격 변경
@@ -118,3 +130,4 @@ const INVALID_NUMBER = '안녕' * 3
 const PRODUCT_PRICE = '50000원'
 
 // 상품 가격(문자열)을 숫자로 변환하고 10% 할인된 가격을 계산한 후, '원'을 붙여 출력하세요.
+console.log(parseInt(PRODUCT_PRICE) - (parseInt(PRODUCT_PRICE) * 0.1) + '원')

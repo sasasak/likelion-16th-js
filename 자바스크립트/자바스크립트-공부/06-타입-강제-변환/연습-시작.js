@@ -14,67 +14,77 @@ const PRODUCT_3_QUANTITY = '1'
 
 // 첫 번째 상품의 소계를 계산하세요.
 // 출력 결과: 70000 (number)
-let product_1_subtotal
+let product_1_subtotal = Number(PRODUCT_1_PRICE)*2
+console.log(product_1_subtotal)
 
 // 두 번째 상품의 소계를 계산하세요.
 // 출력 결과: 144000 (number)
-let product_2_subtotal
+let product_2_subtotal = Number(PRODUCT_2_PRICE) *3
+console.log(product_2_subtotal)
 
 // 세 번째 상품의 소계를 계산하세요.
 // 출력 결과: 25000 (number)
-let product_3_subtotal
+let product_3_subtotal = Number(PRODUCT_3_PRICE)
+console.log(product_3_subtotal)
 
 // 전체 상품의 합계를 계산하세요.
 // 출력 결과: 239000 (number)
-let cart_total
+let cart_total = product_1_subtotal + product_2_subtotal + product_3_subtotal
+console.log(cart_total)
 
 // 배송비를 추가하세요. (3000원, 문자열로 입력됨)
 const SHIPPING_FEE = '3000'
 // 출력 결과: 242000 (number)
-let total_with_shipping
+let total_with_shipping = cart_total + Number(SHIPPING_FEE)
+console.log(total_with_shipping)
 
 // 회원 할인율을 적용하세요. (10% 할인, 문자열로 입력됨)
 const MEMBER_DISCOUNT_RATE = '0.1'
 // 출력 결과: 24200 (number)
-let discount_amount
+let discount_amount = total_with_shipping * parseFloat(MEMBER_DISCOUNT_RATE)
+console.log(discount_amount)
 
 // 최종 결제 금액을 계산하세요.
 // 출력 결과: 217800 (number)
-let final_payment
+let final_payment = total_with_shipping - discount_amount
+console.log(final_payment)
 
 // 포인트 적립액을 계산하세요. (최종 금액의 1%, 문자열로 입력됨)
 const POINT_RATE = '0.01'
 // 출력 결과: 2178 (number)
-let earned_points
+let earned_points = final_payment * parseFloat(POINT_RATE)
+console.log(earned_points)
 
 // 다음 구매 시 사용 가능한 쿠폰 금액 (문자열)
 const COUPON_AMOUNT = '5000'
 // 쿠폰을 사용했을 때의 금액을 계산하세요.
 // 출력 결과: 212800 (number)
-let payment_with_coupon
+let payment_with_coupon = final_payment - Number(COUPON_AMOUNT)
+console.log(payment_with_coupon)
 
 // 결제 정보를 문자열로 출력하세요.
 // 출력 결과: '상품 합계: 239000원, 배송비: 3000원, 할인: 24200원, 최종 결제: 217800원'
-let payment_summary
+let payment_summary = ('상품 합계 : ' + String(cart_total)+ '원, ' + '배송비 : ' + String(SHIPPING_FEE)+'원, ' + '할인 : ' + String(discount_amount) + '원, ' + '최종 결제 : ' + String(payment_with_coupon) + '원')
+console.log(payment_summary)
 
 // 잘못된 계산 예시 (주의!)
-// PRODUCT_1_PRICE, PRODUCT_1_QUANTITY 덧셈: 문자열 연결이 일어나는 경우 
-// 출력 결과: '350002' (string) - 잘못된 계산!
+// PRODUCT_1_PRICE, PRODUCT_3_QUANTITY 덧셈: 문자열 연결이 일어나는 경우 
+// 출력 결과: '3500025000' (string) - 잘못된 계산!
 let wrong_calculation_1
 
 // 올바른 계산 방법
-// 출력 결과: 37000 (number)
-let correct_calculation_1
+// 출력 결과: 60000 (number)
+
 
 // NaN이 발생하는 경우
 const INVALID_PRICE = 'abc'
 // 출력 결과: NaN (number)
-let invalid_calculation
+let invalid_calculation = INVALID_PRICE
+console.log(Number(invalid_calculation))
 
 // NaN 체크하기
 // 출력 결과: true
-let is_invalid
-
+let is_invalid 
 
 // --------------------------------------------------------------------------
 // 연습 문제: 사용자 정보 처리 시스템
