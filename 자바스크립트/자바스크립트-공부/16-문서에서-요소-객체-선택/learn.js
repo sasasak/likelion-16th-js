@@ -7,29 +7,87 @@
 // --------------------------------------------------------------------------
 
 
-// 아주 오래 전 웹 브라우저 세상에서 사용했던 오래된 방법 (⚠️ 비표준)
-console.log(document.all) // HTMLAllCollection []
+// 아주 오래 전 웹 브라우저 세상에서 사용했던 오래된 방법 (⚠️ 비표준: Microsoft사의 IE 브라우저)
+// console.log(document.all) // HTMLAllCollection []
 
 // 그리고 시간이 흘러 사람들은 표준의 필요성을 절실히 느끼기 시작
 // 표준 API를 만들기 시작했는데... (✅ 표준)
-console.log(document.getElementsByTagName('p')) // HTMLCollection []
+// console.log(document.getElementsByTagName('p')) // HTMLCollection []
+
+
+// 브라우저에서 하는 일
+// * HTML 파서(해석 프로그램) 
+//   - *.html 파일 파싱(해석) -> DOM 생성
+// * JavaScript 엔진 
+//   - *.js 파일 처리 -> DOM에 접근/조작
+//   - *.js 파일 처리하는 동안 HTML 파서는 대기 상태가 됨. (동기식, 일을 안하고 대기 중...)
+
 
 // 그런데 여러 요소들을 수집하는 것 말고, 
 // 문서에서 고유한 id 속성을 가진 단 하나의 요소를 선택하는 방법이 필요 (✅ 표준)
-console.log(document.getElementById('content')) // HTMLElement {}
+// console.log(document.getElementById('content')) // Element (찾은 경우) 또는 null (못찾은 경우)
+
+// <html> 요소(객체) 선택
+// console.log(document.documentElement)
+// console.log(document.querySelector('html'))
+
+// <head> 요소(객체) 선택
+// console.log(document.head)
+// console.log(document.querySelector('head'))
+
+// <title> 요소(객체) 선택
+// console.log(document.querySelector('title'))
+
+// <meta /> 요소(객체) 선택
+// console.log(document.querySelector('meta'))
+
+// <body> 요소(객체) 선택
+// console.log(document.body)
+// console.log(document.querySelector('body'))
+
+// <article> 요소(객체) 선택
+// console.log(document.querySelector('article'))
+// console.log(document.querySelector('#content'))
 
 
 // --------------------------------------------------------------------------
 // document.querySelector - 전체 문서 탐색
-// --------------------------------------------------------------------------
+// -------------------------------------------------------------------------
 
 // 1. ID 선택자를 사용하여 '#chapter' 요소를 선택하고 콘솔에 출력하세요.
+let chapterElement = document.getElementById('chapter')
+chapterElement = document.querySelector('#chapter')
+console.log(chapterElement) // Element 또는 null
 
+// 조건 처리 (문서에 요소가 존재하는지 검토)
+// chapterElement || console.warn('#chapter 요소가 문서에 없습니다.')
+// if (!chapterElement) {
+checkElementWarn(chapterElement, '#chapter')
 
 // 2. 클래스 선택자를 사용하여 '.sr-only' 요소를 선택하고 콘솔에 출력하세요.
+const screenReaderOnlyElement = document.querySelector('.sr-only')
+console.log(screenReaderOnlyElement)
 
+checkElementWarn(screenReaderOnlyElement, '.sr-only')
 
 // 3. 속성 선택자를 사용하여 title에 'Model'이 포함된([title*="Model"]) 요소를 선택하세요.
+const modelElement = document.querySelector('[title*="Model"]')
+console.log(modelElement)
+
+checkElementWarn(modelElement, '[title*="Model"]')
+
+
+// 반복되는 코드를 재사용하기 위해 함수를 작성하기로 했다.
+// 함수(기능)에 걸맞는 이름을 작성하기로 했다.
+// 기능: 문서에 요소가 존재하는지 확인한 후, 존재하지 않을 경우 콘솔에 경고하기로 했다.
+// 목적: 현재 어떤 상황의 문제가 발생했는지 개발자에게 알리고자 한다.
+function checkElementWarn(element, selector) {
+  // 요소가 문서에 존재하는지 검증
+  // 문서에 요소가 없다면? 콘솔에 경고
+  if (element === null) {
+    console.warn(selector + ' 선택자로 문서에서 요소를 찾을 수 없습니다.')
+  }
+}
 
 
 // 설명:
