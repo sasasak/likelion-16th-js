@@ -10,11 +10,22 @@
 // 1. 클래스 이름 추가 (add)
 // --------------------------------------------------------------------------
 
-// [연습] 'text-primary' 클래스를 추가하세요.
+// .prose 요소 찾기
+const prose = document.querySelector('.prose')
+console.log(prose) // <main class="prose"> → HTMLElement
 
+// prose 요소(객체) 안에서 h1 요소(객체) 찾기
+const proseHeading = prose.querySelector('h1')
+console.dir(proseHeading) // <h1> → HTMLHeadingElement
+
+// element.style     // CSSStyleDeclaration { item, length, ... }
+// element.classList // DOMTokenList { add, remove, replace, contains, toggle }
+
+// [연습] 'text-primary' 클래스를 추가하세요.
+// proseHeading.classList.add('text-primary')
 
 // [연습] 'text-primary'와 'font-bold' 클래스를 동시에 추가하세요.
-
+proseHeading.classList.add('text-primary', 'font-bold')
 
 // 설명:
 // classList.add()는 기존 클래스를 유지하면서 새로운 클래스를 덧입힙니다.
@@ -25,10 +36,11 @@
 // --------------------------------------------------------------------------
 
 // [연습] 위에서 추가했던 'text-primary' 클래스를 제거하세요.
-
+// console.log(proseHeading.classList) // DOMTokenList
+// proseHeading.classList.remove('text-primary')
 
 // [연습] 'text-primary'와 'font-bold' 클래스를 한 번에 제거하세요.
-
+proseHeading.classList.remove('text-primary', 'font-bold')
 
 // 설명:
 // remove() 메서드는 해당 클래스가 존재할 때만 삭제하며, 없어도 에러가 발생하지 않습니다.
@@ -37,6 +49,10 @@
 // --------------------------------------------------------------------------
 // 3. 클래스 이름 교체 (replace)
 // --------------------------------------------------------------------------
+
+// proseHeading 참조 객체 (<h1> → HTMLHeadingElement)
+// 클래스 이름 속성 값을 교체 (element.classList.replace())
+proseHeading.classList.replace('color-silver', 'font-bold')
 
 // 실습 HTML 예시: <p class="message is-danger">오류 발생</p>
 
