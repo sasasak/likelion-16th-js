@@ -112,14 +112,29 @@ function checkElementWarn(element, selector) {
 const musicianList = document.querySelector('.musicians')
 checkElementWarn(musicianList, '.musicians')
 
+const gameList = document.querySelector('.games')
+// console.log(gameList)
+
 // 2. musicianList 변수(이미 선택된 요소) 내부에서만 'li' 요소를 찾아 출력하세요.
 const firstMusician = musicianList.querySelector('li')
 checkElementWarn(firstMusician, 'li:fisrt-child')
-console.log(firstMusician)
+// console.log(firstMusician)
+
+const firstGame = gameList.querySelector('li')
+// console.log(firstGame)
 
 // 설명:
 // 특정 서가(부모 요소)를 지정하고 그 안에서 책(자식 요소)을 찾는 방식입니다.
 // 코드의 의도가 명확해지고, 다른 구역의 요소와 충돌할 버그를 예방하며, 성능 면에서도 효율적입니다.
+
+
+// 게임 목록의 모든 아이템(게임) 찾아 집합으로 반환
+const allGames = gameList.querySelectorAll('li')
+console.log(allGames) // NodeList [li, li, li] (3)
+
+// 뮤지션 목록의 모든 아이템(뮤지션) 찾아 집합으로 반환
+const allMusicans = musicianList.querySelectorAll('li')
+console.log(allMusicans)
 
 
 // --------------------------------------------------------------------------
