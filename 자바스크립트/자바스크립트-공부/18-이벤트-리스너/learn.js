@@ -7,10 +7,19 @@
 // --------------------------------------------------------------------------
 
 // 1. 대상 정하기 (보초병이 지킬 성문 선택)
+const gateButton = document.querySelector('.clickable')
+// console.log(clickableButton)
+
+// 전역에서 접근 가능하도록 공개
+// BOM (브라우저 객체 모델: 루트 객체 → window)
+// 브라우저 콘솔 패널에서 접근하려면 전역에 공개되어야 한다.
+window.gateButton = gateButton
 
 // 2. 이벤트 리스닝 (보초병 배치 및 귀 기울이기)
-// 연습: gateButton에 'click' 이벤트 리스너를 추가하고 콘솔에 메시지를 출력하세요.
-
+gateButton.addEventListener('click', function() {
+  // 연습: gateButton에 'click' 이벤트 리스너를 추가하고 콘솔에 메시지를 출력하세요.
+  console.log('🚪 성문을 두드렸어요!')
+})
 
 // --------------------------------------------------------------------------
 // 실습: 이벤트로 DOM 조작 (클래스 토글 마법)
@@ -18,15 +27,33 @@
 
 // 시나리오: 버튼을 클릭할 때마다 배경색(body)과 버튼색을 반전시킵니다.
 
-// [연습 1] 조건문을 사용하여 클래스 'is-clicked'를 수동으로 넣고 빼보세요.
+const clickedClassName = 'is-clicked'
+const body = document.body // HTMLBodyElement
 
+// [연습 1] 조건문을 사용하여 클래스 'is-clicked'를 수동으로 넣고 빼보세요.
+gateButton.addEventListener('click', function() {
+  const hasClickedClassName = gateButton.classList.contains(clickedClassName)
+  if(hasClickedClassName) {
+    gateButton.classList.remove(clickedClassName)
+    body.classList.remove(clickedClassName)
+  } else {
+    gateButton.classList.add(clickedClassName)
+    body.classList.add(clickedClassName)
+  }
+})
 
 // [연습 2] 위 로직을 단축 주문인 toggle()로 한 줄씩 작성해 보세요.
+gateButton.addEventListener('click', function() {
+  gateButton.classList.toggle(clickedClassName)
+  body.classList.toggle(clickedClassName)
+})
 
 
 // --------------------------------------------------------------------------
 // 실습: 리스너 연결 상태 확인 (브라우저 콘솔용, 웹표준 아님)
 // --------------------------------------------------------------------------
+
+// console.log(getEventListeners) ❌ ReferenceError
 
 
 // --------------------------------------------------------------------------
