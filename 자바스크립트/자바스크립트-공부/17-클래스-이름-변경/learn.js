@@ -52,12 +52,29 @@ proseHeading.classList.remove('text-primary', 'font-bold')
 
 // proseHeading 참조 객체 (<h1> → HTMLHeadingElement)
 // 클래스 이름 속성 값을 교체 (element.classList.replace())
+// 1. 제거 후
+// proseHeading.classList.remove('color-primary')
+// 2. 추가
+// proseHeading.classList.add('font-bold')
+// "제거 후 추가" 보다 "교체"를 하면 한 번에 모두 수행 
 proseHeading.classList.replace('color-silver', 'font-bold')
 
 // 실습 HTML 예시: <p class="message is-danger">오류 발생</p>
 
-
 // [연습] 'is-danger' 클래스를 'is-success' 클래스로 교체하세요.
+const messageElement = prose.querySelector('.message')
+// messageElement.classList.remove('is-danger')
+// messageElement.classList.add('is-success')
+const replacement = messageElement.classList.replace('is-danger', 'is-success')
+console.log('replacement:', replacement)
+
+if (replacement) {
+  console.log('교체 성공! ✅')
+  // 교체 성공한 후, 어떤 작업을 수행하고자 한다면 여기에 코드 작성
+} else {
+  console.warn('교체 실패! ⚠️')
+  // 대체 가능한 수행하고자 하는 작업 여기에 코드 작성
+}
 
 
 // 설명:
@@ -70,6 +87,23 @@ proseHeading.classList.replace('color-silver', 'font-bold')
 
 // [연습] target 요소가 'text-primary' 클래스를 가지고 있는지 조건문(if)으로 확인하세요.
 // 클래스가 있다면 제거하고, 없다면 추가하는 로직을 작성해 보세요.
+const targetElement = prose.querySelector('.target')
+// console.log(targetElement)
+
+// target 요소에 text-primary 클래스 값을 가지고 있는 지 확인
+const hasTextPrimaryClass = targetElement.classList.contains('text-primary')
+// console.log(hasTextPrimaryClass)
+
+// 만약 해당 클래스 이름이 있다면
+if (hasTextPrimaryClass) {
+  // 해당 클래스 이름 제거
+  targetElement.classList.remove('text-primary')
+}
+// 만약 해당 클래스 이름이 없다면
+else {
+  // 해당 클래스 이름 추가
+  targetElement.classList.add('text-primary')
+}
 
 
 // 설명:
