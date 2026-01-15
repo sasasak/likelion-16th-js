@@ -43,14 +43,32 @@ const body = document.body // HTMLBodyElement
 // })
 
 // [연습 2] 위 로직을 단축 주문인 toggle()로 한 줄씩 작성해 보세요.
-gateButton.addEventListener('click', (e) => {
+
+// 인라인 함수를 사용한 예시
+// - 재사용이 어렵다.
+// gateButton.addEventListener('click', (e) => {
+//   gateButton.classList.toggle(clickedClassName)
+//   body.classList.toggle(clickedClassName)
+// })
+
+// 함수와 이벤트 리스너 등록 코드를 분리한 예시
+
+// 함수 = 객체 = 값 취급  
+// 변수 = 함수값 ✅
+// 분리의 장점은 재사용이 쉽다.
+const handleClick = (e) => {
   // 이벤트 리스너(addEventListener로 연결된 함수)는
   // 이벤트 객체를 전달받습니다.
   console.dir(e)
 
   gateButton.classList.toggle(clickedClassName)
   body.classList.toggle(clickedClassName)
-})
+}
+
+// - 함수실행(함수_또는_함수참조변수_전달)
+// - addEventListener('type', (e) => {})
+// - addEventListener('type', handleClick)
+gateButton.addEventListener('click', handleClick)
 
 
 // --------------------------------------------------------------------------
@@ -67,3 +85,13 @@ gateButton.addEventListener('click', (e) => {
 // 2. 핸들러 내부에서 classList.toggle()을 사용하면 ON/OFF 상태를 쉽게 만듭니다.
 // 3. 레거시 모델(onclick)은 구조와 동작이 섞이므로 실제 프로젝트에서는 피해야 합니다.
 // 4. 이벤트 객체(e)는 '누가, 어디서, 어떻게' 사건을 일으켰는지에 대한 보고서입니다.
+
+
+
+// --------------------------------------------------------------------------
+// 레거시 이벤트 모델
+// --------------------------------------------------------------------------
+
+function handleNotice2() {
+  console.log('레거시 알람 2')
+}
