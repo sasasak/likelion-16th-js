@@ -116,7 +116,22 @@ else {
 
 // [연습] target 요소에 'active' 클래스를 토글 처리하세요.
 
+// 조건문을 사용하는 경우
+// classList.contains, classList.remove, classList.add
 
+let activeClassName = 'active'
+
+const hasActiveClass = targetElement.classList.contains(activeClassName)
+
+if (hasActiveClass) {
+  targetElement.classList.remove(activeClassName)
+} else {
+  targetElement.classList.add(activeClassName)
+}
+
+// 편의를 위한 toggle() 메서드를 사용하는 경우
+// classList.toggle
+targetElement.classList.toggle(activeClassName)
 // 설명:
 // 다크모드 스위치나 아코디언 메뉴처럼 켰다 껐다(On/Off) 하는 UI 구현 시 가장 많이 쓰입니다.
 
