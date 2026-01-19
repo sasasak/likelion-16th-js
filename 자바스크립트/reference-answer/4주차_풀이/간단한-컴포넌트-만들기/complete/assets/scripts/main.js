@@ -38,7 +38,6 @@ const carouselFooter = carousel.querySelector('.carousel__footer')
 // [data-current] / [data-total] 문서 객체 참조
 const carouselIndicator = carouselFooter.querySelector('.carousel__indicator')
 const indicatorCurrent = carouselFooter.querySelector('[data-current]')
-const indicatorTotal = carouselFooter.querySelector('[data-total]')
 // [data-direction="previous"] / [data-direction="next"] 문서 객체 참조
 const prevButton = carouselFooter.querySelector('[data-direction^="prev"]')
 const nextButton = carouselFooter.querySelector('[data-direction="next"]')
