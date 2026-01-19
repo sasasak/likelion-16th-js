@@ -14,7 +14,7 @@
 
 // [퀴즈] 오류가 발생했을 때, 숙련된 개발자의 사고 흐름은 어떻게 될까요?
 // 1. 당황하여 코드를 모두 지운다.
-// 2. "어디서 잘못됐을까?" 스스로 질문하며 메시지를 읽는다.
+// 2. "어디서 잘못됐을까?" 스스로 질문하며 메시지를 읽는다. ✅
 // 3. "분명 맞게 짰는데 왜 안 되지?"라며 운을 탓한다.
 
 
@@ -34,6 +34,60 @@
 // --------------------------------------------------------------------------
 
 
+// 실습 1.
+const button = document.querySelector('.button')
+
+button.addEventListener('click', e => {
+  console.log('버튼 클릭!')
+})
+
+// 실습 2.
+const saveButton = document.querySelector('#save-button')
+
+saveButton.addEventListener('click', () => {
+  alert('저장되었습니다!')
+})
+
+// 실습 3.
+const alarmButton = document.querySelector('.alarm-button')
+
+const handleRing = function () {
+  window.alert('알림!')
+  // 암묵적 undefined 반환
+  // addEventListener에 undefined가 설정되도 오류가 출력되지 앟음
+}
+
+// alarmButton.addEventListener('click', handleRing()/* callback 함수 설정 (⚠️ 실행하는 것이 아님!) */)
+alarmButton.addEventListener('click', handleRing)
+
+
+// 실습 4.
+const submitButton = document.querySelector('.submit-button')
+
+submitButton.addEventListener('click', () => {
+  console.log('제출 완료!')
+})
+
+// 실습 5.
+const closeButton = document.querySelector('.close-btn')
+
+closeButton.addEventListener('click', () => {
+  console.log('닫기 버튼 클릭!')
+})
+
+// 실습 6.
+const cart = document.querySelector('[data-id="cart"]')
+const price = cart.querySelector('[data-id="price"]').textContent
+const quantity = cart.querySelector('[data-id="quantity"]').textContent
+const calcButton = cart.querySelector('[data-id="calc-button"]')
+const resultDisplay = cart.querySelector('[data-id="total-result"]')
+
+calcButton.addEventListener('click', () => {
+  const priceNumber = Number(price.replace(',', ''))
+  const quantityNumber = Number(quantity)
+  const total = priceNumber * quantityNumber
+  resultDisplay.textContent = total.toLocaleString() /* 숫자 값 -> Number 객체 메서드 활용 */
+})
 
 
 // --------------------------------------------------------------------------
