@@ -13,9 +13,24 @@
 // --------------------------------------------------------------------------
 
 const guestList = ['지율', '상연', '야무', '범쌤']
+console.log(guestList)
 
 // [퀴즈] '야무' 손님은 몇 번 방에 계실까요?
+console.log(typeof guestList.indexOf)
+console.log(guestList.indexOf('야무'))
+console.log(guestList.indexOf('슬비'))
 
+// 사용자 정의 함수 hasItem 또는 hasElement 작성 
+// hasItem(배열, 항목) 또는 hasElment(배열, 항목) 값이 있으면 true 반환 없으면 false 반환
+function hasElement(arrayObject, checkItem){
+  const value = arrayObject.indexOf(checkItem)
+  return value > -1
+}
+
+const hasItem = hasElement
+
+console.log(hasElement(guestList, '야무'))
+console.log(hasItem(guestList, '슬비'))
 
 // --------------------------------------------------------------------------
 // 입구와 끝방 손님 관리 (Push, Pop, Unshift, Shift)
