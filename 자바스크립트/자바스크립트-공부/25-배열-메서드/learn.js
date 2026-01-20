@@ -15,34 +15,68 @@
 const guestList = ['지율', '상연', '야무', '범쌤']
 console.log(guestList)
 
-// [퀴즈] '야무' 손님은 몇 번 방에 계실까요?
+// [퀴즈] '야무' 손님은 몇 번 방에 계실까요? (2)
 console.log(typeof guestList.indexOf)
 console.log(guestList.indexOf('야무'))
 console.log(guestList.indexOf('슬비'))
 
-// 사용자 정의 함수 hasItem 또는 hasElement 작성 
-// hasItem(배열, 항목) 또는 hasElment(배열, 항목) 값이 있으면 true 반환 없으면 false 반환
-function hasElement(arrayObject, checkItem){
-  const value = arrayObject.indexOf(checkItem)
+// 사용자 정의 함수 hasItem 또는 hasElement 작성
+// hasItem(배열, 항목) 또는 
+// hasElement(배열, 항목) 값이 있으면 true 반환 없으면 false 반환
+
+// 함수 작성
+function hasElement(arrayObject, checkItem) {
+  const value = arrayObject.indexOf(checkItem) // -1 또는 0 보다 큰 값
   return value > -1
 }
 
+// 함수 참조
 const hasItem = hasElement
 
-console.log(hasElement(guestList, '야무'))
-console.log(hasItem(guestList, '슬비'))
+
+// 테스트 코드
+console.log(hasElement(guestList, '야무')) // true
+console.log(hasItem(guestList, '슬비')) // false
+
 
 // --------------------------------------------------------------------------
-// 입구와 끝방 손님 관리 (Push, Pop, Unshift, Shift)
+// 손님 관리 (Unshift, Push, Pop, Shift)
 // --------------------------------------------------------------------------
 
+// --------------------------------------------------------------------------
+// 앞방에 추가 (unshift)
+
+console.log(guestList)
+// [ '서현', '지율', '상연', '야무', '범쌤' ]
+guestList.unshift('서현', '민주', '지호')
+console.log(guestList)
+
+// --------------------------------------------------------------------------
+// 앞에서 제거 (shift)
+guestList.shift()
+guestList.shift()
+guestList.shift()
+console.log(guestList)
+
+// --------------------------------------------------------------------------
+// 끝방에 추가 (push)
+
+// 인덱스를 사용해 안전하게 마지막 인덱스 위치에 새 항목 추가하는 방법
+// guestList[guestList.length] = '심선생님'
+// guestList[guestList.length] = '슬비'
 
 // 1. 끝방(마지막)에 새로운 손님 모시기
-// ['지율', '상연', '야무', '범쌤', '심선생님']
+guestList.push('심선생님', '슬비쌤')
 
-// 2. 입구(첫 번째) 손님 배웅하기
-// '지율' 퇴실
-// console.log('방금 체크아웃하신 분:', leavingGuest)
+// ['지율', '상연', '야무', '범쌤', '심선생님']
+console.log(guestList)
+
+// --------------------------------------------------------------------------
+// 끝방에 제거 (pop)
+
+console.log(guestList.pop())
+console.log(guestList.pop())
+console.log(guestList)
 
 
 // --------------------------------------------------------------------------
