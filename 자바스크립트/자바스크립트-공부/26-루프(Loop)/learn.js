@@ -11,21 +11,20 @@ const draw = (n) => '화면에 '+ n +'번째 그림을 그리다.'
 
 // 화면에 [n]번 드로잉하고 싶다.
 let count = 0
+const REPEAT_COUNT = 5 // n번
 
-count = count + 1 // 값 변경
-console.log(draw(count)) // 값 출력
+while (count < REPEAT_COUNT) {
+  count += 1 // [1], [2], 3, 4, [5]
 
-count = count + 1 // 값 변경
-console.log(draw(count)) // 값 출력
+  // continue: 건너뗘서 계속
+  if (count >= 3 && count <= 4) {
+    continue
+  }
 
-count = count + 1 // 값 변경
-console.log(draw(count)) // 값 출력
+  draw(count)
+  console.log(count)
+}
 
-count = count + 1 // 값 변경
-console.log(draw(count)) // 값 출력
-
-count = count + 1 // 값 변경
-console.log(draw(count)) // 값 출력
 
 
 // --------------------------------------------------------------------------
@@ -36,7 +35,7 @@ console.log(draw(count)) // 값 출력
 // 조건(if) 문 vs 반복(while) 문
 // --------------------------------------------------------------------------
 
-// if...else 문 (조건 흐름 제어문)
+// if 문 (조건 흐름 제어문)
 // 조건: ifCount가 5보다 작을 경우 "참"
 // 조건이 "참"이면 코드 블록 1회 실행
 let ifCount = 0
@@ -46,17 +45,30 @@ if (ifCount < 5) {
 }
 
 // while 문 (반복 흐름 제어문)
-// 조건: 반복횟수가 5보다 작을 경우 "참"
-// 조건이 "참"이면 코드 블록 반복 실행 (조건이 참일 동안)
-let iterationCount = 0
-while (iterationCount < 5) {
-  // iterationCount = iterationCount + 1
-  // iterationCount += 1
-  // iterationCount++
-  console.log(++iterationCount)
+// 조건: whileCount가 5보다 작을 경우 "참"
+// 조건이 "참"일 동안, 코드 블록 반복 실행 🔄
+let whileCount = 0
+let dontOver = true
+while (dontOver) {
+  // whileCount = whileCount + 1
+  // whileCount += 1
+  // whileCount++
+  // console.log(++whileCount)
+  if (whileCount >= 5) {
+    dontOver = false
+  }
+  
+  console.log(whileCount)
+  whileCount += 2
 }
 
+// ⚠️ 반복문이 멈추지 않으면???
+// JavaScript는 한 번에 하나의 일만 할 수 있어 
+// 먼저한 일이 멈추지 않으면 다음 일을 하지 못해요.
+// "무한 반복(Infinite Loop)"에 빠지지 않게 
+// 반복문 사용 시 주의가 필요합니다.
 console.log('언제 멈춰?? 😡')
+
 
 // --------------------------------------------------------------------------
 // do...while 문
