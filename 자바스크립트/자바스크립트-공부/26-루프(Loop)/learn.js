@@ -174,11 +174,78 @@ console.log(i)
 }
 
 
-
+// 전형적인 for문
+for (let i = 0; i <= 9; i++) {
+  console.log(i)
+}
 
 // --------------------------------------------------------------------------
-// 배열 반복 (역순/정순)
+// 배열 반복 (정순: 오름차순/역순: 내림차순)
 // --------------------------------------------------------------------------
+
+const numbers = ['하나', '둘', '셋', '넷', '다섯', '여섯', '일곱']
+//                 0     1     2    3     4      5      6
+
+// 배열 순환 (while, for, do...while)
+{
+  // while
+  let i = 0 // iterator (반복자, 'i'로 축약해서 사용)
+  while (i < numbers.length) {
+    const number = numbers[i]
+    console.log(number)
+    i++
+  }
+}
+
+{
+  // do...while
+  let i = 0
+  do {
+    const number = numbers[i]
+    console.log(number)
+    i++
+  } while(i < numbers.length)
+}
+
+{
+  // for
+  for (let i = 0; i < numbers.length; ++i) {
+    const number = numbers[i]
+    console.log(number)
+  }
+}
+
+{
+  for (let i = 0; i < numbers.length; i = i + 1) {
+    const number = numbers[i]
+    console.log(number)
+  }
+}
+
+{
+  const books = ['HTML 공장', 'CSS 드레스샵', 'JavaScript 트레이닝룸', '리액트 마스터', 'Next.js 메타 프레임워크']
+  // 도서 이름 출력 (반복)
+  
+  for (let i = 0; i < books.length; i++) {
+    const bookName = books[i]
+    console.log(bookName)
+  }
+}
+
+// 역순(내림차순) 반복 처리
+const webFrameworks = [
+  'react',   // 0
+  'vue.js',  // 1
+  'svelte',  // 2
+  'angular', // 3
+  'solid.js' // 4 -> webFrameworks.length - 1
+]
+
+// for문
+for (let i = webFrameworks.length - 1; i >= 0; i = i - 1) {
+  const frameworkName = webFrameworks[i]
+  console.log(i, frameworkName)
+}
 
 
 // --------------------------------------------------------------------------
