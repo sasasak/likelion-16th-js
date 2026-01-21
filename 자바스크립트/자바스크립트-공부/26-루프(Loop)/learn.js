@@ -135,31 +135,42 @@ console.log(i)
   const TARGET_COUNT = 3 // 목표 값 (20번 반복 (0~19))
 
   // while 문 (실행 흐름)
-  let whileCount = 0  // 반복 횟수
+    // 반복 횟수
   while (whileCount < TARGET_COUNT) {
     console.log(whileCount)
     whileCount += 1
   }
 
   // for 문 (실행 흐름)
-  for (/* 1 */ let forCount = 0; /* 2, 5 */forCount < TARGET_COUNT; /* 4, 7 */forCount += 1) {
-    console.log(forCount) /* 3, 6 */
-  }
-  
+  // for (/* 1 */ let forCount = 0; /* 2, 5 */forCount < TARGET_COUNT; /* 4, 7 */forCount += 1) {
+  //   console.log(forCount) /* 3, 6 */
+  // }
 
-  for (
-    // 변수 선언 (1)
-    let forCount = 0; 
-    // 변수와 값 비교 (2, 비교: 참 또는 거짓)
-    forCount < TARGET_COUNT; 
-    // 변수 값 변경 (4)
-    forCount += 1
-  ) 
-  {
-    // 비교 결과 조건이 참인 경우, 반복되는 코드 블록
-    console.log(forCount) // (3)
-  }
+  // // for문 -> while문 변신 단계: 0
+  // for (let forCount = 0; forCount < TARGET_COUNT; forCount += 1) {
+  //   console.log(forCount)
+  // }
   
+  // // for문 -> while문 변신 단계: 1
+  // let forCount = 0;
+  // for (forCount < TARGET_COUNT; forCount += 1) {
+  //   console.log(forCount)
+  // }
+
+  // // for문 -> while문 변신 단계: 2
+  // let forCount = 0
+  // for (forCount < TARGET_COUNT) {
+  //   console.log(forCount)
+  //   forCount += 1
+  // }
+  
+  // // for문 -> while문 변신 단계: 3
+  // let forCount = 0
+  // while (forCount < TARGET_COUNT) {
+  //   console.log(forCount)
+  //   forCount += 1
+  // }
+
 }
 
 
