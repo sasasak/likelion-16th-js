@@ -26,11 +26,11 @@ while (waitingGuests > 0) {
 // --------------------------------------------------------------------------
 
 // 청소 상태 점검 (최소 1번은 무조건 실행)
-let isClean = false
+let isDirty/* 청소 상태 지저분한가? */ = false
 
 do {
-  console.log('방 상태를 1회 점검합니다.')
-} while (isClean)
+  console.log('방의 청소 상태를 1회 점검합니다.')
+} while (isDirty)
 
 
 // --------------------------------------------------------------------------
@@ -90,6 +90,43 @@ for (const key in vipGuest) {
 // forEach 메서드 활용
 // - 배열의 모든 항목을 함수형 스타일로 반복 처리
 // --------------------------------------------------------------------------
+
+const list = [101, 201, 301, 401]
+//             0    1    2    3
+console.log(list)
+
+// 배열의 forEach 메서드(함수)
+// console.log(typeof list.forEach) 'function'
+list.forEach((item, index) => {
+  console.log(index)
+  console.log(item)
+})
+
+// for 문
+for (let index = 0; index < list.length; ++index) {
+  console.log(index)
+  const item = list[index]
+  console.log(item)
+}
+
+// for...of 문
+for (const item of list) {
+  console.log(item)
+}
+
+list.forEach((item) => {
+  console.log(item)
+})
+
+
+const orders = ['아이스 아메리카노', '따뜻한 라떼', '자바칩 프라푸치노']
+
+orders.forEach((menu) => {
+  console.log('주문하신 "' + menu + '" 나왔습니다!')
+})
+
+
+
 
 // 1. 기본 사용 (아이템만 사용)
 // forEach를 사용해 과일 이름 출력
