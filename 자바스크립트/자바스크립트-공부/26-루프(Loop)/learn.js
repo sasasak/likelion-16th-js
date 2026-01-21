@@ -94,7 +94,7 @@ while (index < people.length /* 0 < 4 */) {
   if (personName === search) {
     break // 반복문 중단
   }
-  // 반복문 중단되면 아래 코드는 실행 안되요.
+  // 반복문 중단되면 아래 코드는 실행 안돼요.
   index += 1
 }
 
@@ -251,6 +251,31 @@ for (let i = webFrameworks.length - 1; i >= 0; i = i - 1) {
 // --------------------------------------------------------------------------
 // for...of 문
 // --------------------------------------------------------------------------
+
+for (const frameworkName of webFrameworks) {
+  console.log(frameworkName)
+}
+
+for (const n of [1, 2, 3, 10, 100, 1000, 1e8]) {
+  console.log(n)
+}
+
+const personList =[
+  { name: '박주영', age: 22 },
+  { name: '최한나', age: 31 },
+  { name: '김상준', age: 29 },
+] 
+
+for (const person of personList) {
+  console.log(person.name)
+  console.log(person.age)
+}
+
+for (let i = 0; i < personList.length; i++) {
+  const person = personList[i]
+  console.log(person.name)
+  console.log(person.age)
+}
 
 
 // --------------------------------------------------------------------------
