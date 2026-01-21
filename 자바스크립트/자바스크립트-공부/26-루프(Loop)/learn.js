@@ -7,29 +7,62 @@
 // * for...in : 객체 장부의 상세 정보(Key)를 확인합니다.
 // --------------------------------------------------------------------------
 
-const draw = (n) => '화면에 '+ n +'번째 그림을 그리다.'
-
-// 화면에 [n]번 드로잉하고 싶다.
-let count = 0
-const REPEAT_COUNT = 5 // n번
-
-while (count < REPEAT_COUNT) {
-  count += 1 // [1], [2], 3, 4, [5]
-
-  // continue: 건너뗘서 계속
-  if (count >= 3 && count <= 4) {
-    continue
-  }
-
-  draw(count)
-  console.log(count)
-}
-
-
 
 // --------------------------------------------------------------------------
 // while 문
 // --------------------------------------------------------------------------
+
+const draw = (n) => '화면에 '+ n +'번째 그림을 그리다.'
+
+// 화면에 [n]번 드로잉하고 싶다.
+let count = 0
+const REPEAT_COUNT = 10 // n번
+
+while (count < REPEAT_COUNT) {
+  count += 1 
+  // continue: [1], [2], 3, 4, [5]
+  // break: [1], [2], 3(중단)
+
+  if (count >= 3 && count <= 4) {
+    continue // 현재 코드에서 아래 코드 건너띄고 다시 while 조건 확인 이동
+  }
+
+  if (count === 9) {
+    break     // 반복문 종료
+  }
+
+  draw(count)
+  console.log(count) // 1, 2
+}
+
+
+// 연명부
+const people = ['한돌', '두돌', '세돌','네돌', '...', '백돌']
+//                0      1      2     3 ,   ... , 100
+
+// 연명부를 반복 순환 
+// 찾는 사람이 있다면 반복을 그만 멈춰라.
+const search = '백돌'
+
+// 반복문
+let index = 0, 
+    personName = ''
+
+while (index < people.length /* 0 < 4 */) {
+  personName = people.at(index) // '한돌'
+  // 검색한 who와 personName이 같다면?
+  // 반복을 그만 멈춰라.
+  if (personName === search) {
+    break // 반복문 중단
+  }
+  // 반복문 중단되면 아래 코드는 실행 안되요.
+  index += 1
+}
+
+console.log(personName)
+
+
+
 
 // --------------------------------------------------------------------------
 // 조건(if) 문 vs 반복(while) 문
