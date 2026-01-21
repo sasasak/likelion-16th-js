@@ -342,6 +342,59 @@ for (const property in teacher) {
 }
 
 
+// 객체 순환 (객체가 가진 속성을 모두 탐색해서 값을 확인)
+const points = {
+  'x': 10,
+  'y': 13,
+  'z': 8,
+}
+
+const propName = 'x' // 'y', 'z'
+
+console.log('z' in points)
+console.log(points[propName])
+console.log(points['x'])
+
+
+for (const propName/* 'x', 'y', 'z' */ in points) {
+  console.log(propName)
+  // 값 = 객체['속성이름']
+  const value = points[propName] // 'x', 'y', 'z'
+  console.log(value)
+}
+
+{
+  // 배열도 for...in문 사용 가능! (권장 안함, 비교적 느려서)
+  const personList =[
+    { name: '박주영', age: 22 },
+    { name: '최한나', age: 31 },
+    { name: '김상준', age: 29 },
+  ] 
+
+  // for...of문
+  for (const person of personList) {
+    console.log(person)
+  }
+  
+  // for...in문
+  // 배열에서 for...in문 사용할 수 있지만,
+  // 성능이 좋지 않으니까 객체에 양보하세요.
+  for (const index in personList) {
+    // []
+    // 0: {...}
+    // 1: {...}
+    // 2: {...}
+    console.log(index)
+    const person = personList[index]
+    console.log(person)
+  }
+  
+}
+
+
+
+
+
 // --------------------------------------------------------------------------
 // 핵심 요약!
 // --------------------------------------------------------------------------
