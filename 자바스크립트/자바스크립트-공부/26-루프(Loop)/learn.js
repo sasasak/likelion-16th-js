@@ -391,10 +391,6 @@ for (const propName/* 'x', 'y', 'z' */ in points) {
   
 }
 
-
-
-
-
 // --------------------------------------------------------------------------
 // 핵심 요약!
 // --------------------------------------------------------------------------
@@ -404,3 +400,133 @@ for (const propName/* 'x', 'y', 'z' */ in points) {
 // 4. 객체의 속성을 훑을 때는 for...in을 사용합니다.
 // 5. break는 루프 탈출, continue는 이번 차례만 건너뛰기입니다.
 // --------------------------------------------------------------------------
+
+// 실습
+// [짝수 출력] for 문을 사용해 1부터 100까지의 숫자 중, 짝수만 출력
+{let evenCount = 0
+
+for(let i = 0; i<=100; i++){
+  evenCount = evenCount + 1
+  if(evenCount % 2 === 1){
+    continue
+  }
+  console.log(evenCount)
+}
+}
+
+// 쌤 풀이 
+for (let i = 1; i <= 100; i = i + 1) {
+  if (i % 2 === 0) {
+    console.log(i)
+  }
+}
+
+for (let i = 0; i < 101; i = i + 2) {
+  if (i > 0) {
+    console.log(i)
+  }
+}
+
+
+// [카운트다운] while 문을 사용해 숫자 10부터 1까지 역순으로 출력
+{
+  let countDown = 10
+  while(countDown > 0){
+    console.log(countDown)
+    countDown--
+  }
+  console.log('발사!')
+}
+
+// 쌤 풀이
+let countDown = 10
+
+while(countDown > 0) {
+  console.log(countDown)
+  // countDown = countDown - 1
+  // countDown -= 1
+  // countDown--
+  --countDown
+}
+
+// [과일바구니] for … of 문을 사용해 다음 배열의 과일 출력
+{
+  const fruits = ['사과', '바나나', '귤', '복숭아']
+
+  for (const fruitBasket of fruits){
+    console.log(fruitBasket)
+  }
+}
+
+//쌤 풀이 
+const fruits = ['사과', '바나나', '귤', '복숭아']
+
+for (const fruit of fruits) {
+  console.log(fruit)
+}
+
+// [비밀번호 찾기] do … while 문을 사용해 입력된 비밀번호('3001') 매칭 검토 후 결과 출력
+{
+  const password = '3003'
+
+  do{
+    if(password==='3001'){
+      console.log('패스워드가 일치합니다.')
+      break
+    }
+    else{
+      console.log('패스워드가 일치하지않습니다.')
+    }
+  }while(password === '3001')
+}
+
+// 쌤 풀이 
+{
+let i = 0
+let attempt // undefined
+
+const attempts = ['0124', '8291', '8259', '3001', '9073']
+const input = '3001'
+
+do {
+  attempt = attempts[i++]
+  console.log(attempt)
+} while(input !== attempt)
+
+console.log(attempt)
+}
+
+
+
+//[성적표 출력] for … in 문을 사용해 객체의 key, value 출력
+const student = {
+  name: '선호',
+  grade: 'A',
+  age: 22,
+}
+
+for (const key in student) {
+  console.log(key)
+  console.log(student[key])
+}
+
+// 6. [까다로운 반복문] `1`부터 `20`까지 반복
+//     1. `5`부터 `10`까지는 건너띄고 나머지 출력
+//     2. `17`이 되면 반복 종료
+
+for (let i = 1; i <= 20; ++i) {
+  if (i > 4 && i < 11) continue
+  if (i === 17) break
+  console.log(i)
+}
+
+{
+  const numbers = '1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20'.split(', ')
+
+  for (const numString of numbers) {
+    const n = Number(numString)
+    if (n > 4 && n < 11) continue
+    if (n === 17) break
+    console.log(n)
+  }
+}
