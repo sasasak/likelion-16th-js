@@ -122,6 +122,8 @@ const headerChildren = document.querySelectorAll('.prose header > *')
 console.group('1. 요소 일괄 선택')
 
 // 여기에 코드를 작성하세요.
+const paragraphs = document.querySelectorAll('.life-tips p')
+console.log(paragraphs.length)
 
 console.groupEnd()
 
