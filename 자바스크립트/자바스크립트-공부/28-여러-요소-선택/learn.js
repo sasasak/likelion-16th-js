@@ -39,20 +39,35 @@ const sectionList = document.querySelectorAll('section')
 {
   // 순방향(정순)
   for (let i = 0, l = sectionList.length; i < l; ++i) {
+    // eslint-disable-next-line no-unused-vars
     const sectionItem = sectionList.item(i)
-    console.log(sectionItem)
+    // console.log(sectionItem)
   }
 
   // 역방향(역순)
   for (let i = sectionList.length - 1; i >= 0; --i) {
+    // eslint-disable-next-line no-unused-vars
     const sectionItem = sectionList[i]
-    console.log(sectionItem)
+    // console.log(sectionItem)
   }
 }
 
 // for...of 문
+{
+  // NodeList [section, section, section]
+  // eslint-disable-next-line no-unused-vars
+  for (const sectionItem of sectionList) {
+    // console.log(sectionItem)
+  }
+}
 
 // forEach 메서드
+{
+  // eslint-disable-next-line no-unused-vars
+  sectionList.forEach((section, key) => {
+    // console.log(key, section)
+  })
+}
 
 
 
