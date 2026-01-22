@@ -69,6 +69,18 @@ console.groupEnd()
 console.groupCollapsed('3. 텍스트 노드 직접 조작')
 // 이곳에 코드를 작성하세요.
 
+const firstParagraph = document.querySelector('p')
+
+// object 타입
+const textNode = firstParagraph.firstChild // 첫번째 자식 노드
+console.log('textNode:', textNode, typeof textNode)
+// const textNodeType = textNode.nodeType // 첫번째 자식 노드의 타입(유형)
+// console.log(textNodeType, textNodeType === document.TEXT_NODE)
+
+// string 타입
+const textNodeContent = textNode.textContent // 텍스트 노드의 값 읽기
+console.log('textNodeContent:', textNodeContent, typeof textNodeContent)
+
 console.groupEnd()
 
 
