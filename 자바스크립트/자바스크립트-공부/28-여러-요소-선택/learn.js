@@ -75,6 +75,46 @@ const sectionList = document.querySelectorAll('section')
 const headerChildren = document.querySelectorAll('.prose header > *')
 // console.log(headerChildren) // NodeList [h1, p]
 
+// 헤더 내부의 자식 요소들에 프라이머리 컬러 일괄 적용
+{
+  // for 문
+  for (let i = 0, l = headerChildren.length; i<l; ++i) {
+    // eslint-disable-next-line no-unused-vars
+    const childElement = headerChildren.item(i)
+    // console.log(i, childElement)
+    // childElement.classList.add('color--primary')
+  }
+}
+
+{
+  // for...of 문
+  // eslint-disable-next-line no-unused-vars
+  for (const childElement of headerChildren) {
+    // console.log(childElement)
+    // childElement.classList.add('color--primary')
+  }
+}
+
+{
+  // forEach 메서드
+  // eslint-disable-next-line no-unused-vars
+  headerChildren.forEach((childElement) => {
+    // console.log(childElement)
+    // childElement.classList.add('color--primary')
+  })
+}
+
+{
+  // Array.from(ITERABLE) 메서드
+  // 유사 배열 객체 → 배열 객체로 생성해 반환
+
+  const articleChidlren = document.querySelectorAll('main > article > *')
+  console.log(typeof articleChidlren) // NodeList
+  const articleChildrenArray = Array.from(articleChidlren) // Array
+  console.log(articleChildrenArray)
+
+}
+
 
 // [실습] querySelectorAll을 이용한 다중 선택
 // 1. '.life-tips' 내부의 모든 'p' 요소를 선택하여 'paragraphs' 변수에 할당하세요.
