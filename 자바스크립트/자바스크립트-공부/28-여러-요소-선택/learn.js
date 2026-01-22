@@ -144,6 +144,16 @@ console.groupEnd()
 console.group('3. 배열로 변환')
 
 // 여기에 코드를 작성하세요.
+const allParagraph = document.querySelectorAll('main p')
+console.log(allParagraph) // NodeList
+
+// 배열 바꾸기 (NodeList -> Array.from() -> 새로운 Array 생성)
+const allParagraphArray = Array.from(allParagraph)
+console.log(Array.isArray(allParagraph)) // false
+console.log(typeof allParagraphArray) // Arra
+// 배열인지 아닌지 정확히 감지하는 메서드
+// Array.isArray()
+console.log(Array.isArray(allParagraphArray)) // true
 
 console.groupEnd()
 
@@ -157,6 +167,58 @@ console.group('4. Live vs Static 컬렉션')
 // 여기에 코드를 작성하세요.
 
 console.groupEnd()
+
+
+// --------------------------------------------------------------------------
+// 여러 요소를 선택하는 대체 방법
+// * getElementsByTagName()
+// * getElementsByClassName()
+// --------------------------------------------------------------------------
+
+// 문서의 모든 섹션 요소 찾아보자.
+const allSectionElements = document.getElementsByTagName('section')
+
+// console.log(allSectionElements) // HTMLCollection
+
+// TypeError: allSectionElements.forEach is not a function
+// 반복하고 싶은데??? 어떻게 해야 할까?
+// allSectionElements.forEach((element) => {
+//   console.log(element)
+// })
+
+// 그래? 그러면 반복문을 사용해 HTMLCollection 객체를 반복하자.
+// - ✅ while (index가 필요해!)
+// - ✅ do...while
+// - ✅ for (index가 필요해!)
+{
+  for (let i = 0, l = allSectionElements.length; i < l; ++i) {
+    // eslint-disable-next-line no-unused-vars
+    const element = allSectionElements[i] // 또는 .item(i) 메서드 활용
+    // console.log(element)
+  }
+}
+// - ✅ for...of
+{
+  // eslint-disable-next-line no-unused-vars
+  for(const element of allSectionElements) {
+    // console.log(element)
+  }
+}
+
+// - ⚠️ for...in (객체 순환용)
+// - ❌ forEach (지원하지 않음) : 아... 이 방법 쓰고 싶은데...
+//   🌻 아하! Array.from() 메서드가 있었지!! 배열로 바꿔서 해보자!
+console.log(Array.isArray(allSectionElements)) // false
+console.log(Array.isArray(Array.from(allSectionElements))) // true
+
+
+
+
+
+
+
+
+
 
 
 // [미션 5] 라이브 컬렉션과 이벤트 연결의 한계
