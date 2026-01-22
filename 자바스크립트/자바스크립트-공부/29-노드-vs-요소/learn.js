@@ -81,6 +81,11 @@ console.log('textNode:', textNode, typeof textNode)
 const textNodeContent = textNode.textContent // 텍스트 노드의 값 읽기
 console.log('textNodeContent:', textNodeContent, typeof textNodeContent)
 
+// 텍스트 노드의 textContent 속성을 사용해 값 쓰기
+setTimeout(() => {
+  textNode.textContent = '수정된 텍스트입니다'
+}, 3000)
+
 console.groupEnd()
 
 
