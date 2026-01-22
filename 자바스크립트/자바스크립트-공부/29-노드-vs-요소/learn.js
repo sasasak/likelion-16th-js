@@ -17,14 +17,47 @@ for (const key in document) { // document['URL'], document['ELEMENT_NODE'], ...
 console.groupEnd()
 
 
-// [실습] 부모 및 자식 탐색하기
-// 1. '.life-tips' 요소를 변수 'list'에 할당하세요.
+// [실습] 부모 노드 및 자식 노드 탐색하기
+// 1. '.introduction-nodes' 요소를 변수 'list'에 할당하세요.
 // 2. 'list'의 부모 요소를 콘솔에 출력하세요. (Node.parentElement 사용)
 // 3. 'list'의 모든 '자식 노드(childNodes)'와 '자식 요소(children)'를 각각 출력하여 차이를 비교하세요.
 console.groupCollapsed('2. 탐색 메서드 비교')
-const list = null // null을 지우고 선택자를 작성하세요.
+const list = document.querySelector('.introduction-nodes') // null을 지우고 선택자를 작성하세요.
+console.log(list)
 
 // 이곳에 부모와 자식들을 출력하는 코드를 작성하세요.
+console.log('부모 노드: ', list.parentNode)
+console.log('부모 요소 노드: ', list.parentElement)
+
+// 모든 자식 노드들
+console.log('모든 자식 노드들: ', list.childNodes)
+// childNodes는 NodeList를 반환하므로 forEach로 루프
+list.childNodes.forEach((node) => {
+  // 반복 현재 회차에서 노드의 타입이 요소 노드인가?
+  console.log('요소 노드?', node.nodeType === document.ELEMENT_NODE)
+  console.log('텍스트 노드?', node.nodeType === document.TEXT_NODE)
+  console.log('주석 노드?', node.nodeType === document.COMMENT_NODE)
+})
+
+// 모든 자식 요소 노드들
+console.log('모든 자식 요소 노드들: ', list.children)
+// console.log(list.children.forEach) // 사용 못함 ❌
+
+// 방법 1. 다른 반복 처리 활용
+//        - for 문 (while)
+for (let i=0, l=list.children.length; i<l; ++i) {
+  const child = list.children[i]
+  console.log(child)
+}
+//        - for...of 문
+for (const child of list.children) {
+  console.log(child)
+}
+
+// 방법 2. 배열화
+Array.from(list.children).forEach((child) => {
+  console.log(child)
+})
 
 console.groupEnd()
 
