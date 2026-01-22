@@ -1,82 +1,116 @@
 // --------------------------------------------------------------------------
-// 실습: 다중 요소 선택과 반복
-// --------------------------------------------------------------------------
-// * querySelectorAll : 조건에 맞는 모든 방(요소)을 한 번에 선택합니다.
-// * NodeList         : 선택된 요소들의 집합이며, 배열과 유사한 특징을 가집니다.
-// * Live vs Static   : 장부가 실시간으로 업데이트되는지 여부를 결정합니다.
+// 실습: 다중 요소 선택과 반복 (querySelectorAll vs getElementsBy...)
 // --------------------------------------------------------------------------
 
+const sectionList = document.querySelectorAll('section')
 
-// --------------------------------------------------------------------------
+// NodeList [section, section, section] (배열과 유사한 객체, ⚠️ 배열 객체는 아님)
+// console.log(sectionList)
+
 // while 문
-// --------------------------------------------------------------------------
+{
+  // 순반향(정순) 루프
+  let i = 0
+  const sectionCount = sectionList.length
 
-// 특정 클래스를 가진 단락이 없을 때까지 첫 번째 요소를 반복 수정
-// - 찾을 요소들의 선택자: '.life-tips p'
-// - 인덱스를 활용해 순차적으로 접근
-
-
-// --------------------------------------------------------------------------
-// do...while 문
-// --------------------------------------------------------------------------
-
-// 최소 한 번은 첫 번째 단락의 배경색을 변경하고 조건 확인
-// - 조건이 거짓이더라도 첫번째 요소는 배경색 변경
-// - 단 한 번만 실행되도록 설정
-const checkIndex = 0
-
-
-// --------------------------------------------------------------------------
-// for 문
-// --------------------------------------------------------------------------
-
-// 정해진 횟수만큼 단락에 고유 ID 부여
-// - 설정할 고유 ID: 'tip-*'
-
-
-// --------------------------------------------------------------------------
-// 배열 반복 (역순/정순)
-// --------------------------------------------------------------------------
-
-// for 문 (정순)
-// - 'is-active' 클래스 추가
-
-// for 문 (역순)
-// - 아래에서 위로 올라오며 텍스트 내용 출력
-// - '역순 점검 중: ' + 단락 내용
-
-
-// --------------------------------------------------------------------------
-// for...of 문 (NodeList 순회 추천)
-// --------------------------------------------------------------------------
-
-// 가독성 좋게 모든 단락에 스타일 일괄 적용
-// - 글자 색상에 'var(--primary-color)' 설정
-
-
-// --------------------------------------------------------------------------
-// for...in 문 (객체 반복)
-// --------------------------------------------------------------------------
-
-// ⚠️ 주의
-//    NodeList나 배열에는 권장하지 않음. 
-//    순수 객체의 정보를 확인할 때 사용.
-const hotelInfo = {
-  name: '배열 호텔',
-  totalRooms: 100,
-  isFull: false,
+  while (i < sectionCount) {
+    // eslint-disable-next-line no-unused-vars
+    const sectionItem = sectionList.item(i)
+    // console.log(sectionItem)
+    i = i + 1
+  }
 }
 
-// 호텔 정보 출력
-// - '호텔 정보 - ' + 키 + ' : ' + 키에 매칭되는 값 
+{
+  // 역방향(역순) 루프
+  // 여기에 코드 작성
+  // let i = sectionList.length - 1 // 2 → 1 → 0
+  let i = sectionList.length // 3
+  
+  while (--i >= 0) {
+    // eslint-disable-next-line no-unused-vars
+    const sectionItem = sectionList.item(i)
+    // console.log(sectionItem)
+    // i -= 1
+  }
+}
+
+// for 문
+{
+  // 순방향(정순)
+  for (let i = 0, l = sectionList.length; i < l; ++i) {
+    const sectionItem = sectionList.item(i)
+    console.log(sectionItem)
+  }
+
+  // 역방향(역순)
+  for (let i = sectionList.length - 1; i >= 0; --i) {
+    const sectionItem = sectionList[i]
+    console.log(sectionItem)
+  }
+}
+
+// for...of 문
+
+// forEach 메서드
 
 
-// --------------------------------------------------------------------------
-// forEach 메서드 활용 (NodeList 지원)
-// --------------------------------------------------------------------------
 
-// 단락 요소 집합 순회
-// - 콘솔 패널에 '[인덱스]번째 정보 수정 완료' 출력
+// '.prose header > *' 요소들 수집해 참조
+const headerChildren = document.querySelectorAll('.prose header > *')
+// console.log(headerChildren) // NodeList [h1, p]
+
+
+// [실습] querySelectorAll을 이용한 다중 선택
+// 1. '.life-tips' 내부의 모든 'p' 요소를 선택하여 'paragraphs' 변수에 할당하세요.
+// 2. 수집된 NodeList의 길이를 콘솔에 출력하세요.
+console.group('1. 요소 일괄 선택')
+
+// 여기에 코드를 작성하세요.
+
+console.groupEnd()
+
+
+// [실습] 다양한 반복문을 활용한 스타일 적용
+// 1. for...of 문을 사용하여 모든 단락에 'color-primary' 클래스를 추가하세요.
+// 2. forEach 메서드를 사용하여 모든 단락의 배경색을 변경해 보세요.
+console.group('2. NodeList 루프 수행')
+
+// 여기에 코드를 작성하세요.
+
+console.groupEnd()
+
+
+// [실습] NodeList를 진짜 배열로 변환하기
+// 1. Array.from()을 사용하여 'paragraphs'를 'paragraphArray'로 변환하세요.
+// 2. Array.isArray()를 통해 변환 여부를 확인하고 콘솔에 출력하세요.
+console.group('3. 배열로 변환')
+
+// 여기에 코드를 작성하세요.
+
+console.groupEnd()
+
+
+// [실습] 정적(Static) vs 라이브(Live) 컬렉션 비교
+// 1. getElementsByTagName을 사용하여 라이브 컬렉션을 'liveCol'에 담으세요.
+// 2. querySelectorAll을 사용하여 정적 컬렉션을 'staticCol'에 담으세요.
+// 3. 부모 요소에 innerHTML을 사용하여 새로운 <p>를 추가한 후, 두 컬렉션의 length 차이를 확인하세요.
+console.group('4. Live vs Static 컬렉션')
+
+// 여기에 코드를 작성하세요.
+
+console.groupEnd()
+
+
+// [미션 5] 라이브 컬렉션과 이벤트 연결의 한계
+// 1. '.live-collection li' 요소들을 getElementsByTagName으로 수집하세요.
+// 2. 루프를 돌며 클릭 시 textContent를 출력하는 이벤트를 연결하세요.
+// 3. 새로운 <li>를 추가한 후, 새 요소에서도 클릭 이벤트가 작동하는지 확인하세요. (작동하지 않음이 정상)
+console.group('5. 이벤트 위임의 필요성 체감')
+
+// 여기에 코드를 작성하세요.
+
+console.groupEnd()
 
 
 // --------------------------------------------------------------------------
