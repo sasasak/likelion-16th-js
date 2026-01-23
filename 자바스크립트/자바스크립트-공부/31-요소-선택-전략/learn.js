@@ -38,3 +38,46 @@ console.groupEnd()
 // 5. JS 조작용 클래스에 'js-' 접두사를 붙이면 스타일과 기능을 명확히 분리할 수 있습니다.
 // 6. JavaScript 훅을 사용하면 유지보수 시 기능 손상을 예방하고 협업 효율을 높입니다.
 // --------------------------------------------------------------------------
+
+//내가 짠 코드 
+
+// 1번 실습
+// const idElement = document.getElementById('main-title')
+// console.log(idElement)
+
+// const classElements = document.getElementsByClassName('description')
+// console.log(classElements)
+
+// const tagElements = document.getElementsByTagName('button')
+// console.log(tagElements)
+
+// const dataTypeElements = document.querySelector('[data-role="confirm"]')
+// console.log(dataTypeElements)
+
+// 2번 실습 
+// const jsHookButtonElement = document.querySelector('.js-hide-button')
+// console.log(jsHookButtonElement)
+
+// const jsHookNotifyElement = document.querySelector('.js-notification')
+// console.log(jsHookNotifyElement)
+
+// jsHookButtonElement.addEventListener('click', ()=>{
+//   console.log('버튼을 눌렀습니다.')
+//   jsHookNotifyElement.classList.add('hidden')
+// })
+
+//  3번 실습 (반복문 - 쌤이 짠 코드) 
+//  querySeletorAll() 은 반복문을 사용해야함!
+
+//  const selectAllItems = document.getElementById('select-all')
+//  const cartItems = document.querySelectorAll('.cart-item')
+//  console.log(selectAllItems)
+
+//  selectAllItems.addEventListener('click', () => {
+//    for (let i = 0, l = cartItems.length; i < l; ++i) {
+//             const item = cartItems[i]
+//             item.classList.add('selected')
+//           }
+//  })
+
+// 쌤이 짠 코드는 html에 <script> 로 들어가있음! 참고하기 
