@@ -12,6 +12,23 @@
 console.groupCollapsed('1. 기본 스타일 설정 (CamelCase)')
 
 // 이곳에 코드를 작성하세요.
+const box = document.querySelector('.box')
+const changeStyleButton = document.querySelector('.change-style-button')
+
+changeStyleButton.addEventListener('click', () => {
+  // 박스(Box) 요소에 스타일링 조작(설정)
+  box.style.color = '#fff'
+
+  // CSS 속성 이름을 카멜케이스로 변경
+  box.style.backgroundColor = '#ed4c67'
+
+  // CSS 속성 이름을 그대로 사용 + 대괄호 표기법
+  // box.style['background-color'] = '#ed4c67'
+
+  // 너비(width) 또는 높이(height) 변경
+  box.style.width = 142 + 'px'
+
+})
 
 
 console.groupEnd()
