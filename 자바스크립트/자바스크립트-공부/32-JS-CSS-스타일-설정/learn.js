@@ -55,9 +55,7 @@ changeStyleButton.addEventListener('click', () => {
   // box.style.--border-color = '#ed3c57'
   // box.style['--border-color'] = '#ed3c57'
   box.style.setProperty('--border-color', '#ed3c57')
-
 })
-
 
 console.groupEnd()
 
@@ -79,6 +77,6 @@ console.groupEnd()
 // 1. style 속성 접근: '요소.style.속성명'으로 접근하며, 이름은 카멜 케이스로 작성합니다.
 //    (예: background-color -> backgroundColor)
 // 2. 단위의 중요성: px, %, rem 등 단위를 생략하면 스타일이 적용되지 않습니다.
-// 3. setProperty()의 강점: CSS 변수(--)를 제어할 수 있고, 하이픈 케이스를 그대로 사용합니다.
+// 3. setProperty()의 강점: CSS 변수(--)를 제어할 수 있고, 케밥 케이스를 그대로 사용합니다.
 // 4. 우선순위: JS로 설정한 스타일은 HTML의 style 속성에 직접 삽입되어 CSS 파일보다 우선순위가 높습니다.
 // --------------------------------------------------------------------------

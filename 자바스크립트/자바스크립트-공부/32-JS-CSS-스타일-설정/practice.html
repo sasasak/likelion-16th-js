@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>스타일 변경 예제</title>
+    <style>
+      :root {
+        --theme-color: #0652dd;
+      }
+
+      .themed-box {
+        background-color: var(--theme-color);
+        color: #fff;
+        padding: 20px;
+        transition: background-color 0.3s;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        transition: all 0.3s;
+      }
+
+      .progress-container {
+        width: 100%;
+        background-color: #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .progress-bar {
+        width: 10%;
+        /* 초기값 */
+        height: 30px;
+        background-color: #4caf50;
+        text-align: center;
+        line-height: 30px;
+        color: white;
+        transition: width 0.5s ease;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <p class="box" title="이 텍스트의 스타일이 바뀔 거예요!">BOX</p>
+    <button type="button" class="change-style-button">스타일 변경</button>
+
+    <script>
+      // 1. `.box` 요소의 글자색(`color`)을 변경합니다.
+      // 2. `.box` 요소의 배경색(`backgroundColor`)을 변경합니다.
+      // 3. `.box` 요소의 너비(`width`)를 **단위를 포함하여** 변경합니다. (예: `'200px'`)
+      // 4. `.box` 요소의 높이(`height`)를 변경합니다.
+    </script>
+
+    <div class="themed-box">CSS 변수로 배경색을 설정했어요!</div>
+    <button type="button" class="change-theme-button">색상 변경</button>
+
+    <script>
+
+    </script>
+
+    <h3>파일 다운로드 진행률</h3>
+
+    <div class="progress-container">
+      <div class="progress-bar">10%</div>
+    </div>
+
+    <button type="button" id="button-50">50% 설정</button>
+    <button type="button" id="button-100">100% 설정</button>
+
+    <script>
+      // 1. `id`가 `button-50`인 버튼을 클릭하면
+      //     - `.progress-bar`의 너비를 `'50%'`로 설정합니다.
+      //     - `.progress-bar`의 텍스트 내용을 `'50%'`로 변경합니다.
+      
+      // 2. `id`가 `button-100`인 버튼을 클릭하면
+      //     - `.progress-bar`의 너비를 `'100%'`로 설정합니다.
+      //     - `.progress-bar`의 텍스트 내용을 `'완료!'`로 변경합니다.
+      //     - 배경색을 파란색(`#2196f3`)으로 변경해봅니다.
+    </script>
+
+  </body>
+
+</html>
