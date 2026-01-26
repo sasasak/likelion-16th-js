@@ -54,10 +54,14 @@ console.groupEnd()
 // 3. 가상 요소의 'content'와 'color' 속성 값을 콘솔에 출력하세요.
 console.groupCollapsed('3. 가상 요소 스타일 읽기 (::before)')
 
-// 이곳에 코드를 작성하세요.
+// CSSStyleDeclaration 함수가 실행된 시점의 스냅샷(Snapshot) 데이터
+const pseudoStyles = getComputedStyle(sizeUpButton, '::after')
+console.log(pseudoStyles.getPropertyValue('content'))
+console.log(pseudoStyles.content)
 
-
-console.groupEnd()
+console.log(pseudoStyles.getPropertyValue('font-size'))
+console.log(pseudoStyles['font-size'])
+console.log(pseudoStyles.fontSize)
 
 
 // --------------------------------------------------------------------------

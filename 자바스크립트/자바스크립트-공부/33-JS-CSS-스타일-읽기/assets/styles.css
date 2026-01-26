@@ -26,6 +26,15 @@ body {
   font: 1rem/1.5 "Spoqa Han Sans Neo", ui-sans-serif, system-ui, sans-serif;
 }
 
+.js-size-up-button {
+  margin-bottom: 12px;
+
+  &::after {
+    content: '📈';
+    font-size: 14px;
+  }
+}
+
 .prose {
   max-width: 65ch;
   margin: 1.75rem;
