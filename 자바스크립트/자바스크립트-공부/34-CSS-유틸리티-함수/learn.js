@@ -218,18 +218,18 @@ console.groupEnd()
 // 1. 요소, 속성 이름 값을 인자로 받습니다.
 // 2. 요소의 style.removeProperty 메서드를 활용하세요.
 // 3. 메서드 체이닝이 가능하도록 요소를 반환(return)하세요.
-console.group('removeStyle() 함수 작성')
+console.groupCollapsed('removeStyle() 함수 작성')
 
 // 기능 추상화 없이 사용할 경우 (웹에 내장된 기본 함수를 사용)
 {
   const body = document.body
   const main = body.querySelector('main')
   // 요구사항: 특정 요소의 인라인 스타일을 삭제하고 싶다.
-  // body.style.removeProperty('padding')
-  // body.style.removeProperty('background-color')
+  body.style.removeProperty('padding')
+  body.style.removeProperty('background-color')
 
-  // main.style.removeProperty('border')
-  // main.style.removeProperty('padding')
+  main.style.removeProperty('border')
+  main.style.removeProperty('padding')
 }
 
 // 기능 추상화 하여 사용할 경우 (사용자 정의한 유틸리티 함수 사용)
@@ -276,12 +276,97 @@ console.group('removeStyle() 함수 작성')
 console.groupEnd()
 
 // [실습] css() 함수
-// 1. 위에서 작성한 getStyle과 setStyle을 내부에서 활용하세요.
+// 1. 위에서 작성한 getStyle과 setStyle, removeStyle을 내부에서 활용하세요.
 // 2. propertyValue가 있으면 '설정(set)'하고, 없으면 '읽기(get)'를 수행하도록 조건문을 작성하세요.
-// 3. (심화) propertyName이 객체({})인 경우, 재귀 호출을 통해 여러 스타일을 한 번에 적용하세요.
-console.groupCollapsed('css() 함수 작성')
+// 3. propertyValue가 null인 경우, 삭제(remove)하도록 조건 처리합니다.
+// 4. (심화) propertyName이 객체({})인 경우, 재귀 호출을 통해 여러 스타일을 한 번에 적용하세요.
 
-// 이곳에 코드를 작성하세요.
+console.group('css() 함수 작성')
+
+// 개별 유틸리티 함수를 사용하는 경우
+// - getStyle
+// - setStyle
+// - removeStyle
+{
+  const tipBoxHeading = document.querySelector('.tip-box h3')
+
+  // 스타일 설정(쓰기, 수정)
+  setStyle(tipBoxHeading, 'font-size', 32 + 'px')
+  
+  // 스타일 확인(읽기, 조회)
+  const tipBoxHeadingFontSize = getStyle(tipBoxHeading, 'font-size')
+  console.log(tipBoxHeadingFontSize)
+
+  // 스타일 삭제
+  removeStyle(tipBoxHeading, 'font-size')
+
+  function getStyle(element, propertyName) {
+    return getComputedStyle(element).getPropertyValue(propertyName)
+  }
+
+  function setStyle(element, propertyName, propertyValue) {
+    element.style.setProperty(propertyName, propertyValue)
+  }
+
+  function removeStyle(element, propertyName) {
+    element.style.removeProperty(propertyName)
+  }
+}
+
+// 유틸리티를 통합한 css 함수를 사용하는 경우 (다형성)
+// - 읽기 (인자 2개)
+// - 쓰기 (인자 3개)
+// - 삭제 (인자 3개, 값이 null)
+{
+  // 이곳에 코드를 작성하세요.
+  const code = document.querySelector('.code-example code')
+  
+  // 다형성 특징을 가지는 통합 유틸리티 함수 css() 활용
+
+  // 쓰기
+  css(code, 'color', '#34a853')
+  css(code, 'background-color', '#095325')
+
+  // 읽기
+  const codeColor = css(code, 'color')
+  console.log(codeColor)
+  const codeBGColor = css(code, 'background-color')
+  console.log(codeBGColor)
+
+  // 삭제
+  css(code, 'color', null)
+  css(code, 'background-color', null)
+
+
+
+  function css(element, propertyName, propertyValue) {
+    // [읽기] 마지막 인자가 undefined인 경우
+    if (propertyValue === undefined) {
+      return getStyle(element, propertyName)
+    }
+    
+    // [삭제] 마지막 인자가 null인 경우
+    if (propertyValue === null) {
+      return removeStyle(element, propertyName)
+    }
+
+    // [쓰기] 그 외 나머지 경우
+    setStyle(element, propertyName, propertyValue)
+  }
+
+
+  function getStyle(element, propertyName) {
+    return getComputedStyle(element).getPropertyValue(propertyName)
+  }
+
+  function setStyle(element, propertyName, propertyValue) {
+    element.style.setProperty(propertyName, propertyValue)
+  }
+
+  function removeStyle(element, propertyName) {
+    element.style.removeProperty(propertyName)
+  }
+}
 
 console.groupEnd()
 
