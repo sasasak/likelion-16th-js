@@ -132,7 +132,7 @@ console.groupEnd()
 // 1. 요소, 속성 이름, 스타일 값을 인자로 받습니다.
 // 2. 요소의 style 속성을 사용해 값을 설정하세요.
 // 3. 메서드 체이닝이 가능하도록 요소를 반환(return)하세요.
-console.group('setStyle() 함수 작성')
+console.groupCollapsed('setStyle() 함수 작성')
 
 // 이곳에 코드를 작성하세요.
 
@@ -206,6 +206,8 @@ console.group('setStyle() 함수 작성')
     }
 
     element.style.setProperty(propName, propValue)
+
+    return element
   }
   
 }
@@ -216,9 +218,60 @@ console.groupEnd()
 // 1. 요소, 속성 이름 값을 인자로 받습니다.
 // 2. 요소의 style.removeProperty 메서드를 활용하세요.
 // 3. 메서드 체이닝이 가능하도록 요소를 반환(return)하세요.
-console.groupCollapsed('removeStyle() 함수 작성')
+console.group('removeStyle() 함수 작성')
 
-// 이곳에 코드를 작성하세요.
+// 기능 추상화 없이 사용할 경우 (웹에 내장된 기본 함수를 사용)
+{
+  const body = document.body
+  const main = body.querySelector('main')
+  // 요구사항: 특정 요소의 인라인 스타일을 삭제하고 싶다.
+  // body.style.removeProperty('padding')
+  // body.style.removeProperty('background-color')
+
+  // main.style.removeProperty('border')
+  // main.style.removeProperty('padding')
+}
+
+// 기능 추상화 하여 사용할 경우 (사용자 정의한 유틸리티 함수 사용)
+{
+  const body = document.body
+  const main = body.querySelector('main')
+
+  // 요구사항: 특정 요소의 인라인 스타일을 삭제하고 싶다.
+  // 스타일 유틸리티 함수
+  function removeStyle(element, propertyName) {
+    element.style.removeProperty(propertyName)  
+  }
+
+  removeStyle(body, 'padding')
+  removeStyle(body, 'background-color')
+  removeStyle(main, 'border')
+  removeStyle(main, 'padding')
+}
+
+// 기능 추상화 + 방어적 프로그래밍 (오류 가능성에서 코드 보호)
+{
+
+  const body = document.body
+
+  function removeStyle(element, propertyName) {
+    if (!element || element.nodeType !== document.ELEMENT_NODE) {
+      console.warn('element 인자는 문서의 요소 노드여야 합니다.')
+      return null
+    }
+
+    if (!propertyName/* undefined | null */) {
+      console.warn('propertyName 인자가 유효하지 않은 값입니다.')
+      return null
+    }
+
+    element.style.removeProperty(propertyName)  
+  }
+
+  removeStyle()                // ❌ Error → ⚠️ Warning
+  removeStyle(body)            // ❌ Error → ⚠️ Warning
+  removeStyle(body, 'padding') // ✅
+}
 
 console.groupEnd()
 
