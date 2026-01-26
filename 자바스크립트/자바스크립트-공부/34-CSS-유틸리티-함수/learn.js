@@ -136,6 +136,57 @@ console.groupCollapsed('setStyle() 함수 작성')
 
 // 이곳에 코드를 작성하세요.
 
+// 기능 추상화 없이 로직을 작성한다면?
+{
+  const body = document.body
+  const main = body.querySelector('main')
+
+  body.style.setProperty('background-color', 'gold')
+  main.style.setProperty('border', '6px solid currentColor')
+  main.style.setProperty('padding', 24 + 'px')
+
+}
+
+// 기능을 추상화해 로직을 재사용한다면?
+{
+  const body = document.body
+  const main = body.querySelector('main')
+
+  // 추상화된 기능 정의
+  function setStyle(element, propName, propValue) {
+    element.style.setProperty(propName, propValue)
+  }
+
+  setStyle(body, 'background-color', 'tan')
+  setStyle(main, 'border-width', 2 + 'px')
+  setStyle(main, 'padding', 24 * 2 + 'px')
+
+}
+
+// 리마인드 타임 (기능 추상화)
+{
+  // 요소에 헤드라인 스타일을 설정
+  const body = document.body
+  const heading2 = document.querySelector('h2')
+
+  // body.style.setProperty('background-color', '#101010')
+  setStyle(body, 'background-color', '#101010')
+
+  // heading2.style.setProperty('padding', '0.3em 0.6em')
+  setStyle(heading2, 'padding', '0.3em 0.6em')
+  // heading2.style.setProperty('border', '8px solid currentColor')
+  setStyle(heading2, 'border', '8px solid currentColor')
+  // heading2.style.setProperty('border-radius', '6px')
+  setStyle(heading2, 'border-radius', '6px')
+  // heading2.style.setProperty('color', '#ffcb29')
+  setStyle(heading2, 'color', '#00cbff')
+
+  // 기능 추상화 (복잡한 로직을 안으로 숨겨서 외부에서는 손쉽게 기능 사용)
+  function setStyle(element, propName, propValue) {
+    element.style.setProperty(propName, propValue)
+  }
+}
+
 console.groupEnd()
 
 // [실습] removeStyle() 함수
