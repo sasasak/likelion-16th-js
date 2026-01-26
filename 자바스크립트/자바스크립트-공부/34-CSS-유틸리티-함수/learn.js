@@ -9,71 +9,124 @@ console.group('getStyle() 함수 작성')
 
 /* 추상화된 기능 구현 */
 
-// 첫 번째 버전
-// function getStyleV1(element, propertyName) {
-//   const elementStyleSnapshot = getComputedStyle(element)
-//   const propertyVaue = elementStyleSnapshot.getPropertyValue(propertyName)
-//   return propertyVaue
-// }
+{
+  // 첫 번째 버전
+  // function getStyleV1(element, propertyName) {
+  //   const elementStyleSnapshot = getComputedStyle(element)
+  //   const propertyVaue = elementStyleSnapshot.getPropertyValue(propertyName)
+  //   return propertyVaue
+  // }
 
-// 두 번째 버전
-// function getStyleV2(element, propertyName) {
-//   if (element === null || element.nodeType !== document.ELEMENT_NODE) {
-//     console.warn('전달된 element는 문서의 요소가 아닙니다. 확인해보세요.')
-//     return null
-//   }
-  
-//   const elementStyleSnapshot = getComputedStyle(element)
+  // 두 번째 버전
+  // function getStyleV2(element, propertyName) {
+  //   if (element === null || element.nodeType !== document.ELEMENT_NODE) {
+  //     console.warn('전달된 element는 문서의 요소가 아닙니다. 확인해보세요.')
+  //     return null
+  //   }
 
-//   if (typeof propertyName !== 'string') {
-//     console.warn('전달된 propertyName은 CSS 속성명을 문자열로 전달해야 합니다.')
-//     return null
-//   }
+  //   const elementStyleSnapshot = getComputedStyle(element)
 
-//   const propertyVaue = elementStyleSnapshot.getPropertyValue(propertyName)
-//   return propertyVaue
-// }
+  //   if (typeof propertyName !== 'string') {
+  //     console.warn('전달된 propertyName은 CSS 속성명을 문자열로 전달해야 합니다.')
+  //     return null
+  //   }
 
+  //   const propertyVaue = elementStyleSnapshot.getPropertyValue(propertyName)
+  //   return propertyVaue
+  // }
 
-function getStyle(element, propertyName) {
-  // 방어적 프로그래밍
-  // 조건: element가 문서의 요소가 맞는가?
-  // 틀리다면 아무 것도 없음을 명시적으로 반환
-  //        경고 메시지를 콘솔 패널에 출력
-  if (element === null || element.nodeType !== document.ELEMENT_NODE) {
-    console.warn('전달된 element는 문서의 요소가 아닙니다. 확인해보세요.')
-    return null
+  function getStyle(element, propertyName) {
+    // 방어적 프로그래밍
+    // 조건: element가 문서의 요소가 맞는가?
+    // 틀리다면 아무 것도 없음을 명시적으로 반환
+    //        경고 메시지를 콘솔 패널에 출력
+    if (element === null || element.nodeType !== document.ELEMENT_NODE) {
+      console.warn('전달된 element는 문서의 요소가 아닙니다. 확인해보세요.')
+      return null
+    }
+
+    // 맞다면 프로그램 계속 실행
+    const elementStyleSnapshot = getComputedStyle(element)
+
+    // 방어적 프로그래밍
+    // 전달된 propertyName의 타입이 문자열이 아니라면?
+    // 아무 것도 없음을 명시적으로 반환
+    // 경고 메시지를 콘솔 패널에 출력
+    if (typeof propertyName !== 'string') {
+      console.warn(
+        '전달된 propertyName은 CSS 속성명을 문자열로 전달해야 합니다.',
+      )
+      return null
+    }
+
+    const propertyVaue = elementStyleSnapshot.getPropertyValue(propertyName)
+    return propertyVaue
   }
-  
-  // 맞다면 프로그램 계속 실행
-  const elementStyleSnapshot = getComputedStyle(element)
 
-  // 방어적 프로그래밍
-  // 전달된 propertyName의 타입이 문자열이 아니라면?
-  // 아무 것도 없음을 명시적으로 반환
-  // 경고 메시지를 콘솔 패널에 출력
-  if (typeof propertyName !== 'string') {
-    console.warn('전달된 propertyName은 CSS 속성명을 문자열로 전달해야 합니다.')
-    return null
-  }
+  // 오류 발생 가능성이 있는 코드
+  // const strongElement = document.querySelector('.unknown strong')
+  // console.log( getStyle(strongElement, 21234) )
 
-  const propertyVaue = elementStyleSnapshot.getPropertyValue(propertyName)
-  return propertyVaue
+  // 유효한 코드
+  const strongElement = document.querySelector('.prose p:first-of-type strong')
+  console.log(getStyle(strongElement, 'font-weight'))
+  console.log(getStyle(strongElement, 'font-size'))
+  console.log(getStyle(strongElement, 'color'))
+  console.log(getStyle(strongElement, 'letter-spacing'))
+  console.log(getStyle(strongElement, 'word-spacing'))
 }
 
-const strongElement = document.querySelector('.prose p:first-of-type strong')
-// const strongElement = document.querySelector('.unknown strong')
+/* 리마인드 (기능 추상화 → 방어적 프로그래밍) */
+{
+  // 대상 요소
+  const body = document.body
+  const main = body.querySelector('main')
+  const lastChild = body.children[body.children.length - 1]
 
-console.log( getStyle(strongElement, 21234) )
-// console.log( getStyle(strongElement, 'font-weight') )
-// console.log( getStyle(strongElement, 'font-size') )
-// console.log( getStyle(strongElement, 'color') )
-// console.log( getStyle(strongElement, 'letter-spacing') )
-// console.log( getStyle(strongElement, 'word-spacing') )
+  // 추상화된 기능 없이 로직을 사용한다면?
+  const bodyStyleSnapshot = getComputedStyle(body)
+  const viewportHeight = bodyStyleSnapshot.getPropertyValue('height')
+  console.log(viewportHeight)
 
+  // vs
+  
+  // 추상화된 기능을 사용한다면?
+  console.log(getStyle(body, 'height'))
+
+  // 추상화된 기능 없이 로직을 사용한다면?
+  const mainStyleSnapshot = getComputedStyle(main)
+  const mainWidth = mainStyleSnapshot.getPropertyValue('width')
+  console.log(mainWidth)
+
+  // vs
+  
+  // 추상화된 기능을 사용한다면?
+  console.log(getStyle(main, 'width'))
+
+  // 추상화된 기능 없이 로직을 사용한다면?
+  const lastChildStyleSnapshot = getComputedStyle(lastChild)
+  const lastChildFontSize = lastChildStyleSnapshot.getPropertyValue('font-size')
+  console.log(lastChildFontSize)
+
+  // vs
+  
+  // 추상화된 기능을 사용한다면?
+  console.log(getStyle(lastChild, 'font-size'))
+
+
+  
+  // 추상화된 기능을 정의해 사용한다면?
+  function getStyle(element, propertyName) {
+    const elementStyleSnapshot = getComputedStyle(element)
+    const propertyValue = elementStyleSnapshot.getPropertyValue(propertyName)
+    return propertyValue
+  }
+
+
+  // const 계산된속성값 = getStyle(요소, 속성이름)
+}
 
 console.groupEnd()
-
 
 // [실습] setStyle() 함수
 // 1. 요소, 속성 이름, 스타일 값을 인자로 받습니다.
@@ -85,7 +138,6 @@ console.groupCollapsed('setStyle() 함수 작성')
 
 console.groupEnd()
 
-
 // [실습] removeStyle() 함수
 // 1. 요소, 속성 이름 값을 인자로 받습니다.
 // 2. 요소의 style.removeProperty 메서드를 활용하세요.
@@ -96,7 +148,6 @@ console.groupCollapsed('removeStyle() 함수 작성')
 
 console.groupEnd()
 
-
 // [실습] css() 함수
 // 1. 위에서 작성한 getStyle과 setStyle을 내부에서 활용하세요.
 // 2. propertyValue가 있으면 '설정(set)'하고, 없으면 '읽기(get)'를 수행하도록 조건문을 작성하세요.
@@ -106,7 +157,6 @@ console.groupCollapsed('css() 함수 작성')
 // 이곳에 코드를 작성하세요.
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
