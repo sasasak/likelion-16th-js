@@ -5,7 +5,7 @@
 // [실습] getStyle() 함수
 // 1. 요소(element)와 CSS 속성 이름(propertyName)을 인자로 받습니다.
 // 2. getComputedStyle()을 사용하여 요소의 계산된 스타일 값을 반환하는 로직을 작성하세요.
-console.group('getStyle() 함수 작성')
+console.groupCollapsed('getStyle() 함수 작성')
 
 /* 추상화된 기능 구현 */
 
@@ -132,7 +132,7 @@ console.groupEnd()
 // 1. 요소, 속성 이름, 스타일 값을 인자로 받습니다.
 // 2. 요소의 style 속성을 사용해 값을 설정하세요.
 // 3. 메서드 체이닝이 가능하도록 요소를 반환(return)하세요.
-console.groupCollapsed('setStyle() 함수 작성')
+console.group('setStyle() 함수 작성')
 
 // 이곳에 코드를 작성하세요.
 
@@ -184,7 +184,30 @@ console.groupCollapsed('setStyle() 함수 작성')
   // 기능 추상화 (복잡한 로직을 안으로 숨겨서 외부에서는 손쉽게 기능 사용)
   function setStyle(element, propName, propValue) {
     element.style.setProperty(propName, propValue)
+    // return undefined (암묵적 반환, void)
   }
+}
+
+// 방어적 프로그래밍 + 메서드 체이닝
+{
+  setStyle(document.body)
+  setStyle(document.body, 'padding')
+  setStyle(document.body, 'padding', '30px')
+  
+  function setStyle(element, propName, propValue) {
+    if (element === null || element.nodeType !== document.ELEMENT_NODE) {
+      console.warn('element 인자로 전달된 것은 요소 노드가 아닙니다.')
+      return null
+    }
+
+    if (!propName || !propValue) {
+      console.warn('propName 또는 propValue 인자는 유효한 값 전달이 필요합니다.')
+      return null
+    }
+
+    element.style.setProperty(propName, propValue)
+  }
+  
 }
 
 console.groupEnd()
