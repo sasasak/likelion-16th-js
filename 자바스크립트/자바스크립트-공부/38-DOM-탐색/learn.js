@@ -85,9 +85,15 @@ console.log('rootParentElement\n', rootParentElement)
 const anotherTarget = targetElement.querySelector('th:nth-of-type(2)')
 console.log(anotherTarget) // 부모의 부모의 부모의 부모 (부모.부모.부모.부모) 체이닝(Chaining)
 
-const grandParent = anotherTarget.parentElement.parentElement.parentElement.parentElement
-console.log(grandParent)
+let grandParent = anotherTarget.parentElement.parentElement.parentElement.parentElement
+console.log(grandParent) // <section>
 
+// 가장 가까운(closest) 메서드
+grandParent = anotherTarget.closest('[data-target="here"]')
+console.log(grandParent) // <section>
+
+const unknownParent = anotherTarget.closest('.unknown')
+console.log('unknownParent\n', unknownParent)
 
 console.groupEnd()
 
