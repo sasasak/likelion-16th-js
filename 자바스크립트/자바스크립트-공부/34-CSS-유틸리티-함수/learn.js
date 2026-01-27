@@ -325,7 +325,9 @@ console.group('css() 함수 작성')
 
   // 쓰기
   css(code, 'color', '#34a853')
-  css(code, 'background-color', '#095325')
+  css(code, 'background-color', '#054215')
+  css(code, 'margin-block', '12px')
+  css(code, 'padding', '24px')
 
   // 읽기
   const codeColor = css(code, 'color')
@@ -366,6 +368,7 @@ console.group('css() 함수 작성')
   function removeStyle(element, propertyName) {
     element.style.removeProperty(propertyName)
   }
+
 }
 
 console.groupEnd()
@@ -382,3 +385,73 @@ console.groupEnd()
 //    - 값을 주면? -> 스타일을 적용함 (쓰기)
 //    - null을 주면? -> 스타일을 지움 (삭제)
 // --------------------------------------------------------------------------
+
+
+
+// --------------------------------------------------------------------------
+// 함수 리팩토링(Refactoring)
+// --------------------------------------------------------------------------
+
+{
+  const prose = document.querySelector('.prose')
+
+  // getStyle
+  function getStyle(el, prop) {
+    // return getComputedStyle(el)[prop]
+    return getComputedStyle(el).getPropertyValue(prop)
+  }
+
+  // setStyle
+  function setStyle(el, prop, value) {
+    // el.style[prop] = value
+    el.style.setProperty(prop, value)
+  }
+
+  // removeStyle
+  function removeStyle(el, prop) {
+    // el.style[prop] = null
+    el.style.removeProperty(prop)
+  }
+
+  // 세상에서 가장 사랑받는 라이브러리 jQuery 흉내내기!
+  // 우리의 css() 유틸리티 함수 리팩토링
+  css(prose, {
+    'color': '#34a853',
+    'background-color': '#051215',
+    'margin-block': '12px',
+    'padding': '24px',
+  })
+
+  // css
+  function css(el, prop /* string or object */, value) {
+    console.log({ el, prop, value })
+
+    // A and B and C
+    if (typeof prop === 'object' && prop && !Array.isArray(prop)) {
+      // 재귀(recursion) 함수 활용
+      // 객체를 순환(반복)하려면? -> for...in 문
+      for (const key in prop) {
+        const value = prop[key] // 객체의 속성에 접근하는 방법: 대괄호 표기법
+        console.log(key/* 속성 */, value/* 값 */)
+        // 재귀: 나(함수)를 내가 다시 불러요! (호출)
+        // css(요소, 속성, 값)
+        css(el, key, value)
+      }
+
+      // 함수 종료
+      return
+    }
+
+
+    if (value === undefined) {
+      return getStyle(el, prop)
+    }
+
+    if (value === null) {
+      return removeStyle(el, prop)
+    }
+
+    setStyle(el, prop, value)
+  }
+
+}
