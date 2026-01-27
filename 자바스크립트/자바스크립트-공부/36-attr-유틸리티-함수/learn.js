@@ -62,16 +62,19 @@ console.groupEnd()
 // 1. 요소, 속성 이름 값을 인자로 받습니다.
 // 2. 요소의 removeAttribute() 메서드를 활용하세요.
 // 3. 메서드 체이닝이 가능하도록 요소를 반환(return)하세요.
-console.group('setAttr() 함수 작성')
+console.groupCollapsed('removeAttr() 함수 작성')
 
-setAttr(strong, 'id', 'powerful')
-setAttr(strong, 'data-id', 'emphasis element')
+removeAttr(strong, 'data-id')
+removeAttr(strong, 'id')
+removeAttr(strong, 'title')
 
-function setAttr(element, attributeName, attributeValue) {
-  element.setAttribute(attributeName, attributeValue)
+function removeAttr(element, attributeName) {
+  element.removeAttribute(attributeName)
 }
 
 console.groupEnd()
+
+
 // [실습] attr() 함수
 // 1. 위에서 작성한 getAttr, setAttr, removeAttr을 내부에서 활용하세요.
 // 2. attributeName이 객체({})인 경우, 재귀 호출을 통해 여러 속성을 한 번에 적용하세요.
