@@ -6,9 +6,50 @@
 // 1. 특정 부모 요소 내부에서 querySelector()를 사용해 자손 요소를 찾는 로직을 작성하세요.
 // 2. children 속성(HTMLCollection)을 Array.from()을 이용해 배열로 변환하고 순회해 보세요.
 // 3. firstElementChild와 lastElementChild를 사용해 첫 번째와 마지막 자식에 접근하세요.
-console.groupCollapsed('아래로 탐색 실습')
+console.group('아래로 탐색 실습')
 
-// 이곳에 코드를 작성하세요.
+const targetElement = document.querySelector('[data-target]')
+// console.log(targetElement, targetElement.dataset.target)
+
+// 아래 방향으로 탐색 -------------------------------------------------
+// querySelector | querySelectorAll
+const captionElement = targetElement.querySelector('caption')
+// console.log(captionElement)
+const thElements = targetElement.querySelectorAll('th')
+// console.log(thElements)
+
+// childNodes | children
+console.log('childNodes\n', targetElement.childNodes) // NodeList
+
+// 텍스트 노드와 엘리먼트 노드가 섞인 NodeList에서
+// 엘리먼트 노드만 수집한 배열을 필요로 한다면?
+
+// const onlyElements = [] // [h2, table]
+
+// for (const node of targetElement.childNodes) {
+//   if(node.nodeType === document.ELEMENT_NODE) {
+//     onlyElements.push(node)
+//   }
+// }
+
+// console.log(onlyElements)
+
+console.log('children\n', targetElement.children) // HTMLCollection
+
+// HTMLCollection → [ Array.from() ] → Array (배열화)
+// 배열 전환 (왜? 배열의 다양한 능력 활용하기 위해서!)
+
+const targetChildrenArray = Array.from(targetElement.children)
+console.log('targetChildrenArray\n', targetChildrenArray)
+
+
+// firstChild | lastChild | firstElementChild | lastElementChild
+
+console.log('firstChild\n', targetElement.firstChild) // #text
+console.log('lastChild\n', targetElement.lastChild) // #text
+
+console.log('firstElementChild\n', targetElement.firstElementChild) // Element
+console.log('lastElementChild\n', targetElement.lastElementChild) // Element
 
 console.groupEnd()
 
