@@ -93,9 +93,66 @@ setTimeout(() => {
   attr(prose, 'id', null)
   attr(prose, 'data-id', null)
   console.log('prose 요소의 id, data-id 속성 모두 삭제')
-}, 2400)
+}, 4000)
 
-function attr(element, attributeName, attributeValue) {
+// attr() v1
+// attr(element, attributeName, attributeValue)
+// eslint-disable-next-line no-unused-vars
+function attrV1(element, attributeName, attributeValue) {
+  if (attributeValue === undefined) {
+    return getAttr(element, attributeName)
+  }
+
+  if (attributeValue === null) {
+    return removeAttr(element, attributeName)
+  }
+
+  setAttr(element, attributeName, attributeValue)
+}
+
+attr(
+  // element
+  prose.querySelector('header'),
+  // attributes (객체)
+  {
+    id: 'my-header',
+    title: '머릿글',
+    'data-target': 'main content',
+    'aria-labelledby': 'main-heading',
+  }
+)
+
+attr(prose.querySelector('h1'), 'id', 'main-heading')
+
+// attr() v2
+// 함수 리팩토링 (외부적으로 변경 사항은 없지만, 내부적으로 개선)
+// attr(element, attributeName, attributeValue)
+// attr(element, attributes)
+function attr(element, attributeOrAttributes, attributeValue) {
+
+  // 두 번째 인자가 객체인지 확인
+  if (
+    // typeof 데이터 값이 null, array, object인 경우만 걸러짐
+    typeof attributeOrAttributes === 'object' && 
+    // array, object만 걸러짐
+    attributeOrAttributes &&
+    // object만 걸러짐
+    !Array.isArray(attributeOrAttributes)
+  ) {
+    // [속성 키:값 쌍의 집합(객체)] 명확한 변수명 설정
+    const attributes = attributeOrAttributes
+    // 객체 속성(key):값(value) 쌍을 반복 (for...in 문)
+    for (const key in attributes) {
+      const value = attributes[key]
+      // 재귀(recursion) 호출 (함수 내부에서 자신(함수)을 다시 호출)
+      // console.log(element, key, value)
+      attr(element, key, value)
+    }
+  }
+  
+  // [속성 하나(문자열)] 명확한 변수명 설정
+  const attributeName = attributeOrAttributes
+
   if (attributeValue === undefined) {
     return getAttr(element, attributeName)
   }
