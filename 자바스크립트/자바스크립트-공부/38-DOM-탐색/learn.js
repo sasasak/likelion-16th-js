@@ -58,7 +58,7 @@ console.groupEnd()
 // 1. parentElement 속성을 사용하여 특정 요소의 직계 부모 노드에 접근하세요.
 // 2. closest() 메서드를 사용하여 상위 요소 중 특정 클래스를 가진 가장 가까운 조상을 찾으세요.
 // 3. 찾고자 하는 상위 요소가 없을 경우(null)를 대비한 방어적 코드(if문)를 작성하세요.
-console.group('위로 탐색 실습')
+console.groupCollapsed('위로 탐색 실습')
 
 // parentNode | parentElement
 console.log(targetElement) // 기준점
@@ -102,9 +102,33 @@ console.groupEnd()
 // 1. nextElementSibling과 previousElementSibling을 사용하여 형제 요소 사이를 이동하세요.
 // 2. parentElement와 children 조합을 사용하여 특정 인덱스의 형제 요소에 접근하세요.
 // 3. Array.from().at(-1)을 사용하여 마지막 형제 요소를 선택하는 로직을 작성하세요.
-console.groupCollapsed('옆으로 탐색 실습')
+console.group('옆으로 탐색 실습')
 
 // 이곳에 코드를 작성하세요.
+console.log(targetElement)
+
+// previousSibling (Node: Element, Text, Comment, Document, ...)
+console.log('previousSibling: ', targetElement.previousSibling)
+// nextSibling (Node)
+console.log('nextSibling: ', targetElement.nextSibling)
+
+// previousElementSibling (Element) <header>
+console.log('previousElementSibling: ', targetElement.previousElementSibling)
+// nextElementSibling (Element) <section>
+console.log('nextElementSibling: ', targetElement.nextElementSibling)
+
+
+// 부모 + 자식들 + 인덱스(순서) 조합(combination)
+const targetStrong = document.querySelector('[data-list-type="ordered-list"] li:last-child strong')
+console.log(targetStrong)
+
+const ol = targetStrong.closest('ol')
+const olChildren = ol.children 
+const thirdLi = olChildren.item(2)
+const findYou = thirdLi.firstElementChild // thirdLi.lastElementChild
+console.log(findYou)
+
+console.log(targetStrong.closest('ol').children.item(2).firstElementChild)
 
 console.groupEnd()
 
