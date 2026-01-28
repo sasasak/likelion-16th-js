@@ -6,11 +6,73 @@
     <title>이벤트 마스터: 이벤트 전파(Propagation)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/styles.css" />
+    <style>
+      .sr-only {
+        overflow: hidden;
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: circle(0);
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        white-space: nowrap;
+      
+        caption& {
+          position: static;
+        }
+        
+        &.focusable:focus {
+          overflow: initial;
+          position: static;
+          clip: auto;
+          clip-path: unset;
+          width: initial;
+          height: initial;
+          margin: initial;
+          white-space: initial;
+        }
+      }
+
+      .box {
+        border: 6px solid currentColor;
+        padding: 32px;
+
+        &:hover {
+          background-color: rgba(0, 30, 70, 0.25);
+        }
+      }
+
+      .layout-flex {
+        display: flex;
+        gap: 24px;
+
+        .box {
+          display: grid;
+          place-content: center;
+          flex: 1;
+          font-size: 20px;
+          font-weight: 800;
+        }
+      }
+    </style>
     <script src="./learn.js" defer></script>
   </head>
 
   <body>
-    <a href="#main-content" class="skip-link">본문 바로가기</a>
+    <a href="#main-content" class="sr-only">본문 바로가기</a>
+
+    <div class="box" data-name="wrapper">
+      <div class="box layout-flex" data-name="layout">
+        <div class="box" data-name="x">Box X</div>
+        <div class="box" data-name="z" style="translate: -70px 10px; background: #fff">Box Z</div>
+      </div>
+    </div>
+
+    <label class="checkbox-input" style="display: flex; align-items: center; margin: 12px; user-select: none;">
+      <input type="checkbox" />
+      <span>버블링(Bubbling) 단계</span>
+    </label>
+
 
     <main id="main-content" class="prose">
       <header>

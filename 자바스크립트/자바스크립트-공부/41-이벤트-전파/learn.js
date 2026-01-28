@@ -6,12 +6,67 @@
 // 1. 중첩된 박스 요소들(.box1, .box2, .box3)에 각각 클릭 이벤트를 연결하세요.
 // 2. e.eventPhase 속성을 사용해 현재 단계(1:캡처, 2:타겟, 3:버블)를 출력하세요.
 // 3. { capture: true } 옵션을 사용했을 때 콘솔에 찍히는 순서 변화를 확인하세요.
-console.groupCollapsed('이벤트 단계 및 전파 순서 확인')
+console.group('이벤트 단계 및 전파 순서 확인')
 
-// 이곳에 코드를 작성하세요.
+// 이벤트 단계를 나타내는 상태 변수 설정
+let useCapture = false
+
+const boxList = document.querySelectorAll('.box')
+
+attachEvents()
+
+function handlePrintEventPhase(e) {
+  // if (useCapture) {
+  //   console.log('캡쳐링 단계')
+  // } else {
+  //   console.log('버블링 단계')
+  // }
+  const currentBox = e.currentTarget
+  const boxLabel = currentBox.dataset.name
+  console.log('"' + boxLabel + '" Box')
+}
+
+function attachEvents() {
+  console.log('이벤트 추가')
+  boxList.forEach((box) => {
+    box.addEventListener(
+      'click',
+      handlePrintEventPhase,
+      // true, // useCapture "캡쳐링 단계를 사용할 것인가? 네!"
+      { capture: useCapture },
+    )
+  })
+}
+
+function detachEvents() {
+  console.log('이벤트 제거')
+  boxList.forEach((box) => {
+    box.removeEventListener(
+      'click',
+      handlePrintEventPhase,
+    )
+  })
+}
+
+const checkboxLabel = document.querySelector('.checkbox-input')
+const checkboxInput = checkboxLabel.querySelector('input')
+const checkboxSpan = checkboxLabel.querySelector('span')
+
+checkboxInput.addEventListener('change', (e) => {
+  const input = e.currentTarget
+  if (input.checked) {
+    checkboxSpan.textContent = '캡쳐링(Capturing) 단계'
+    useCapture = true
+  } else {
+    checkboxSpan.textContent = '버블링(Bubbling) 단계'
+    useCapture = false
+  }
+
+  detachEvents()
+  attachEvents()
+})
 
 console.groupEnd()
-
 
 // [실습] stopPropagation()을 사용한 전파 방지
 // 1. 자식 요소(.box3)를 클릭했을 때 부모 요소(.box2, .box1)로 이벤트가 올라가지 않도록 하세요.
@@ -21,7 +76,6 @@ console.groupCollapsed('stopPropagation() 전파 방지 실습')
 // 이곳에 코드를 작성하세요.
 
 console.groupEnd()
-
 
 // [실습] stopImmediatePropagation() 활용 (응용)
 // 1. 동일한 요소에 두 개의 클릭 이벤트 핸들러를 등록하세요.
@@ -33,7 +87,6 @@ console.groupCollapsed('stopImmediatePropagation() 실습')
 
 console.groupEnd()
 
-
 // [실습] 이벤트 리스너 옵션 활용 (once, passive)
 // 1. { once: true } 옵션을 사용하여 단 한 번만 실행되는 버튼 이벤트를 만드세요.
 // 2. { passive: true } 옵션이 성능 최적화(스크롤 등)에 왜 필요한지 주석으로 정리하세요.
@@ -42,7 +95,6 @@ console.groupCollapsed('이벤트 리스너 옵션 실습')
 // 이곳에 코드를 작성하세요.
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
