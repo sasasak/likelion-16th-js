@@ -16,6 +16,14 @@ const boxList = document.querySelectorAll('.box')
 attachEvents()
 
 function handlePrintEventPhase(e) {
+
+  console.log(e.eventPhase, {
+    NONE: Event.NONE,
+    CAPTURING: Event.CAPTURING_PHASE,
+    TARGET: Event.AT_TARGET,
+    BUBBLING: Event.BUBBLING_PHASE,
+  })
+
   // if (useCapture) {
   //   console.log('캡쳐링 단계')
   // } else {
