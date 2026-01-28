@@ -8,7 +8,24 @@
 // 3. 콘솔에 "링크 이동이 방지되었습니다."라고 출력하세요.
 console.groupCollapsed('링크 기본 동작 방지 실습')
 
-// 이곳에 코드를 작성하세요.
+const googleLink = document.querySelector('[href*="google"]')
+
+googleLink.addEventListener('click', (e) => {
+  // 브라우저의 기본 작동(default) 방지(prevent, 중단) 명령
+  // '브라우저. 너 원래 하던 거 하지마!' (preventDefault)
+  e.preventDefault()
+  console.log('브라우저 기본 작동 방지')
+})
+
+// 리디렉션 시뮬레이션 (서버 측 애플리케이션 처리)
+// 현재 사용자가 로그인되었나요? (상태)
+let isLogin = false
+
+// 로그인 상태가 아니라면
+// 로그인 페이지로 리디렉션하세요.
+if (!isLogin) {
+  // window.location.href = 'https://nid.naver.com/nidlogin.login'
+}
 
 console.groupEnd()
 
