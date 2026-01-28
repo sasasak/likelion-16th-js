@@ -8,7 +8,40 @@
 // 3. 주의: 화살표 함수를 사용할 때와의 차이점을 콘솔로 확인해 보세요.
 console.groupCollapsed('this 키워드 활용 실습')
 
-// 이곳에 코드를 작성하세요.
+const jsToggleButton = document.querySelector('.js-button-toggle')
+jsToggleButton.addEventListener('click', handleChangeBGColor)
+
+function handleChangeBGColor() {
+  console.log('this =', this) // HTMLButtonElement: <button>
+  // console.log(this === jsToggleButton) // true
+
+  // 시각 디자인
+  this.style.setProperty('background-color', '#c3a6ff')
+  // [접근성 고려] 프레스(press) 상태 전환
+  if (this.getAttribute('aria-pressed') === 'false') {
+    this.setAttribute('aria-pressed', 'true')
+  } else {
+    this.setAttribute('aria-pressed', 'false')
+  }
+}
+
+// 요약!!
+// 조건: addEventListener() 메서드의 리스너 함수를 화살표 함수 표현식으로 작성한 경우
+// 상황: ⚠️ this는 이벤트가 발생한 대상이 아니게 됩니다. 
+//      ✅ 이벤트 객체의 currentTarget 속성은 항상 이벤트가 발생한 대상을 가리킵니다.  
+
+jsToggleButton.addEventListener('mouseenter', (e) => {
+  // 이벤트 객체(Event Object)
+  // addEventListener()에 전달된 콜백 함수에 전달됩니다.
+  // (e) => {}
+  // console.log(e) // MouseEvent {}
+  console.log(e.currentTarget) // 현재 addEventListener()에 연결된 대상 (문서 객체: 요소)
+
+  // this
+  // 화살표 함수 표현식 내부
+  // 그러면 화살표 함수 식 안에서 this는? 무엇을 가리키는가?
+  // console.log(this) // ⚠️ this !== jsToggleButton
+})
 
 console.groupEnd()
 
