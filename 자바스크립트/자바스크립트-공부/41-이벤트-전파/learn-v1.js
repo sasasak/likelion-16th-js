@@ -8,54 +8,70 @@
 // 3. { capture: true } 옵션을 사용했을 때 콘솔에 찍히는 순서 변화를 확인하세요.
 console.group('이벤트 단계 및 전파 순서 확인')
 
+// 이벤트 단계를 나타내는 상태 변수 설정
+let useCapture = false
+
 const boxList = document.querySelectorAll('.box')
 
-boxList.forEach((box) => {
-  box.addEventListener(
-    'click',
-    (e) => {
-      const currentBox = e.currentTarget
-      const boxName = currentBox.dataset.name
-      console.log('첫 번째 이벤트 연결: ', boxName)
-      
-      // 조건에 따라 이벤트 전파 중지(stop propagation)
-      if (boxName === 'z') {
-        // e.stopPropagation()
-      }
-      if (boxName === 'x') {
-        // e.stopPropagation()
-      }
-      if (boxName === 'layout') {
-        // e.stopPropagation()
-        e.stopImmediatePropagation()
-      }
-      if (boxName === 'wrapper') {
-        // e.stopPropagation()
-      }
-    },
-    // 현재 이벤트는 전파 중인 상태
-    // 이벤트 전파 '버블링' 단계 (기본값)
-    { capture: false },
-  )
-})
+attachEvents()
 
+function handlePrintEventPhase(e) {
 
-const wrapperBox = boxList.item(0)
-const layoutBox = boxList.item(1)
-const xBox = boxList.item(2)
-const zBox = boxList.item(3)
+  console.log(e.eventPhase, {
+    NONE: Event.NONE,
+    CAPTURING: Event.CAPTURING_PHASE,
+    TARGET: Event.AT_TARGET,
+    BUBBLING: Event.BUBBLING_PHASE,
+  })
 
-wrapperBox.addEventListener('click', (e) => {
-  console.log('두 번째 이벤트 연결: ', e.currentTarget.dataset.name)
-})
-layoutBox.addEventListener('click', (e) => {
-  console.log('두 번째 이벤트 연결: ', e.currentTarget.dataset.name)
-})
-xBox.addEventListener('click', (e) => {
-  console.log('두 번째 이벤트 연결: ', e.currentTarget.dataset.name)
-})
-zBox.addEventListener('click', (e) => {
-  console.log('두 번째 이벤트 연결: ', e.currentTarget.dataset.name)
+  // if (useCapture) {
+  //   console.log('캡쳐링 단계')
+  // } else {
+  //   console.log('버블링 단계')
+  // }
+  const currentBox = e.currentTarget
+  const boxLabel = currentBox.dataset.name
+  console.log('"' + boxLabel + '" Box')
+}
+
+function attachEvents() {
+  console.log('이벤트 추가')
+  boxList.forEach((box) => {
+    box.addEventListener(
+      'click',
+      handlePrintEventPhase,
+      // true, // useCapture "캡쳐링 단계를 사용할 것인가? 네!"
+      { capture: useCapture },
+    )
+  })
+}
+
+function detachEvents() {
+  console.log('이벤트 제거')
+  boxList.forEach((box) => {
+    box.removeEventListener(
+      'click',
+      handlePrintEventPhase,
+    )
+  })
+}
+
+const checkboxLabel = document.querySelector('.checkbox-input')
+const checkboxInput = checkboxLabel.querySelector('input')
+const checkboxSpan = checkboxLabel.querySelector('span')
+
+checkboxInput.addEventListener('change', (e) => {
+  const input = e.currentTarget
+  if (input.checked) {
+    checkboxSpan.textContent = '캡쳐링(Capturing) 단계'
+    useCapture = true
+  } else {
+    checkboxSpan.textContent = '버블링(Bubbling) 단계'
+    useCapture = false
+  }
+
+  detachEvents()
+  attachEvents()
 })
 
 console.groupEnd()
