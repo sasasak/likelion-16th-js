@@ -27,7 +27,7 @@ boxList.forEach((box) => {
       }
       if (boxName === 'layout') {
         // e.stopPropagation()
-        e.stopImmediatePropagation()
+        // e.stopImmediatePropagation()
       }
       if (boxName === 'wrapper') {
         // e.stopPropagation()
@@ -48,12 +48,15 @@ const zBox = boxList.item(3)
 wrapperBox.addEventListener('click', (e) => {
   console.log('두 번째 이벤트 연결: ', e.currentTarget.dataset.name)
 })
+
 layoutBox.addEventListener('click', (e) => {
   console.log('두 번째 이벤트 연결: ', e.currentTarget.dataset.name)
 })
+
 xBox.addEventListener('click', (e) => {
   console.log('두 번째 이벤트 연결: ', e.currentTarget.dataset.name)
 })
+
 zBox.addEventListener('click', (e) => {
   console.log('두 번째 이벤트 연결: ', e.currentTarget.dataset.name)
 })
