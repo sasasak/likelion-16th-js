@@ -102,6 +102,94 @@ body {
   }
 }
 
+.experiment-box {
+  max-width: 460px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.scroll-box {
+  height: 80px;
+  overflow-y: scroll;
+  background: #fff;
+  border: 2px solid #333;
+  margin: 15px 0;
+}
+
+.content {
+  padding: 12px 40px 100px;
+  background: linear-gradient(to bottom, #fff, #eee);
+}
+
+.spacer { height: 400px; }
+
+#log {
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.container {
+  max-width: 500px;
+  margin-block: 40px 120px;
+  font-family: sans-serif;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  
+  &.button--primary { background-color: #3b82f6; }
+	&.button--danger { background-color: #ef4444; }
+	&:disabled { cursor: not-allowed; background-color: #ccc; }
+}
+
+.tracker-area {
+  height: 200px;
+  background-color: #f3f4f6;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  
+  &.active {
+	  background-color: #e0f2fe;
+	  border-color: #3b82f6;
+	}
+}
+
+
+#coordinates {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #374151;
+  margin-top: 10px;
+}
+
+
 .sr-only {
   overflow: hidden;
   position: absolute;
