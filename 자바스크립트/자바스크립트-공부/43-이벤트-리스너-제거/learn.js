@@ -2,6 +2,44 @@
 // 실습: 이벤트 리스너 제거 (Event Listener Removal)
 // --------------------------------------------------------------------------
 
+const buttonGroup = document.querySelector('.js-button-group')
+const buttons = Array.from(buttonGroup.children)
+const addButton = buttons.at(0)
+const logButton = buttons.at(1)
+const removeButton = buttons.at(-1)
+
+addButton.addEventListener('click', () => {
+  console.log('로그 버튼에 클릭 이벤트 리스너 추가')
+  addEventListenerToLogButton()
+})
+
+removeButton.addEventListener('click', () => {
+  console.log('로그 버튼에 클릭 이벤트 리스너 제거')
+  removeEventListenerFromLogButton()
+})
+
+// Q. 이벤트 리스너로 추가된 함수는 아래 리스너 함수와 동일한 함수일까요?
+function addEventListenerToLogButton() {
+  logButton.addEventListener(
+    'click',
+    // 이 함수
+    logMeesage,
+  )
+}
+
+function removeEventListenerFromLogButton() {
+  logButton.removeEventListener(
+    'click',
+    // 이 함수
+    logMeesage,
+  )
+}
+
+function logMeesage() {
+  console.log('당신은 방금 로그 버튼을 눌렀습니다. 🫵🏻')
+}
+
+
 // [실습] 기명 함수를 이용한 리스너 등록과 제거
 // 1. 실행할 로직을 담은 기명 함수(handleClick)를 별도로 정의하세요.
 // 2. 버튼 요소에 해당 함수를 클릭 리스너로 등록하세요.
@@ -11,7 +49,6 @@ console.groupCollapsed('removeEventListener() 기본 사용법')
 // 이곳에 코드를 작성하세요.
 
 console.groupEnd()
-
 
 // [실습] 익명 함수의 참조 문제 확인
 // 1. addEventListener에 익명 화살표 함수를 직접 전달하여 등록하세요.
@@ -23,7 +60,6 @@ console.groupCollapsed('익명 함수 참조 문제 확인')
 
 console.groupEnd()
 
-
 // [실습] 스스로 제거되는 '한 번만 실행' 리스너
 // 1. 실행될 때 자기 자신을 제거하는(Self-removal) 함수를 작성하세요.
 // 2. 함수 내부에서 e.currentTarget과 removeEventListener를 활용하세요.
@@ -34,7 +70,6 @@ console.groupCollapsed('리스너 내부에서 자기 자신 제거')
 
 console.groupEnd()
 
-
 // [실습] { once: true } 옵션 활용
 // 1. 별도의 제거 로직 없이 { once: true } 옵션객체를 사용하여 이벤트를 등록하세요.
 // 2. 리스너 내부 로직을 작성하고 실행 결과가 위 실습과 동일한지 비교해 보세요.
@@ -43,7 +78,6 @@ console.groupCollapsed('{ once: true } 옵션 활용')
 // 이곳에 코드를 작성하세요.
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
