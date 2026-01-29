@@ -2,6 +2,69 @@
 // 실습: 빠른 반환 (Early Return) 패턴
 // --------------------------------------------------------------------------
 
+const mainContainer = document.getElementById('main-content')
+
+// --------------------------------------------------------------------------
+// 중첩된 코드 줄이기 
+
+// 이벤트 위임 (버블링)
+mainContainer.addEventListener('click', (e) => {
+  const target = e.target.closest('[aria-labelledby="benefit"]')
+  console.log(target)
+
+  // 문서에서 대상(요소)이 없는데?
+  // 무슨 일을 더해? 여기서 함수 실행을 중단하자. (효과적, 능률 향상)
+  if (!target) return // 빠른 반환(Early Return)
+
+  if (target) {
+    console.log('요소가 있으니 할 일을 하자. 1')
+    console.log('요소가 있으니 할 일을 하자. 2')
+    console.log('요소가 있으니 할 일을 하자. 3')
+    console.log('요소가 있으니 할 일을 하자. 4')
+    console.log('요소가 있으니 할 일을 하자. 5')
+    console.log('요소가 있으니 할 일을 하자. 6')
+  }
+
+  console.log('요소가 없어도 다른 일 할 수 있지. 1')
+  console.log('요소가 없어도 다른 일 할 수 있지. 2')
+  console.log('요소가 없어도 다른 일 할 수 있지. 3')
+  console.log('요소가 없어도 다른 일 할 수 있지. 4')
+})
+
+// --------------------------------------------------------------------------
+// else if 조건문 → if 조건문 + 빠른 반환
+
+let gift
+let score = 45
+
+if (score === 100) {
+	gift = '노트북'
+} else if (score > 75) {
+	gift = '태블릿'
+} else if (score > 50) {
+	gift = '스마트폰'
+} else {
+	gift = null
+}
+
+console.log(gift)
+
+function getGift(score) {
+  if (score === 100) return '노트북'
+  if (score > 75) return '태블릿'
+  if (score > 50) return '스마트폰'
+  return '선물 없다. 공부 더 해라!'
+}
+
+console.log(getGift(45))
+console.log(getGift(76))
+console.log(getGift(82))
+console.log(getGift(100))
+
+
+
+
+
 // [실습] 중첩된 코드 줄이기 (이벤트 처리)
 // 1. 가상의 리스트 요소(container)에 클릭 이벤트를 설정하세요.
 // 2. e.target.closest('li')를 사용하여 클릭된 대상을 찾으세요.
@@ -44,3 +107,53 @@ console.groupEnd()
 // 3. 유지보수: 특정 조건에 대한 로직이 독립적으로 존재하므로 수정과 확장이 용이합니다.
 // 4. 팁: return 이후의 코드는 절대 실행되지 않는다는 점을 활용해 '안전 장치'로 쓰세요!
 // --------------------------------------------------------------------------
+
+// ## 1. **회원 등급별 할인율 계산하기**
+
+// 쇼핑몰 회원의 등급(`grade`)에 따라 할인율을 반환하는 함수를 작성하세요. (빠른 반환 활용)
+
+// - **VIP** : 20%
+// - **GOLD** : 10%
+// - **SILVER** : 5%
+// - **그 외** : 0%
+
+function getDiscountRate(grade) {
+  // 여기에 빠른 반환 패턴을 사용하여 코드를 작성하세요
+  if(grade === 'VIP') return 20
+  if(grade === 'GOLD') return 10 
+  if(grade === 'SILVER') return 5
+  else return 0
+}
+
+console.log(getDiscountRate('VIP'))    // 20
+console.log(getDiscountRate('GOLD'))   // 10
+console.log(getDiscountRate('BRONZE')) // 0
+
+// 2. **게시글 삭제 권한 검사하기**
+
+// 사용자가 게시글을 삭제할 수 있는지 검사하는 함수입니다. 
+
+// 아래 실패 조건에 해당하면 즉시 에러 메시지를 반환하고, 
+// 모든 검사를 통과하면 "삭제 성공"을 반환하세요.
+
+// **실패 조건 (순서대로 검사):**
+
+// 1. 로그인하지 않은 경우 (`!user.isLoggedIn`) → '로그인이 필요합니다.'
+// 2. 관리자가 아닌 경우 (`!user.isAdmin`) → '관리자 권한이 없습니다.'
+
+function deletePost(user) {
+  // 로그인이 안 되어 있으면 즉시 반환
+  
+  // 관리자가 아니면 즉시 반환
+  
+  // 모든 관문을 통과함
+  return '삭제 성공'
+}
+
+// 테스트 케이스
+let result = deletePost({ isLoggedIn: false, isAdmin: false })
+console.log(result) // '로그인이 필요합니다.'
+result = deletePost({ isLoggedIn: true, isAdmin: false })  
+console.log(result) // '관리자 권한이 없습니다.'
+result = deletePost({ isLoggedIn: true, isAdmin: true })
+console.log(result) // '삭제 성공'
