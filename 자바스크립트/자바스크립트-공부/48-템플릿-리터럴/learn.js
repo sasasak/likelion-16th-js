@@ -8,7 +8,7 @@
 // 3. ${} 문법을 사용하여 상품 정보를 동적으로 삽입하세요.
 console.group('템플릿 리터럴 기본 실습')
 
-// Old String Concetination Version
+// 예전 방법의 문자열 생성 함수
 function generateOldHTMLCode(data) {
   let htmlCode = [
     '<div class="form-input">',
@@ -20,24 +20,24 @@ function generateOldHTMLCode(data) {
       '/>',
     '</div>',
   ].join('')
-  
+
   return htmlCode
 }
 
-console.log(generateOldHTMLCode({
-  id: 'i@sodkckd-82',
-  label: '이름',
-  type: 'text',
-  placholder: '하월곡',
-}))
+console.log(
+  generateOldHTMLCode({
+    id: 'i@sodkckd-82',
+    label: '이름',
+    type: 'text',
+    placholder: '하월곡',
+  }),
+)
 
-// Template Literal Version
-function generateHTMLCode(
-  data /* { id: '', label: '', type: '', placholder: '' } */,
-) {
+// 템플릿 리터럴 방법을 사용한 문자열 생성 함수
+function generateHTMLCode(data) {
   // 템플릿(Template) 리터럴(Literal, 값)
   // JavaScript를 사용해 HTML 코드 구조화 (Markup)
-  const htmlTemplate = /* html */`
+  const htmlTemplate = /* html */ `
     <div class="form-input">
       <label for="${data.id}">${data.label}</label>
       <input
