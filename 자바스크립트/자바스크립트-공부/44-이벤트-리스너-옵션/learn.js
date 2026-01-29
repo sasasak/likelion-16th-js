@@ -8,7 +8,37 @@
 // 3. 리스너 내부에서 e.preventDefault()를 호출했을 때 발생하는 경고를 콘솔에서 확인하세요.
 console.groupCollapsed('passive 옵션 및 스크롤 최적화')
 
-// 이곳에 코드를 작성하세요.
+// 신호를 제공해 이벤트 리스너를 더 이상 작동하지 않도록 중단하는 객체를 생성
+const abortController = new AbortController()
+
+// 전역에 공개
+globalThis.controller = abortController
+
+// 생성된 AbortController 객체의 signal 속성 (중단 신호)
+console.log(abortController.signal)
+
+globalThis.addEventListener(
+  'scroll',
+  (e) => {
+    const globalObject = e.currentTarget
+    const scrollY = globalObject.scrollY
+    console.log({ y: scrollY })
+
+    if (scrollY > 500) {
+      // 리스너 함수 내부에서 참조 가능한 리스너 이름을 토대로 이벤트 리스너 제거
+      // globalThis.removeEventListener('scroll', listener)
+
+      // abortController의 .abort() 메서드 사용 (중단 신호!) -> 이벤트 리스너 중단
+      // abortController.abort()
+    }
+  },
+  {
+    signal: abortController.signal,
+  }
+)
+
+
+
 
 console.groupEnd()
 
@@ -43,17 +73,15 @@ console.groupEnd()
 // --------------------------------------------------------------------------
 // 핵심 요약!
 // --------------------------------------------------------------------------
-// 1. passive: "나는 preventDefault()를 쓰지 않겠다"는 선언입니다. 
-//    브라우저는 이를 믿고 스크롤을 즉시 처리하여 화면 버벅임을 방지합니다. 
+// 1. passive: "나는 preventDefault()를 쓰지 않겠다"는 선언입니다.
+//    브라우저는 이를 믿고 스크롤을 즉시 처리하여 화면 버벅임을 방지합니다.
 //    (모바일 최적화의 필수!)
-// 2. signal: AbortController를 통해 이벤트를 제어합니다. 
-//    함수 참조를 일일이 기억하지 않아도 신호 하나로 수십 개의 이벤트를 
+// 2. signal: AbortController를 통해 이벤트를 제어합니다.
+//    함수 참조를 일일이 기억하지 않아도 신호 하나로 수십 개의 이벤트를
 //    동시에 끊어낼 수 있어 코드가 아주 간결해집니다.
-// 3. 성능과 편의성: passive는 성능을 위해, signal은 개발자의 편의와 
+// 3. 성능과 편의성: passive는 성능을 위해, signal은 개발자의 편의와
 //    코드 품질을 위해 사용합니다.
 // --------------------------------------------------------------------------
-
-
 
 // --------------------------------------------------------------------------
 // 실습 1. passive 옵션 테스트
@@ -82,7 +110,9 @@ console.groupEnd()
     // 체크 상태 확인 (패시브 설정)
     const isPassive = checkPassive.checked
 
-    log.textContent = '현재 옵션: { passive: ' + isPassive + '}'
+    console.log('isPassive =', isPassive)
+
+    log.textContent = '현재 옵션: { passive: ' + isPassive + ' }'
     log.style.color = isPassive ? '#00f' : '#f00'
 
     targetBox.addEventListener(
@@ -104,12 +134,12 @@ console.groupEnd()
       // [TODO] 여기에 옵션 객체를 작성하세요.
       // 1. passive 값을 isPassive 변수로 설정
       // 2. signal 값을 currentController.signal로 설정
-      /* 여기에 코드 작성 */
+      {
+        passive: isPassive /* checked */
+      }
     )
   }
 }
-
-
 
 // --------------------------------------------------------------------------
 // 실습 2. 이벤트 일괄 중지
