@@ -2,13 +2,10 @@
 // 실습: 이벤트 위임 (Event Delegation)
 // --------------------------------------------------------------------------
 
-// [실습] 기본적인 이벤트 위임 구현
-// 1. 상위 요소인 .link-list에 하나의 클릭 이벤트 리스너만 등록하세요.
-// 2. e.target 속성을 사용하여 실제 클릭된 요소가 무엇인지 콘솔에 찍어보세요.
-console.group('이벤트 위임 기본 동작 확인')
 
 // --------------------------------------------------------------------------
-// 이벤트 위임을 사용할 때
+// 이벤트 위임(버블링)을 사용할 때
+
 const list = document.querySelector('.link-list') // Element
 
 // Element.addEventListener()
@@ -19,20 +16,19 @@ list.addEventListener('click', (e) => {
   // 현재 이벤트 리스너가 추가된 대상
   // e.currentTarget
   const listElement = e.currentTarget
-  console.log('현재 이벤트 리스너가 추가된 대상', list === listElement) // true
+  console.log('현재 이벤트 리스너가 추가된 대상', 'e.currentTarget =', listElement) // <ul>
 
-  // 이벤트 전파 중인 대상
+  // 이벤트 발생한 대상(요소)
   const eventTarget = e.target
-  console.log('이벤트 전파 중인 대상', eventTarget, list === eventTarget)
+  console.log('이벤트 발생한 대상(요소)', 'e.target =', eventTarget) // <ul> or <li> or <a>
 
 })
 
 // --------------------------------------------------------------------------
 // 이벤트 위임을 사용하지 않을 때
+
 // const links = list.querySelectorAll('[href]')
 
-// 5, 50번 순환
-// %, 50번 addEventListener 추가
 // for (const link of links) {
 //   link.addEventListener('click', (e) => {
 //     e.preventDefault()
@@ -40,6 +36,15 @@ list.addEventListener('click', (e) => {
 //     console.log(clickedLink)
 //   })
 // }
+
+// --------------------------------------------------------------------------
+
+// [실습] 기본적인 이벤트 위임 구현
+// 1. 상위 요소인 .link-list에 하나의 클릭 이벤트 리스너만 등록하세요.
+// 2. e.target 속성을 사용하여 실제 클릭된 요소가 무엇인지 콘솔에 찍어보세요.
+console.group('이벤트 위임 기본 동작 확인')
+
+// 이곳에 코드를 작성하세요.
 
 console.groupEnd()
 
