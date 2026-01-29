@@ -4,21 +4,33 @@
 
 const buttonGroup = document.querySelector('.js-button-group')
 const buttons = Array.from(buttonGroup.children)
-const addButton = buttons.at(0)
-const logButton = buttons.at(1)
+const allRemoveButton = buttons.at(0)
+const addButton = buttons.at(1)
+const logButton = buttons.at(2)
 const removeButton = buttons.at(-1)
 
-addButton.addEventListener('click', () => {
+allRemoveButton.addEventListener('click', () => {
+  // addButton, logButton, removeButton에 
+  // 연결된(추가된) 이벤트 리스너 모두 제거
+  console.log('추가, 로그, 제거 모든 버튼에 연결된(추가된) 이벤트 리스너 일괄 제거')
+  addButton.removeEventListener('click', handleAddEvent)
+  logButton.removeEventListener('click', logMeesage)
+  removeButton.removeEventListener('click', handleRemoveEvent)
+})
+
+addButton.addEventListener('click', handleAddEvent)
+removeButton.addEventListener('click', handleRemoveEvent)
+
+function handleAddEvent() {
   console.log('로그 버튼에 클릭 이벤트 리스너 추가')
   addEventListenerToLogButton()
-})
+}
 
-removeButton.addEventListener('click', () => {
+function handleRemoveEvent() {
   console.log('로그 버튼에 클릭 이벤트 리스너 제거')
   removeEventListenerFromLogButton()
-})
+}
 
-// Q. 이벤트 리스너로 추가된 함수는 아래 리스너 함수와 동일한 함수일까요?
 function addEventListenerToLogButton() {
   logButton.addEventListener(
     'click',
