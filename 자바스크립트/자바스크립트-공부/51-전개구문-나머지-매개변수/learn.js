@@ -157,26 +157,64 @@ console.groupCollapsed('나머지 매개변수 실습')
   console.log(sum(10, -9, 8, 7))
   console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90))
   console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
+
+
+  // 전달된 수의 평균 값을 연산하는 함수
+  {
+    function average() {
+      // arguments는 객체
+      const numbers = Array.from(arguments)
+      const count = numbers.length
+      console.log(Array.isArray(numbers))
+      
+      let total = 0
+      numbers.forEach(n => total += n)
+      const value = total / count 
+      return value
+    }
+
+    console.log(average(72, 9, 81, 23, 10))
+    console.log(average(100, 90, 82, 76, 100))
+  }
 }
 
-// 전달된 수의 평균 값을 연산하는 함수
+// 단계 3. 여러 수를 연산하는 함수 
 {
-  function average() {
-    // arguments는 객체
-    const numbers = Array.from(arguments)
-    const count = numbers.length
-    console.log(Array.isArray(numbers))
+  function sum(...restNumbers) {
+    // 오늘날 자주 사용하는 방식
+    // 나머지 매개변수 : 함수 외부에서 전달된 인자들의 집합 (실제 배열)
+    // console.log(Array.isArray(restNumbers))
     
     let total = 0
-    numbers.forEach(n => total += n)
-    const value = total / count 
-    return value
+
+    // 반복 처리
+
+    // for 문 활용
+    // for (let i = 0; i < restNumbers.length; ++i) {
+    //   const number = restNumbers[i]
+    //   total += number
+    // }
+
+    // for...of 문 활용
+    // for (const number of restNumbers) {
+    //   total += number
+    // }
+
+    // forEach() 메서드 활용
+    restNumbers.forEach((n) => total += n)
+
+    return total
   }
 
-  console.log(average(72, 9, 81, 23, 10))
-  console.log(average(100, 90, 82, 76, 100))
+  console.log(sum(1))
+  console.log(sum(1, 2))
+  console.log(sum(1, 2, 3))
+  console.log(sum(1, 2, 3, 4))
+  console.log(sum(11, 22, 33, 44))
+  console.log(sum(10, -9, 8, 7))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
 }
-
 
 console.groupEnd()
 
