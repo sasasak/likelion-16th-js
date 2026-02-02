@@ -90,7 +90,93 @@ console.groupEnd()
 // 3. 전달받은 숫자 배열의 합계를 구해 연산자와 함께 출력해 보세요.
 console.groupCollapsed('나머지 매개변수 실습')
 
-// 이곳에 코드를 작성하세요
+
+// 단계 1. 여러 수를 연산하는 함수 
+{
+  function sum(
+    num1, 
+    num2 = 0, 
+    num3 = 0, 
+    num4 = 0,
+    num5 = 0,
+    num6 = 0,
+    num7 = 0,
+    num8 = 0,
+    num9 = 0,
+  ) {
+    // 예전 방식
+    // 함수 안에서만 살아가는 (숨겨진) 객체 활용
+    // 인자들(arguments)의 집합 객체
+    
+    // 새로운 방식
+    // rest parameters
+
+    const total = num1 + num2 + num3 + num4 + num5 + num6 + num7 + num8 + num9
+    return total
+  }
+
+  console.log(sum(1))
+  console.log(sum(1, 2))
+  console.log(sum(1, 2, 3))
+  console.log(sum(1, 2, 3, 4))
+  console.log(sum(11, 22, 33, 44))
+  console.log(sum(10, -9, 8, 7))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
+  // console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101, ...))
+}
+
+// 단계 2. 여러 수를 연산하는 함수 
+{
+  function sum(/* num1, num2, num3, ..., numN */) {
+    // 예전 방식
+    // 함수 안에서만 살아가는 (숨겨진) 객체 활용
+    // 인자들(arguments)의 집합 객체
+    console.log(arguments)
+    
+    // 유사 배열 → 배열 객체로 변환
+    // - Array.prototype.slice.call(유사배열)
+    // - Array.from(유사배열)
+    // - [...유사배열]
+
+    const args = Array.from(arguments)
+
+    let total = 0
+
+    // for (const arg of args) total += arg
+    args.forEach((arg) => total += arg)
+
+    return total
+  }
+
+  console.log(sum(1))
+  console.log(sum(1, 2))
+  console.log(sum(1, 2, 3))
+  console.log(sum(1, 2, 3, 4))
+  console.log(sum(11, 22, 33, 44))
+  console.log(sum(10, -9, 8, 7))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90))
+  console.log(sum(7, 5, 3, 1, 9, 11, 27, 35, 90, 101))
+}
+
+// 전달된 수의 평균 값을 연산하는 함수
+{
+  function average() {
+    // arguments는 객체
+    const numbers = Array.from(arguments)
+    const count = numbers.length
+    console.log(Array.isArray(numbers))
+    
+    let total = 0
+    numbers.forEach(n => total += n)
+    const value = total / count 
+    return value
+  }
+
+  console.log(average(72, 9, 81, 23, 10))
+  console.log(average(100, 90, 82, 76, 100))
+}
+
 
 console.groupEnd()
 
