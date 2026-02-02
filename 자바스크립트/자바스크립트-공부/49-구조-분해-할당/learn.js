@@ -176,6 +176,86 @@ console.groupEnd()
 
   console.log(name, color, material, price)
   console.log(isPresent)
+
+  // 함수의 매개변수를 구조분해할당하는 단계별 이해
+
+  // 단계 1.
+  function printInfoStep1(product) {
+    // 논리 연산자 (논리합, ||, 첫 번째 Truthy를 찾음)
+    const name = product.name || 'Mug Cup'
+    const color = product.color || '민트색'
+    const material = product.material || '플라스틱'
+    const price = product.price || 3000
+    const isPresent = product.isPresent || true
+
+    console.log('name =', name)
+    console.log('color =', color)
+    console.log('material =', material)
+    console.log('price =', price)
+    console.log('isPresent =', isPresent)
+
+    // 암묵적으로 undefined 반환
+    // return undefined
+  }
+
+  console.log(printInfoStep1(myCup))
+  console.log(printInfoStep1({
+    color: '골드색',
+    price: 27000,
+  }))
+
+  // 단계 2.
+  function printInfoStep2(product) {
+    // 객체 구조 분해 할당 활용
+    // product // { name, color, material, price, isPresent }
+    const { 
+      name = 'Mug Cup', 
+      color = '민트색', 
+      material = '플라스틱', 
+      price = 3000, 
+      isPresent = true 
+    } = product
+
+    console.log('name =', name)
+    console.log('color =', color)
+    console.log('material =', material)
+    console.log('price =', price)
+    console.log('isPresent =', isPresent)
+
+    // 암묵적으로 undefined 반환
+    // return undefined
+  }
+
+  console.log(printInfoStep2(myCup))
+  console.log(printInfoStep2({
+    color: '골드색',
+    price: 27000,
+  }))
+
+  // 단계 3.
+  // 매개변수 영역에서 객체 구조 분해 할당 활용
+  function printInfoStep3({ 
+    name = 'Mug Cup', 
+    color = '민트색', 
+    material = '플라스틱', 
+    price = 3000, 
+    isPresent = true, 
+  }) {
+    console.log('name =', name)
+    console.log('color =', color)
+    console.log('material =', material)
+    console.log('price =', price)
+    console.log('isPresent =', isPresent)
+  }
+
+  console.log(printInfoStep3(myCup))
+  console.log(printInfoStep3({
+    color: '골드색',
+    price: 27000,
+  }))
+
+
+
 }
 
 
