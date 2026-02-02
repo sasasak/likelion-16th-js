@@ -36,9 +36,15 @@ const myNotebook = {
 // 구조 분해 할당(Destructuring Assignment) 구문
 {
   // myNotebook 객체의 구조: { brand, processor, ram, ssd, maker }
-  const { brand, processor, ram, ssd, maker } = myNotebook
+  const { 
+    brand: name,  // myNotebook 객체의 brand 속성 값을 지역 변수 name 할당
+    processor: cpu, 
+    memory, // myNotebook 객체에 없는 속성 이름 (값: undefined)
+    ssd, 
+    maker } = myNotebook
 
-  console.log(brand, processor, ram, ssd, maker)
+  // console.log(brand, processor, ram, ssd, maker)
+  console.log(name, cpu, memory, ssd, maker)
 }
 
 console.groupEnd()
@@ -51,7 +57,7 @@ console.groupEnd()
 // 1. [x, y, z] 좌표 값을 담은 배열을 생성하세요.
 // 2. 구조 분해 할당을 사용하여 각 좌표를 개별 변수에 담아 출력하세요.
 // 3. 배열에 값이 두 개뿐일 경우를 대비해 세 번째 변수에 기본값 0을 설정하세요.
-console.group('배열 구조 분해 할당 실습')
+console.groupCollapsed('배열 구조 분해 할당 실습')
 
 
 const points = [92, -24, 0] // [x, y, z]
@@ -81,9 +87,30 @@ console.groupEnd()
 // 1. 상품명(title)과 가격(price)을 속성으로 가진 객체를 인자로 받는 printProduct 함수를 만드세요.
 // 2. 함수의 매개변수 자리에서 즉시 구조 분해를 수행하세요.
 // 3. 템플릿 리터럴을 사용하여 상품 정보를 출력해 보세요.
-console.groupCollapsed('함수 매개변수 구조 분해 실습')
+console.group('함수 매개변수 구조 분해 실습')
 
-// 이곳에 코드를 작성하세요
+// 객체 타입을 매개변수로 받는 경우
+function printProduct(product) {
+  // 전통적인 객체.속성 방식으로 값에 접근
+  return `"${product.title}" 제품의 가격은 ${product.price.toLocaleString()}원입니다.`
+}
+
+// 객체 타입을 매개변수로 받은 경우
+function printProductDA(product) {
+  // 객체 타입 매개변수의 구조를 분해해 지역내 변수로 할당
+  const { title, price } = product // { title, price }
+  return `"${title}" 제품의 가격은 ${price.toLocaleString()}원입니다.`
+}
+
+// 객체 타입을 매개변수로 받은 경우
+// 매개변수를 바로(즉시) 구조 분해 할당하여 지역내 변수로 선언
+function printProductDAinParams({ title, price }) {
+  return `"${title}" 제품의 가격은 ${price.toLocaleString()}원입니다.`
+}
+
+console.log(printProduct({ title: '샘표 진간장', price: 10500 }))
+console.log(printProductDA({ title: '샘표 진간장', price: 10500 }))
+console.log(printProductDAinParams({ title: '샘표 진간장', price: 10500 }))
 
 console.groupEnd()
 
