@@ -10,16 +10,42 @@ console.group('템플릿 리터럴 기본 실습')
 
 // 예전 방법의 문자열 생성 함수
 function generateOldHTMLCode(data) {
-  let htmlCode = [
+
+  // 방법 1. 문자열 연결(접합)
+  let htmlCode = ''
+  htmlCode += '<div class="form-input">'
+  htmlCode += '<label for="'+ data.id +'">'+ data.label +'</label>'
+  htmlCode += '<input type="'+ data.type +'" id="'+ data.id +'" placeholder="'+ data.placeholeder +'" />'
+  htmlCode += '</div>'
+
+  console.log('문자열 연결(접합) 결과\n', htmlCode)
+
+  // 방법 2. 템플릿 비슷하게 이스케이프 처리
+  htmlCode = '<div class="form-input">\
+    <label for="'+ data.id +'">'+ data.label +'</label>\
+    <input\
+      type="'+ data.type +'"\
+      id="'+ data.id +'"\
+      placeholder="'+ data.placeholeder +'"\
+    />\
+  </div>'
+
+  console.log('템플릿 비슷하게 이스케이프 처리\n', htmlCode)  
+
+
+  // 방법 3. 배열 사용해 문자열로 조인(join)
+  htmlCode = [
     '<div class="form-input">',
       '<label for="' + data.id + '">' + data.label + '</label>',
       '<input',
         ' type="' + data.type + '"',
         ' id="' + data.id + '"',
-        ' placeholder="' + data.placholder + '"',
+        ' placeholder="' + data.placeholeder + '"',
       '/>',
     '</div>',
   ].join('')
+
+  console.log('배열 사용해 문자열로 조인(join)\n', htmlCode)  
 
   return htmlCode
 }
@@ -29,7 +55,7 @@ console.log(
     id: 'i@sodkckd-82',
     label: '이름',
     type: 'text',
-    placholder: '하월곡',
+    placeholeder: '하월곡',
   }),
 )
 
@@ -37,13 +63,13 @@ console.log(
 function generateHTMLCode(data) {
   // 템플릿(Template) 리터럴(Literal, 값)
   // JavaScript를 사용해 HTML 코드 구조화 (Markup)
-  const htmlTemplate = /* html */ `
+  const htmlTemplate = `
     <div class="form-input">
       <label for="${data.id}">${data.label}</label>
       <input
         type="${data.type}"
         id="${data.id}"
-        placeholder="${data.placholder}"
+        placeholder="${data.placeholeder}"
       />
     </div>
   `
@@ -55,21 +81,21 @@ const emailInputTemaplte = generateHTMLCode({
   id: 'isockd@dk-03',
   label: 'user-email',
   type: 'email',
-  placholder: 'user@company.io',
+  placeholeder: 'user@company.io',
 })
 
 const passwordInputTemaplte = generateHTMLCode({
   id: 'ocidsk!kd-82',
   label: 'user-password',
   type: 'password',
-  placholder: '숫자, 영어, 특수 문자 조합 8자리 이상 입력',
+  placeholeder: '숫자, 영어, 특수 문자 조합 8자리 이상 입력',
 })
 
 const passwordConfirmInputTemaplte = generateHTMLCode({
   id: 'ocidsk!kd-81',
   label: 'user-password-confirm',
   type: 'password',
-  placholder: '입력한 패스워드와 일치하는 값 입력',
+  placeholeder: '입력한 패스워드와 일치하는 값 입력',
 })
 
 console.log(emailInputTemaplte)
