@@ -146,8 +146,40 @@ console.log(printFriendsStep1(['박한영', '김준수', '장하준', '이현종
 console.log(printFriendsStep2(['박한영', '김준수', '장하준', '이현종']))
 console.log(printFriendsStep3(['박한영', '김준수', '장하준', '이현종']))
 
-
 console.groupEnd()
+
+
+// --------------------------------------------------------------------------
+// 구조 분해 할당 + 기본 값 설정
+// --------------------------------------------------------------------------
+
+{
+  const myCup = {
+    name: '머그컵',
+    color: '하얀색',
+    material: '사기(도자기)',
+    price: 7000,
+    // isPresent: false,
+  }
+
+  const yourCup = {}
+
+  // 만약 myCup 객체에 isPresent 속성이 없다면?
+  // isPresent 속성의 기본 값을 할당하자.
+  const { 
+    name = 'Mug Cup', 
+    color = '민트색', 
+    material = '플라스틱', 
+    price = 3000, 
+    isPresent = true 
+  } = yourCup // myCup
+
+  console.log(name, color, material, price)
+  console.log(isPresent)
+}
+
+
+
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
