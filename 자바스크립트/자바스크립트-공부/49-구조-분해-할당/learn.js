@@ -6,7 +6,7 @@
 // 1. user 객체를 선언하고 name, email 속성을 담으세요.
 // 2. 구조 분해 할당을 통해 name은 그대로, email은 userEmail이라는 이름으로 할당하세요.
 // 3. 존재하지 않는 nickname 속성을 가져오되, 기본값으로 '익명'을 설정하세요.
-console.group('객체 구조 분해 할당 실습')
+console.groupCollapsed('객체 구조 분해 할당 실습')
 
 const myNotebook = {
   brand: 'Macbook Pro',
@@ -37,10 +37,9 @@ const myNotebook = {
 {
   // myNotebook 객체의 구조: { brand, processor, ram, ssd, maker }
   const { brand, processor, ram, ssd, maker } = myNotebook
-  
+
   console.log(brand, processor, ram, ssd, maker)
 }
-
 
 console.groupEnd()
 
@@ -52,9 +51,25 @@ console.groupEnd()
 // 1. [x, y, z] 좌표 값을 담은 배열을 생성하세요.
 // 2. 구조 분해 할당을 사용하여 각 좌표를 개별 변수에 담아 출력하세요.
 // 3. 배열에 값이 두 개뿐일 경우를 대비해 세 번째 변수에 기본값 0을 설정하세요.
-console.groupCollapsed('배열 구조 분해 할당 실습')
+console.group('배열 구조 분해 할당 실습')
 
-// 이곳에 코드를 작성하세요
+
+const points = [92, -24, 0] // [x, y, z]
+
+{
+  const x = points.at(0)
+  const y = points.at(1)
+  const z = points.at(2)
+
+  console.log(x, y, z)
+}
+
+{
+  const [ x, y, z ] = points // [숫자값, 숫자값, 숫자값]
+
+  console.log(x, y, z)
+}
+
 
 console.groupEnd()
 
