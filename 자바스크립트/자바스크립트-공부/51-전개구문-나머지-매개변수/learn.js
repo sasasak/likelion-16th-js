@@ -8,7 +8,74 @@
 // 3. 얕은 복사가 잘 되었는지 원본 배열과 비교해 보세요.
 console.groupCollapsed('배열 전개 구문 실습')
 
-// 이곳에 코드를 작성하세요
+// 배열
+const snacks = ['cookie', 'jelly', 'candy']
+
+// 배열 전개 (전개 연산자 ...)
+console.log(...snacks)
+
+// ...배열 = 배열 내부 원소들을 펼친 것과 같음
+console.log('cookie', 'jelly', 'candy')
+
+
+// 전개된(펼쳐진) 배열의 요소를 전달받는 함수
+function logSnacks(snack1, snack2, snack3) {
+  console.log(snack1)
+  console.log(snack2)
+  console.log(snack3)
+}
+
+logSnacks(snacks.at(0), snacks.at(1), snacks.at(-1))
+logSnacks(...snacks)
+
+const otherSnacks = ['cracker', 'pocky']
+
+// 배열의 concat() 메서드 vs 전개 구문
+{
+  // 배열 병합(배열 메서드 활용, Array's concat method)
+  const newSnacks = otherSnacks.concat(snacks)
+  console.log(newSnacks)
+}
+
+{
+  // 배열 병합(전개 구문 활용, spread syntax)
+  const newSnacks = [...otherSnacks, ...snacks]
+  console.log(newSnacks)
+}
+
+
+// 배열 변환
+{
+  // 유사 배열 객체
+  const arrayLikeObject = {
+    length: 4,
+    0: 'number 1.',
+    1: 101,
+    2: { type: '유사 배열 객체' },
+    3: [
+      { id: 'kcisdl', title: '상점' },
+      { id: 'ciskde', title: '매점' },
+    ],
+  }
+
+  console.log(arrayLikeObject[0])
+  console.log(arrayLikeObject[1])
+  console.log(arrayLikeObject[2])
+  console.log(arrayLikeObject[3][1])
+  console.log(arrayLikeObject.length)
+  console.log(Array.isArray(arrayLikeObject))
+
+  // Array.from()
+  const convertedArray = Array.from(arrayLikeObject)
+  console.log(Array.isArray(convertedArray))
+
+  // Spread Syntax
+  // 이터러블(Iterable): 열거 가능한 (순환 가능한, 반복 가능한)
+  // const convertedArrayFromSPread = [...arrayLikeObject]
+  // console.log(convertedArrayFromSPread)
+
+}
+
 
 console.groupEnd()
 
