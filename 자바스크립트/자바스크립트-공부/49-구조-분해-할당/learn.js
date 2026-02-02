@@ -6,12 +6,43 @@
 // 1. user 객체를 선언하고 name, email 속성을 담으세요.
 // 2. 구조 분해 할당을 통해 name은 그대로, email은 userEmail이라는 이름으로 할당하세요.
 // 3. 존재하지 않는 nickname 속성을 가져오되, 기본값으로 '익명'을 설정하세요.
-console.groupCollapsed('객체 구조 분해 할당 실습')
+console.group('객체 구조 분해 할당 실습')
 
-// 이곳에 코드를 작성하세요
+const myNotebook = {
+  brand: 'Macbook Pro',
+  processor: 'M4',
+  ram: '32GB',
+  ssd: '2TB',
+  maker: 'Apple',
+}
+
+// console.log(myNotebook)
+
+// 객체의 속성(property 또는 key) 이름을
+// 범위(scope) 내 변수로 선언하고 변수에
+// 각 속성에 매칭되는 값을 할당한다면?
+
+{
+  const brand = myNotebook.brand
+  const processor = myNotebook.processor
+  const ram = myNotebook.ram
+  const ssd = myNotebook.ssd
+  const maker = myNotebook.maker
+
+  console.log(brand, processor, ram, ssd, maker)
+}
+
+// 더 편리하고 유용해서 많이 사용되는 인기있는 방법
+// 구조 분해 할당(Destructuring Assignment) 구문
+{
+  // myNotebook 객체의 구조: { brand, processor, ram, ssd, maker }
+  const { brand, processor, ram, ssd, maker } = myNotebook
+  
+  console.log(brand, processor, ram, ssd, maker)
+}
+
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 실습: 배열 구조 분해 할당 (Array Destructuring)
@@ -27,7 +58,6 @@ console.groupCollapsed('배열 구조 분해 할당 실습')
 
 console.groupEnd()
 
-
 // --------------------------------------------------------------------------
 // 실습: 함수 매개변수 구조 분해 (Function Parameter Destructuring)
 // --------------------------------------------------------------------------
@@ -41,7 +71,6 @@ console.groupCollapsed('함수 매개변수 구조 분해 실습')
 // 이곳에 코드를 작성하세요
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
