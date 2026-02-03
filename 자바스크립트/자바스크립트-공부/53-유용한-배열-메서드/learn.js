@@ -58,7 +58,7 @@ console.groupEnd()
 // [실습 2] 국적 일치 사용자 이름 출력
 // 1. users 배열에서 특정 국적(nationality)을 가진 첫 번째 사용자를 찾으세요.
 // 2. find를 활용해 객체를 찾고, 해당 객체의 name만 출력해 보세요.
-console.group('2. find 실습')
+console.groupCollapsed('2. find 실습')
 
 // 간단한 배열에서 find() 메서드 사용
 {
@@ -279,6 +279,14 @@ console.groupCollapsed('3. filter 실습')
 
 }
 
+console.groupEnd()
+
+
+// [실습 4] 고유 ID 설정 (데이터 변형)
+// 1. map을 사용하여 모든 사용자의 id 앞에 접두사(prefix)를 붙인 새 배열을 만드세요.
+// 2. 예: 1 -> 'user_1' (템플릿 리터럴 활용)
+console.groupCollapsed('4. map 실습')
+
 // 간단한 데이터 가공
 {
   // 숫자를 나타내는 단어로 구성된 배열
@@ -331,7 +339,6 @@ console.groupCollapsed('3. filter 실습')
   console.log(customResult)
 
 }
-
 
 // 복잡한 데이터 가공
 {
@@ -409,12 +416,27 @@ console.groupCollapsed('3. filter 실습')
   
   // 카드 데이터를 순환해 카드 마크업을 포함하는 새로운 배열
   // 카드 배열의 각 요소를 순환해 동적 렌더링을 위한 마크업 코드 생성 
-  const cardMarkups = cards.map((card) => {
-    const markup = `
+
+  // 구조 분해 할당을 사용하지 않은 경우
+  let cardMarkups = cards.map((card) => {
+    const markup = /* html */`
       <div class="card" data-id="${card.id}">
         <a href="${card.link}" target="_blank" rel="noopener noreferrer">
           <svg width="16" height="16" viewBox="0 0 16 16">...</svg>
           ${card.title}
+        </a>
+      </div>
+    `
+    return markup
+  })
+
+  // 구조 분해 할당을 사용한 경우
+  cardMarkups = cards.map(({ id, title, link }) => {
+    const markup = /* html */`
+      <div class="card" data-id="${id}">
+        <a href="${link}" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 16 16">...</svg>
+          ${title}
         </a>
       </div>
     `
@@ -428,14 +450,61 @@ console.groupCollapsed('3. filter 실습')
 
 console.groupEnd()
 
-// [실습 4] 고유 ID 설정 (데이터 변형)
-// 1. map을 사용하여 모든 사용자의 id 앞에 접두사(prefix)를 붙인 새 배열을 만드세요.
-// 2. 예: 1 -> 'user_1' (템플릿 리터럴 활용)
-console.groupCollapsed('4. map 실습')
 
-// 이곳에 코드를 작성하세요
+console.group('5. 다이내믹 마크업')
+
+// --------------------------------------------------------------------------
+// 다이내믹 렌더링
+// --------------------------------------------------------------------------
+// JavaScript로 마크업 -> 화면 렌더링(그림 그리기)
+// --------------------------------------------------------------------------
+
+// 버튼 데이터
+const buttonData = [
+  { id: 'button-register', type: 'submit', label: '회원가입', message: '성공적으로 회원가입되었습니다.' },
+  { id: 'button-login', type: 'submit', label: '로그인', message: '사용자 계정으로 로그인되었습니다.' },
+  { id: 'button-login', type: 'reset', label: '초기화', message: '입력 내용을 모두 초기화했습니다.' },
+  { id: 'button-readmore', type: 'button', label: '더보기', message: '감춰진 데이터를 더보기합니다.' },
+]
+
+// 데이터 순환해 동적으로 HTML 마크업을 JavaScript 프로그래밍으로 생성
+const buttonMarkups = buttonData.map((button) => {
+  const markup = `
+    <button
+      type="${button.type}"
+      data-id="${button.id}"
+      data-message="${button.message}"
+    >
+      ${button.label}
+    </button>
+  `
+  
+  return markup
+})
+
+// 프로그래밍적으로 생성된 마크업 코드 배열
+const buttonsHTMLCode = buttonMarkups.join('')
+
+// 가공된 데이터를 웹 문서 화면에 그리기
+const dynamicMarkupContainer = document.querySelector('[data-dynamic-markup]')
+// 'property' in Element
+// console.log('innerHTML' in dynamicMarkupContainer)
+
+dynamicMarkupContainer.innerHTML = buttonsHTMLCode
+
+// 화면에 그려진 집합 요소들을 순환해서 이벤트 리스너 추가
+// 컨테이너 요소의 자식들(children) 수집
+const dynamicButtons = Array.from(dynamicMarkupContainer.children)
+dynamicButtons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    const buttonElement = e.currentTarget
+    const message = buttonElement.dataset.message
+    alert(message)
+  })
+})
 
 console.groupEnd()
+
 
 // --------------------------------------------------------------------------
 // 실습: 심화 체이닝 및 이벤트 위임
