@@ -229,7 +229,16 @@ console.groupEnd()
 // 3. 구조 분해 할당과 Rest(...others)를 사용해 theme만 따로 빼고 나머지만 모은 객체를 출력해 보세요.
 console.groupCollapsed('객체 전개 및 나머지 실습')
 
-// 이곳에 코드를 작성하세요
+const baseConfig = { theme: 'dark', sound: true, volumn: 50 }
+const newConfig = { ...baseConfig, volumn: 80 }
+
+console.log(baseConfig)
+console.log(newConfig)
+
+const { theme, ...withoutThemeConfig } = newConfig // { theme, sound, volumn }
+
+console.log(theme)
+console.log(withoutThemeConfig)
 
 console.groupEnd()
 
