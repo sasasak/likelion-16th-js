@@ -11,8 +11,6 @@ console.groupCollapsed('속성 할당 단축 실습')
 function createPremiumUser(name, age, job, location, email, password) {
   const createdUser = {
     grade: 'Premium',
-    // 향상된 객체 리터럴
-    // 객체 속성 할당 단축 (Property Shorthand)
     name,
     age,
     job,
@@ -63,7 +61,54 @@ console.groupEnd()
 // 3. 메서드 내부에서 this를 사용하여 객체의 다른 속성에 접근해 보세요.
 console.groupCollapsed('메서드 단축 실습')
 
-// 이곳에 코드를 작성하세요
+// 예전(물론, 지금도 사용 가능. 웹은 호환성이 중요)
+{
+  const memory = {
+    // 속성: 값 (타입)
+    // amount 속성: 값 (숫자)
+    amount: 64,
+    // getAmount 속성: 값 (함수) ← 함수 값을 가진 속성 = '메서드(method)'
+    getAmount: function() {
+      console.log({ 'this': this })
+      return this.amount + 'GB'
+    },
+  }
+
+  console.log(memory.getAmount())
+}
+
+// 현재 사용하는 방법 (메서드 단축: Method Shorthand)
+{
+  const memory = {
+    amount: 64,
+    getAmount() {
+      console.log({ 'this': this })
+      return this.amount + 'GB'
+    },
+  }
+
+  console.log(memory.getAmount())
+}
+
+// 함수를 객체의 속성으로 할당했을 때 객체의 메서드라 부른다.
+{
+  // 함수(기능)
+  function fly() {}
+  function run() {}
+  function sleep() {}
+  function swimming() {}
+
+  // 객체가 기능을 가지면?
+  const bird = { fly, sleep }
+  console.log(bird.fly()) // '새.난다()'
+
+  const human = { run, sleep }
+  console.log(human.run()) // '사람.달린다()'
+
+  const whale = { swimming, sleep }
+  console.log(whale.sleep()) // '고래.잔다()'
+
+}
 
 console.groupEnd()
 
@@ -75,9 +120,27 @@ console.groupEnd()
 // 1. 변수 prefix = 'user'와 변수 id = 123을 준비하세요.
 // 2. 객체 생성 시 대괄호[]를 사용하여 [`${prefix}_${id}`] 형태의 키를 만드세요.
 // 3. 해당 키에 '홍길동'이라는 값을 할당하고 결과를 확인하세요.
-console.groupCollapsed('계산된 속성 이름 실습')
+console.group('계산된 속성 이름 실습')
 
-// 이곳에 코드를 작성하세요
+const prefix = 'user'
+const id = 29831
+const computedPropKey = `${prefix}-${id}` // 표현식 -> 값
+
+const userHong = {
+  // 3. computed property
+  ['prefix']: prefix, 
+  ['id']: id,
+  [computedPropKey]: '홍길동',
+  // 2. method shorthand
+  // getComputedPropValue: function() {
+  getComputedPropValue() {
+    return this[computedPropKey]
+  },
+}
+
+// 1. property shorthand
+console.log({ userHong })
+console.log(userHong.getComputedPropValue())
 
 console.groupEnd()
 
