@@ -7,45 +7,53 @@
 // 2. findIndex를 활용하고, 결과가 없을 시 -1이 나오는지 확인하세요.
 console.groupCollapsed('1. findIndex 실습')
 
-const users = [
-  { id: 'users-kcls', name: '하영', location: '서울' },
-  { id: 'users-ekx1', name: '준수', location: '이천' },
-  { id: 'users-cisk', name: '상준', location: '원주' },
-  { id: 'users-ocls', name: '민주', location: '서울' },
-]
+{
+  const users = [
+    { id: 'users-kcls', name: '하영', location: '서울' },
+    { id: 'users-ekx1', name: '준수', location: '이천' },
+    { id: 'users-cisk', name: '상준', location: '원주' },
+    { id: 'users-ocls', name: '민주', location: '서울' },
+  ]
 
-// 검색한 위치에 거주하는 사용자의 인덱스를 찾아 반환 
-const findLocation = '서울'
+  // 검색한 위치에 거주하는 사용자의 인덱스를 찾아 반환
+  const findLocation = '서울'
 
-// 단계 1.
-let userInSeoulIndex = users.findIndex((user) => {
-  if (user.location.includes(findLocation)) return true
-  return false
-})
+  // 단계 1.
+  let userInSeoulIndex = users.findIndex((user) => {
+    if (user.location.includes(findLocation)) return true
+    return false
+  })
 
-// 단계 2.
-userInSeoulIndex = users.findIndex((user) => {
-  return user.location.includes(findLocation)
-})
+  // 단계 2.
+  userInSeoulIndex = users.findIndex((user) => {
+    return user.location.includes(findLocation)
+  })
 
-// 단계 3.
-userInSeoulIndex = users.findIndex((user) => user.location.includes(findLocation))
+  // 단계 3.
+  // 배열을 정순으로 조회해서 일치하는 요소가 나오면 해당 요소의 인덱스를 반환
+  // 배열.findIndex(callbackFn)
+  userInSeoulIndex = users.findIndex((user) =>
+    user.location.includes(findLocation),
+  )
 
-// [질문]
-// 선생님 여기에서 그럼 유저스의 마지막 항목의 지역이 
-// 서울로 0번째 인덱스 위치하고 겹치는데 이 마지막 항목의 
-// 서울을 찾으려면 어떻게 해야해요??
-userInSeoulIndex = users.findLastIndex(user => user.location.includes(findLocation))
+  // [질문]
+  // 선생님 여기에서 그럼 유저스의 마지막 항목의 지역이
+  // 서울로 0번째 인덱스 위치하고 겹치는데 이 마지막 항목의
+  // 서울을 찾으려면 어떻게 해야해요??
 
-console.log(userInSeoulIndex)
-if (userInSeoulIndex > -1) {
-  console.log(users.at(userInSeoulIndex).name)
+  // 배열을 역순으로 조회해서 일치하는 요소가 나오면 해당 요소의 인덱스를 반환
+  // 배열.findLastIndex(callbackFn)
+  userInSeoulIndex = users.findLastIndex((user) =>
+    user.location.includes(findLocation),
+  )
+
+  console.log(userInSeoulIndex)
+  if (userInSeoulIndex > -1) {
+    console.log(users.at(userInSeoulIndex).name)
+  }
 }
 
-
-
 console.groupEnd()
-
 
 // [실습 2] 국적 일치 사용자 이름 출력
 // 1. users 배열에서 특정 국적(nationality)을 가진 첫 번째 사용자를 찾으세요.
@@ -53,11 +61,77 @@ console.groupEnd()
 console.group('2. find 실습')
 
 // 간단한 배열에서 find() 메서드 사용
+{
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+  const wantNumber = 10
+
+  // 단계 1.
+  let foundNumber = numbers.find(function (number) {
+    if (number === wantNumber) return true
+    return false
+  })
+
+  // 단계 2.
+  foundNumber = numbers.find(function (number) {
+    return number === wantNumber
+  })
+
+  // 단계 3.
+  foundNumber = numbers.find((number) => {
+    return number === wantNumber
+  })
+
+  // 단계 4.
+  foundNumber = numbers.find((number) => number === wantNumber)
+
+  if (foundNumber) {
+    console.log(foundNumber)
+  } else {
+    console.warn(
+      `찾는 ${wantNumber} 숫자 값이 [${numbers}] 배열 안에 존재하지 않습니다.`,
+    )
+  }
+}
 
 // 복잡한 배열에서 find() 메서드 사용
+{
+  const users = [
+    { id: 'users-kcls', name: '하영', hobby: '서핑', email: 'hay@naver.com', location: '서울' },
+    { id: 'users-ekx1', name: '준수', hobby: '라이딩', email: 'jun@daum.net', location: '이천' },
+    { id: 'users-cisk', name: '상준', hobby: '서핑', email: 'sang@gmail.com', location: '원주' },
+    { id: 'users-ocls', name: '민주', hobby: '러닝', email: 'min@kakao.com', location: '서울' },
+    { id: 'users-eika', name: '해영', hobby: '라이딩', email: 'hae@naver.com', location: '부산' },
+    { id: 'users-2low', name: '민식', hobby: '서핑', email: 'sik@naver.com', location: '대전' },
+  ]
+
+  // [이름 or 취미 or 이메일 or 위치]으로 찾을 것인지?
+  // 이메일이 'min@kakako.com' 또는 'min'을 포함한 사용자를 찾아라.
+  let foundUser = null
+  
+  // 로직 (재사용 고려 -> 기능 작성 -> 함수 선언)
+  // const searchTerm = '러닝'
+  // const category = 'hobby'
+  // foundUser = users.find((user) => user[category].includes(searchTerm))
+
+  function findUser(userList, { category = 'name', search = '' } = {}) {
+    return userList.find((user) => user[category].includes(search))
+  }
+
+  foundUser = findUser(users, { search: '라이딩', category: 'hobby' })
+
+  if (foundUser) {
+    const { name, email, location } = foundUser
+    console.log(name)
+    console.log(email)
+    console.log(location)
+  } else {
+    console.log('users 배열 안에는 찾는 사용자가 없습니다.')
+  }
+}
+
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 실습: 가공 및 필터링 (filter & map)
@@ -72,7 +146,6 @@ console.groupCollapsed('3. filter 실습')
 
 console.groupEnd()
 
-
 // [실습 4] 고유 ID 설정 (데이터 변형)
 // 1. map을 사용하여 모든 사용자의 id 앞에 접두사(prefix)를 붙인 새 배열을 만드세요.
 // 2. 예: 1 -> 'user_1' (템플릿 리터럴 활용)
@@ -81,7 +154,6 @@ console.groupCollapsed('4. map 실습')
 // 이곳에 코드를 작성하세요
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 실습: 심화 체이닝 및 이벤트 위임
@@ -95,7 +167,6 @@ console.groupCollapsed('5. 메서드 체이닝 실습')
 // 이곳에 코드를 작성하세요
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
