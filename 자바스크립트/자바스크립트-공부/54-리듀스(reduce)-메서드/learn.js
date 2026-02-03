@@ -153,7 +153,24 @@ console.groupEnd()
 // 3. Array.prototype.flat() 결과와 비교해 보세요.
 console.groupCollapsed('3. 배열 평탄화 실습')
 
-// 이곳에 코드를 작성하세요
+{
+  const data = [
+    ['A', 'B'], 
+    ['C', 'D'], 
+    ['E'],
+  ]
+
+  // flat() 메서드 활용
+  // 기대 결과 값: ['A', 'B', 'C', 'D', 'E']
+  console.log(data.flat())
+
+  // 여러분이 직접 해보세요!
+  // for 문 사용
+  // for...of 문 사용
+  // forEach() 메서드 사용
+  // reduce() 메서드 사용
+
+}
 
 console.groupEnd()
 
