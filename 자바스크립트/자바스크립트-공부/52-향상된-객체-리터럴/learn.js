@@ -8,10 +8,50 @@
 // 3. 기존 방식(title: title)과 차이점을 확인해 보세요.
 console.groupCollapsed('속성 할당 단축 실습')
 
-// 이곳에 코드를 작성하세요
+function createPremiumUser(name, age, job, location, email, password) {
+  const createdUser = {
+    grade: 'Premium',
+    // 향상된 객체 리터럴
+    // 객체 속성 할당 단축 (Property Shorthand)
+    name,
+    age,
+    job,
+    email,
+    password,
+    address: location,
+  }
+
+  return createdUser
+}
+
+const userMin = createPremiumUser(
+  '박중민',
+  22,
+  '학생',
+  '대전시',
+  'jungmin@naver.com',
+  'jomkdi@31',
+)
+
+const userYoun = createPremiumUser(
+  '어수연',
+  31,
+  '행정복지사',
+  '이천시',
+  'suyoun@kakao.com',
+  'dkcisl!92',
+)
+
+const x = 1
+const y = 2
+// console.log({ 'x': x, 'y': y })
+// console.log({ x: x, y: y })
+console.log({ x, y })
+
+console.log({ userMin })
+console.log({ userYoun })
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 실습: 메서드 단축 (Method Shorthand)
@@ -27,7 +67,6 @@ console.groupCollapsed('메서드 단축 실습')
 
 console.groupEnd()
 
-
 // --------------------------------------------------------------------------
 // 실습: 계산된 속성 이름 (Computed Property Names)
 // --------------------------------------------------------------------------
@@ -41,7 +80,6 @@ console.groupCollapsed('계산된 속성 이름 실습')
 // 이곳에 코드를 작성하세요
 
 console.groupEnd()
-
 
 // --------------------------------------------------------------------------
 // 핵심 요약!
