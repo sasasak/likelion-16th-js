@@ -148,7 +148,7 @@ console.group('2. find 실습')
 
     console.log(findUser(users, '준수'))
     console.log(findUser(users, 'hae', 'email'))
-    console.log(findUser(users, '러닝', 'hobby'))
+    console.log(findUser(users, '스위밍', 'hobby'))
   }
 }
 
@@ -163,7 +163,26 @@ console.groupEnd()
 // 2. JSON.stringify(result, null, 2)를 사용하여 화면에 예쁘게 출력해 보세요.
 console.groupCollapsed('3. filter 실습')
 
-// 이곳에 코드를 작성하세요
+// 간단한 데이터 필터링
+{
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 33, 24, 89, 903]
+
+  // 3의 배수만 걸러내자. (3으로 나눠서 나머지가 0인 수)
+  const multiplesOf3 = numbers.filter((number) => number % 3 === 0)
+  console.log(multiplesOf3)
+  
+  // 2로 나눠 나머지가 0인 수만 걸러내자. (짝수만)
+  const filteredEven = numbers.filter((n) => n % 2 === 0)
+  console.log(filteredEven)
+  
+  // 홀수만 걸러내자.
+  const filteredOdd = numbers.filter(n => n % 2 > 0)
+  console.log(filteredOdd)
+}
+
+
+// 복잡한 데이터 필터링
+
 
 console.groupEnd()
 
