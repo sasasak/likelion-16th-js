@@ -482,23 +482,28 @@ const buttonMarkups = buttonData.map((button) => {
   return markup
 })
 
-// 프로그래밍적으로 생성된 마크업 코드 배열
+// 프로그래밍적으로 생성된 마크업 코드 배열 → HTML 코드로 변환
 const buttonsHTMLCode = buttonMarkups.join('')
 
-// 가공된 데이터를 웹 문서 화면에 그리기
+// 가공된 데이터를 웹 문서 화면에 그리기(렌더링: Rendering)
 const dynamicMarkupContainer = document.querySelector('[data-dynamic-markup]')
+// 객체가 특정 속성을 포함하는지 여부 확인
 // 'property' in Element
 // console.log('innerHTML' in dynamicMarkupContainer)
 
 dynamicMarkupContainer.innerHTML = buttonsHTMLCode
 
 // 화면에 그려진 집합 요소들을 순환해서 이벤트 리스너 추가
-// 컨테이너 요소의 자식들(children) 수집
+
+// 컨테이너 요소의 자식들(children) 수집 후 배열로 변환
 const dynamicButtons = Array.from(dynamicMarkupContainer.children)
+// 배열의 forEach() 메서드를 사용해 각 요소를 순환한 후 이벤트 리스너 추가
 dynamicButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
     const buttonElement = e.currentTarget
+    // 각 버튼에 설정된 data-message 속성 값 읽기
     const message = buttonElement.dataset.message
+    // 브라우저 화면에 메시지 내용을 경고창으로 띄우기
     alert(message)
   })
 })
