@@ -96,6 +96,7 @@ console.group('2. find 실습')
 
 // 복잡한 배열에서 find() 메서드 사용
 {
+  // 사용자 정보가 포함된 배열 users
   const users = [
     { id: 'users-kcls', name: '하영', hobby: '서핑', email: 'hay@naver.com', location: '서울' },
     { id: 'users-ekx1', name: '준수', hobby: '라이딩', email: 'jun@daum.net', location: '이천' },
@@ -107,7 +108,7 @@ console.group('2. find 실습')
 
   // [이름 or 취미 or 이메일 or 위치]으로 찾을 것인지?
   // 이메일이 'min@kakako.com' 또는 'min'을 포함한 사용자를 찾아라.
-  let foundUser = null
+  let foundUser = null // 개발자가 의도를 가지고 추후 값이 변경될 수 있도록 명시적 초기화
   
   // 로직 (재사용 고려 -> 기능 작성 -> 함수 선언)
   // const searchTerm = '러닝'
@@ -118,9 +119,18 @@ console.group('2. find 실습')
     return userList.find((user) => user[category].includes(search))
   }
 
-  foundUser = findUser(users, { search: '라이딩', category: 'hobby' })
+  // foundUser = users.find((user) => user[category].includes(search)) 
+  // 이 부분이  user['카테고리 속성 이름'].includes('사용자 검색어') 이렇게 들어가는건가요?
+
+  foundUser = findUser(users, { category: 'hobby', search: '라이딩' })
+  foundUser = findUser(users, { search: '민'/* , category: 'name' */ })
+
 
   if (foundUser) {
+    // 사용자 검색어 및 카테고리에 의해 선택된 사용자 정보 foundUser
+    // 예시) { id: 'users-ocls', name: '민주', hobby: '러닝', email: 'min@kakao.com', location: '서울' },
+
+    // const { name, email, location } = foundUser 선생님 이부분이 구조분해 할당이 적용된걸까요?
     const { name, email, location } = foundUser
     console.log(name)
     console.log(email)
@@ -128,8 +138,19 @@ console.group('2. find 실습')
   } else {
     console.log('users 배열 안에는 찾는 사용자가 없습니다.')
   }
-}
 
+  {
+    function findUser(userList, search, category = 'name') {
+      return userList.find((user) => 
+        user[category] ? user[category].includes(search) : false
+      )
+    }
+
+    console.log(findUser(users, '준수'))
+    console.log(findUser(users, 'hae', 'email'))
+    console.log(findUser(users, '러닝', 'hobby'))
+  }
+}
 
 console.groupEnd()
 
