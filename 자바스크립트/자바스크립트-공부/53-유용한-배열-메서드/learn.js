@@ -335,7 +335,69 @@ console.groupCollapsed('3. filter 실습')
 
 // 복잡한 데이터 가공
 {
-  // 
+  const users = [
+    { id: 'USER-KCLS', name: '김하영', hobby: ['서핑', '요가'], email: 'hayoung@naver.com', location: '서울', age: 27 },
+    { id: 'USER-EKX1', name: '박준수', hobby: ['라이딩', '등산'], email: 'junsu@daum.net', location: '이천', age: 32 },
+    { id: 'USER-CISK', name: '이상준', hobby: ['서핑', '독서'], email: 'sangjun@gmail.com', location: '원주', age: 29 },
+    { id: 'USER-OCLS', name: '최민주', hobby: ['러닝', '요가'], email: 'minju@kakao.com', location: '서울', age: 25 },
+    { id: 'USER-EIKA', name: '정해영', hobby: ['라이딩', '수영'], email: 'haeyoung@naver.com', location: '부산', age: 31 },
+    { id: 'USER-2LOW', name: '김민식', hobby: ['서핑', '클라이밍'], email: 'minsik@naver.com', location: '대전', age: 28 },
+    { id: 'USER-9KMZ', name: '박지수', hobby: ['요가', '명상'], email: 'jisoo@gmail.com', location: '서울', age: 26 },
+    { id: 'USER-7PQR', name: '이현우', hobby: ['등산', '캠핑'], email: 'hyunwoo@daum.net', location: '부산', age: 33 },
+    { id: 'USER-3ABC', name: '최예지', hobby: ['서핑', '사진촬영'], email: 'jimin@naver.com', location: '제주', age: 30 },
+    { id: 'USER-5XYZ', name: '정소희', hobby: ['러닝', '자전거'], email: 'sohee@kakao.com', location: '서울', age: 24 },
+    { id: 'USER-8DEF', name: '김태호', hobby: ['요가', '명상'], email: 'taeho@gmail.com', location: '대구', age: 35 },
+    { id: 'USER-4GHI', name: '박민지', hobby: ['라이딩', '수영'], email: 'minji@naver.com', location: '인천', age: 27 },
+    { id: 'USER-1JKL', name: '이준호', hobby: ['등산', '낚시'], email: 'junho@daum.net', location: '서울', age: 31 },
+    { id: 'USER-6MNO', name: '최세진', hobby: ['서핑', '스노우보드'], email: 'sejin@kakao.com', location: '부산', age: 29 },
+    { id: 'USER-0PQR', name: '정유진', hobby: ['요가', '필라테스'], email: 'yujin@gmail.com', location: '광주', age: 28 },
+    { id: 'USER-2STU', name: '김민수', hobby: ['러닝', '축구'], email: 'minsu@naver.com', location: '서울', age: 26 },
+    { id: 'USER-5VWX', name: '박지훈', hobby: ['라이딩', '테니스'], email: 'jihoon@daum.net', location: '대전', age: 30 },
+    { id: 'USER-7YZA', name: '이수진', hobby: ['등산', '요리'], email: 'soojin@kakao.com', location: '부산', age: 32 },
+    { id: 'USER-9BCD', name: '최동현', hobby: ['서핑', '드론'], email: 'donghyun@gmail.com', location: '제주', age: 34 },
+    { id: 'USER-4EFG', name: '정예지', hobby: ['요가', '그림'], email: 'yeji@naver.com', location: '서울', age: 25 }
+  ]
+
+  // 사용자 이름 목록 만들기 (각 요소를 순환 가공해 새로운 배열 생성)
+  let userNames = null
+  // 구조 분해 할당 사용하지 않은 경우
+  userNames = users.map((user) => user.name)
+  // 구조 분해 할당 사용한 경우
+  userNames = users.map(({ name }) => name)
+
+  console.log(users)
+  console.log(userNames)
+
+  // 사용자 이메일 목록 만들기 (각 요소를 순환 가공해 새로운 배열 생성)
+  let userEmails = null
+
+  // 구조 분해 할당 사용하지 않은 경우
+  userEmails = users.map((user) => user.email)
+
+  // 구조 분해 할당 사용한 경우
+  userEmails = users.map(({ email }) => email)
+
+  console.log(users)
+  console.log(userEmails)
+
+
+  // 가공 목적
+  // users 배열을 순환해 각 user에 새로운 속성을 추가
+  // 예를 들어 index, role 속성이 추가된 새로운 배열을 생성한다면?
+
+  const neoUsers = users.map((user, index) => {
+    // 가공된 새로운 사용자 객체 반환
+    const neoUser = {
+      ...user,
+      index,
+      role: 'GUEST',
+    }
+    return neoUser
+  })
+
+  console.log(users)
+  console.log(neoUsers)
+
 }
 
 console.groupEnd()
