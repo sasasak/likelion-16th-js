@@ -475,6 +475,9 @@ const buttonMarkups = buttonData.map((button) => {
       data-id="${button.id}"
       data-message="${button.message}"
     >
+      <svg width="12" height="12" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+      </svg>
       ${button.label}
     </button>
   `
@@ -502,7 +505,10 @@ dynamicButtons.forEach((button) => {
   button.addEventListener('click', (e) => {
     const buttonElement = e.currentTarget
     // 각 버튼에 설정된 data-message 속성 값 읽기
-    const message = buttonElement.dataset.message
+    // 구조 분해 할당 사용 전
+    // const message = buttonElement.dataset.message
+    // 구조 분해 할당 사용 후
+    const { message } = buttonElement.dataset
     // 브라우저 화면에 메시지 내용을 경고창으로 띄우기
     alert(message)
   })
@@ -518,9 +524,28 @@ console.groupEnd()
 // [실습 5] 국적 일치 & 고유 ID 설정 (체이닝)
 // 1. filter로 특정 국적 유저를 먼저 거르고, map으로 ID를 변형하는 체이닝을 구현하세요.
 // 2. 이벤트 위임을 활용해 컨테이너 하나에서 모든 입력을 처리해 보세요.
-console.groupCollapsed('5. 메서드 체이닝 실습')
+console.groupCollapsed('6. 메서드 체이닝 실습')
 
-// 이곳에 코드를 작성하세요
+const numbers = [2, 4, 8]
+
+{
+  // 데이터 가공
+  const doubleNumbers = numbers.map(n => n ** 2)
+
+  // 데이터 필터링
+  const numbersLt10 = doubleNumbers.filter(n => n < 10)
+
+  console.log(numbers) // [2, 4, 8]
+  console.log(doubleNumbers) // [4, 16, 64]
+  console.log(numbersLt10) // [4]
+}
+
+// 메서드 체이닝 = 메서드를 연결해 사용한다.
+{
+  const lessThan10 = numbers.map(n => n ** 2).filter(n => n < 10)
+  console.log({lessThan10})
+}
+
 
 console.groupEnd()
 
