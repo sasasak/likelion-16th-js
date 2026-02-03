@@ -398,6 +398,32 @@ console.groupCollapsed('3. filter 실습')
   console.log(users)
   console.log(neoUsers)
 
+  // 카드 데이터 (배열)
+  const cards = [
+    { id: 'card-naver', title: '네이버', link: 'https://naver.com' },
+    { id: 'card-google', title: '구글', link: 'https://google.com' },
+    { id: 'card-daum', title: '다음', link: 'https://daum.net' },
+    { id: 'card-coupang', title: '쿠팡', link: 'https://coupang.com' },
+  ]
+  
+  
+  // 카드 데이터를 순환해 카드 마크업을 포함하는 새로운 배열
+  // 카드 배열의 각 요소를 순환해 동적 렌더링을 위한 마크업 코드 생성 
+  const cardMarkups = cards.map((card) => {
+    const markup = `
+      <div class="card" data-id="${card.id}">
+        <a href="${card.link}" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 16 16">...</svg>
+          ${card.title}
+        </a>
+      </div>
+    `
+    return markup
+  })
+
+  console.log(cardMarkups.length)
+  console.log(cardMarkups)
+
 }
 
 console.groupEnd()
