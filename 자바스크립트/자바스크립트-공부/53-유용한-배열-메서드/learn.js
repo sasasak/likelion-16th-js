@@ -15,7 +15,7 @@ const users = [
 ]
 
 // 검색한 위치에 거주하는 사용자의 인덱스를 찾아 반환 
-const findLocation = '원주'
+const findLocation = '서울'
 
 // 단계 1.
 let userInSeoulIndex = users.findIndex((user) => {
@@ -31,10 +31,18 @@ userInSeoulIndex = users.findIndex((user) => {
 // 단계 3.
 userInSeoulIndex = users.findIndex((user) => user.location.includes(findLocation))
 
+// [질문]
+// 선생님 여기에서 그럼 유저스의 마지막 항목의 지역이 
+// 서울로 0번째 인덱스 위치하고 겹치는데 이 마지막 항목의 
+// 서울을 찾으려면 어떻게 해야해요??
+userInSeoulIndex = users.findLastIndex(user => user.location.includes(findLocation))
+
 console.log(userInSeoulIndex)
 if (userInSeoulIndex > -1) {
   console.log(users.at(userInSeoulIndex).name)
 }
+
+
 
 console.groupEnd()
 
@@ -42,9 +50,11 @@ console.groupEnd()
 // [실습 2] 국적 일치 사용자 이름 출력
 // 1. users 배열에서 특정 국적(nationality)을 가진 첫 번째 사용자를 찾으세요.
 // 2. find를 활용해 객체를 찾고, 해당 객체의 name만 출력해 보세요.
-console.groupCollapsed('2. find 실습')
+console.group('2. find 실습')
 
-// 이곳에 코드를 작성하세요
+// 간단한 배열에서 find() 메서드 사용
+
+// 복잡한 배열에서 find() 메서드 사용
 
 console.groupEnd()
 
