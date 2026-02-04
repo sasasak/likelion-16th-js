@@ -170,51 +170,51 @@ console.groupCollapsed('1. 요일 메시지 실습')
   // 평일 : '열심히 공부하자'
   // 주말 : '즐거운 휴식을 하자'
 
-button.addEventListener('click', () => {
-  const day = input.value.trim()
-  
-  // if...else 문
-  if (
-    day === '월요일' ||
-    day === '화요일' ||
-    day === '수요일' ||
-    day === '목요일' ||
-    day === '금요일'
-  ) {
-    console.log('열심히 공부하자')
-  } else if (
-    day === '토요일' ||
-    day === '일요일'
-  ) {
-    console.log('즐거운 휴식을 하자')
-
-  }
-  else {
-    console.warn('월,화,수,목,금,토,일요일 중 하나를 입력해야 합니다.')
-  }
-  
-})
-
-button.addEventListener('click', () => {
-  const day = input.value.trim()
-  
-  // switch 문
-  switch (day) {
-    case '월요일':
-    case '화요일':
-    case '수요일':
-    case '목요일':
-    case '금요일':
+  button.addEventListener('click', () => {
+    const day = input.value.trim()
+    
+    // if...else 문
+    if (
+      day === '월요일' ||
+      day === '화요일' ||
+      day === '수요일' ||
+      day === '목요일' ||
+      day === '금요일'
+    ) {
       console.log('열심히 공부하자')
-      break
-    case '토요일':
-    case '일요일':
+    } else if (
+      day === '토요일' ||
+      day === '일요일'
+    ) {
       console.log('즐거운 휴식을 하자')
-      break
-  default: 
-    console.warn('월,화,수,목,금,토,일요일 중 하나를 입력해야 합니다.')
-  }
-})
+
+    }
+    else {
+      console.warn('월,화,수,목,금,토,일요일 중 하나를 입력해야 합니다.')
+    }
+    
+  })
+
+  button.addEventListener('click', () => {
+    const day = input.value.trim()
+    
+    // switch 문
+    switch (day) {
+      case '월요일':
+      case '화요일':
+      case '수요일':
+      case '목요일':
+      case '금요일':
+        console.log('열심히 공부하자')
+        break
+      case '토요일':
+      case '일요일':
+        console.log('즐거운 휴식을 하자')
+        break
+    default: 
+      console.warn('월,화,수,목,금,토,일요일 중 하나를 입력해야 합니다.')
+    }
+  })
 
 }
 
