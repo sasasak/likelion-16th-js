@@ -16,24 +16,79 @@ const users = [
   { name: '서지수', age: 23, job: '학생' },
 ]
 
-// 즉시 실행되는 함수 표현식 (IIFE)
-// Immediate Invoked Function Expression
+{
+  // 제어할 요소들
+  const container = document.querySelector('.container')
+  const button = container.firstElementChild
+  const list = container.lastElementChild
 
-// (함수값)   : 함수 실행 안함
-// (함수값()) : 함수 실행 함
-// (함수값)() : 함수 실행 함
-;(function () {
-  console.log('연습 1')
-}) // ()
+  // 성능 저하를 유발하는 사례
+  ;(() => {
+    
+    button.addEventListener('click', () => {
+      users.forEach(({ job, name }) => {
+        const item = document.createElement('li')
+        item.textContent = `${job} ${name}`
+        // 성능 저하를 유발하는 렌더링 (반복하는 동안 계속)
+        list.append(item)
+      })
+    })
 
-;(function () {
-  console.log('연습 2')
-})()
+  }) //()
 
-// example1()
-// example2()
+  // 성능 최적화 사례 (요소 생성 및 삽입)
+  ;(() => {
+    
+    button.addEventListener(
+      'click', 
+      () => {
+        const items = users.map(({ job, name }) => {
+          const item = document.createElement('li')
+          item.textContent = `${job} ${name}`
+          return item
+        })
 
+        // list.append(...items)
+        // list.append(item0, item1, item2, ..., item9)
+        list.append(...items)
+      },
+      { once: true },
+    )
 
+  }) //()
+
+  // 성능 최적화 사례 (HTML 문자열 DOM에 삽입)
+  ;(() => {
+    
+    button.addEventListener(
+      'click', 
+      () => {
+        // ❌ 나쁜 코드 (성능 저하 )
+        // users.forEach(({ job, name }) => {
+        //   // HTML 코드 생성
+        //   const htmlCode = `<li>${job} ${name}</li>`
+        //   list.innerHTML += htmlCode // 그려라! x 10
+        // })
+
+        // ✅ 좋은 코드 (성능 저하 없음)
+        // const liItemsHTMLCode = users
+          // 메서드 체이닝
+          // .map(({ job, name }) => `<li>${job} ${name}</li>`)
+          // .join('')
+
+        const liItemsHTMLCode = users
+          .reduce((htmlCode, { job, name }) => {
+            htmlCode += `<li>${job} ${name}</li>`
+            return htmlCode
+          }, '')
+
+        // console.log(liItemsHTMLCode)
+        list.innerHTML = liItemsHTMLCode // 그려라! x 1
+      }
+    )
+
+  })()
+}
 
 
 const todaysMenu = [
