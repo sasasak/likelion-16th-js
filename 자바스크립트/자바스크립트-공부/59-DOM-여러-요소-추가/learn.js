@@ -59,6 +59,22 @@ const users = [
 
   // 성능 최적화 사례 (HTML 문자열 DOM에 삽입)
   ;(() => {
+
+    // list의 개별 요소에 이벤트 리스너 추가
+    // Array.from(list.children).forEach((child) => {
+    //   child.addEventListener('click', (e) => {
+    //     const item = e.currentTarget
+    //     const itemContent = item.textContent
+    //     alert(itemContent)
+    //   })
+    // })
+
+    // 이벤트 위임의 위대함(?) 👏
+    list.addEventListener('click', (e) => {
+      const listItem = e.target.closest('li')
+      if (!listItem) return
+      alert(listItem.textContent)
+    })
     
     button.addEventListener(
       'click', 
@@ -83,7 +99,7 @@ const users = [
           }, '')
 
         // console.log(liItemsHTMLCode)
-        list.innerHTML = liItemsHTMLCode // 그려라! x 1
+        list.innerHTML += liItemsHTMLCode // 그려라! x 1
       }
     )
 
