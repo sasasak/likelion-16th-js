@@ -103,6 +103,29 @@ const users = [
       }
     )
 
+  }) // ()
+
+  // 효과적으로 여러 요소(들)을 DOM에 삽입하는 방법
+  // 문서 조각(DocumentFragment) 요소를 사용
+  ;(() => {
+    // 문서 조각(가상 DOM 컨테이너) 객체 생성
+    // 실제 문서가 아닌, 가상의 DOM 컨테이너(메모리) 상에 상주하는 데이터 활용 
+    const fragment = document.createDocumentFragment()
+    fragment.appendChild(document.createElement('ul'))
+    // <document-fragment><ul>...</ul></document-fragment>
+    // console.log(fragment) 
+
+    button.addEventListener('click', () => {
+      users.forEach(({ job, name }) => {
+        const item = document.createElement('li')
+        item.textContent = `${job} ${name}`
+        // fragment 객체에 삽입 (성능 저하? 없어요!!!)
+        fragment.firstElementChild.appendChild(item)
+      })
+
+      // console.log(fragment.firstElementChild.outerHTML)
+      list.innerHTML += fragment.firstElementChild.innerHTML
+    })
   })()
 }
 
