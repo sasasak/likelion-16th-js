@@ -13,6 +13,11 @@
         border: 8px solid currentColor;
         padding: 24px;
       }
+
+      .state-error {
+        color: #ad0101;
+        font-size: 13px;
+      }
     </style>
     <script src="./learn.js" defer></script>
   </head>
@@ -70,13 +75,17 @@
       <section id="practice1">
         <h2>🔍 사용자 정보 검색</h2>
         <form class="user-search-form">
-          <input type="text" aria-label="사용자 이름" placeholder="예) 이수진" class="search-input" />
+          <input type="search" name="search" aria-label="사용자 이름" placeholder="예) 이수진" class="search-input" />
           <button type="submit">추가</button>
+          <div role="alert" class="state-error"></div>
         </form>
         <p class="guide">
-          <strong>💡 입력 가능 이름:</strong> 김민수, 이수진, 박지훈, 최유리 등
+          <strong>💡 입력 가능 이름:</strong> 
+          김민수, 이수진, 박지훈, 최유리, 정우성, 한지민, 오세훈, 유나영, 장동건, 서지수
         </p>
-        <ul class="user-list"></ul>
+        <ul class="user-list">
+          <!-- 여기에 사용자 정보가 추가됩니다 -->
+        </ul>
       </section>
 
       <section id="practice2">

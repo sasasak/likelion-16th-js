@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // --------------------------------------------------------------------------
 // 실습: 효율적인 요소 추가
 // --------------------------------------------------------------------------
@@ -15,6 +16,50 @@ const users = [
   { name: '장동건', age: 38, job: '영업사원' },
   { name: '서지수', age: 23, job: '학생' },
 ]
+
+// 실습 1. 사용자 정보 검색 및 추가
+{
+  const practice = document.getElementById('practice1')
+  const form = practice.querySelector('.user-search-form')
+  const printError = practice.querySelector('.state-error')
+  const list = practice.querySelector('.user-list')
+
+  form.addEventListener('submit', (e) => {
+    // 브라우저 기본 작동 방지
+    e.preventDefault()
+
+    // 사용자 입력 값 가져오기
+    const { search } = form.elements
+    const inputedName = search.value.trim().toLowerCase()
+    
+    // 사용자 입력 값(이름)이 users 배열 내부의 아이템의 name 필드와 일치한다면?
+    const searchedUser = users.find(({ name }) => name.includes(inputedName))
+    
+    if (searchedUser) {
+      // 검색된 사용자가 있다면?
+      // 새로운 <li> 요소 만들어 이름, 나이, 직업 정보 구성
+      const item = document.createElement('li')
+      const { name, age, job } = searchedUser
+      item.textContent = `${job} ${name}(${age})`
+      // 생성된 <li> 요소를 <ul> 안에 마지막 자식 요소로 추가
+      list.appendChild(item)
+    } else {
+      // 검색 결과 사용자가 없다면?
+      // 일치하는 사용자가 없다면 경고 메시지를 출력
+      printError.textContent = `⚠️ 검색된 "${inputedName}" 사용자 정보가 없습니다.`
+
+      // 사용자가 인식할 수 있는 특정 시간이 지나면
+      // 경고 메시지를 사라지게 하자.
+      setTimeout(() => {
+        printError.textContent = ''
+      }, 3000)
+    }
+
+    // 폼 초기화
+    form.reset()
+  })
+}
+
 
 {
   // 제어할 요소들
@@ -126,7 +171,7 @@ const users = [
       // console.log(fragment.firstElementChild.outerHTML)
       list.innerHTML += fragment.firstElementChild.innerHTML
     })
-  })()
+  }) // ()
 }
 
 
