@@ -7,7 +7,36 @@
 // 2. map()과 소괄호(())를 활용한 암묵적 반환으로 { name: '이름' } 형태의 객체 배열을 만드세요.
 console.groupCollapsed('1. 객체 변환 실습 (암묵적 반환)')
 
-// 이곳에 코드를 작성하세요
+const names = ['우혁', '하민', '준식']
+
+// 명시적 반환
+{
+  const result = names.map((name) => {
+    // const returnValue = { ['name']: name }
+    // const returnValue = { 'name': name }
+    // const returnValue = { name: name }
+    // const returnValue = { name }
+    // return returnValue
+    return { name }
+  })
+
+  // const result = [{ name: '우혁' },{ name: '하민' },{ name: '준식' }]
+  console.log(result)
+}
+
+// 암묵적 반환
+{
+  // () => { return value }
+  // () => (value)
+  const result = names.map((name) => ({ name }))
+  // const result = names.map((name) => {
+  //   name
+  //   // return undefined
+  // })
+
+  console.log(result)
+}
+
 
 console.groupEnd()
 
