@@ -20,6 +20,50 @@
       willRemoveElement.remove()
     })
 
+  }) //()
+
+  // 요소 이동
+  ;(() => {
+    
+    // 제거한 '최상준'을 박현일 앞, 이지아 뒤 위치로 이동
+    const members = document.querySelector('.members')
+    const [lee, park, choi, ha] = members.children // HTMLCollection [0, 1, 2, 3]
+    // console.log({ lee, park, choi})
+
+    const moveButton = document.querySelector('.move-button')
+
+    moveButton.addEventListener('click', () => {
+      // 최상준 제거 (최상준 반환됨)
+      const removedChoi = members.removeChild(choi)
+      console.log(removedChoi)
+      
+      // <박현일 앞>에 제거한 최상준 삽입
+      // members.insertBefore(removedChoi, park)
+      
+      // 이지아 뒤 (❌ 부모요소.insertAfter(위치요소, 삽입요소))
+      insertAfter(ha, removedChoi)
+    })
+
+
+    // 사용자 정의 함수(기능)
+    // insertAfter(위치요소, 삽입요소)
+    function insertAfter(targetElement, insertElement) {
+      // insertBefore() + appendChild() = insertAfter()
+      // 위치요소의 부모 찾기
+      const parentElement = targetElement.parentElement
+      if (!parentElement) return
+      // 부모의 자식: targetElement
+      // targetElement의 다음 요소 찾자.
+      const nextElement = targetElement.nextElementSibling
+      if (nextElement) {
+        // 있을 경우: 그 뒤 요소의 앞에 삽입 요소를 추가 (insertBefore)
+        parentElement.insertBefore(insertElement, nextElement)
+      } else {
+        // 없을 경우: 부모의 마지막 자식 요소로 삽입 요소 추가 (appendChild)
+        parentElement.appendChild(insertElement)
+      }
+    }
+
   })()
 }
 
