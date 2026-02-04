@@ -2,6 +2,76 @@
 // 실습: 조건 스위치 (switch statement)
 // --------------------------------------------------------------------------
 
+;(() => {
+  
+  let hobby = '달리기'
+  // switch 문
+  {
+    switch(hobby) {
+      case '달리기': console.log('달립니다.'); break
+      case '잠자기': console.log('잠잡니다.'); break
+      case '캠핑하기': console.log('캠핑합니다.'); break
+      case '서핑하기': console.log('서핑합니다.'); break
+      default: console.log('쉽니다.')
+    }
+  }
+
+  // if...else 문
+  {
+    if (hobby === '달리기') {
+      console.log('달립니다.')
+    } else if (hobby === '잠자기') {
+      console.log('잠잡니다.')
+    } else if (hobby === '캠핑하기') {
+      console.log('캠핑합니다.')
+    } else if (hobby === '서핑하기') {
+      console.log('서핑합니다.')
+    } else {
+      console.log('쉽니다.')
+    }
+  }
+
+}) //()
+
+;(() => {
+
+  // 여러 조건이 복합적인 경우
+  // 취미가 수영 또는 배드민턴 또는 발레 -> 아파트 커뮤니티에서 진행
+  // 취미가 축구 또는 농구 또는 야구 -> OO 초등학교 운동장에서 진행
+  let hobby = '야구' 
+
+  // if...else 문
+  {
+    if (hobby === '수영' || hobby === '배드민턴' || hobby === '발레') {
+      console.log('아파트 커뮤니티를 이용해주세요.')
+    } else if (hobby === '축구' || hobby === '농구' || hobby === '야구') {
+      console.log('OO 초등학교 운동장을 이용해주세요.')
+    } else {
+      console.log('자택에서 조용하게 진행해주세요.')
+    }
+  }
+
+  // switch 문
+  {
+    switch(hobby) {
+      case '수영':
+      case '배드민턴':
+      case '발레':
+        console.log('아파트 커뮤니티를 이용해주세요.')
+        break
+      case '축구':
+      case '농구':
+      case '야구':
+        console.log('OO 초등학교 운동장을 이용해주세요.')
+        break
+      default:
+        console.log('자택에서 조용하게 진행해주세요.')
+    }
+  }
+
+})()
+
+
 // 데이터 정의
 const 요일_메시지 = {
   월요일: '새로운 한 주가 시작됩니다!',
@@ -26,7 +96,127 @@ const 푸드_카테고리 = {
 // 3. 목록에 없는 요일일 경우 "올바른 요일을 입력해주세요"라고 출력하세요.
 console.groupCollapsed('1. 요일 메시지 실습')
 
-// 이곳에 코드를 작성하세요
+{
+  const practice = document.getElementById('practice1')
+  const input = document.getElementById('day')
+  const button = practice.querySelector('.btn-check-day')
+
+  button.addEventListener('click', () => {
+    const day = input.value.trim()
+    
+    // if...else 문
+    if (day === '월요일') {
+      console.log(요일_메시지.월요일)
+    }
+    else if (day === '화요일') {
+      console.log(요일_메시지.화요일)
+    }
+    else if (day === '수요일') {
+      console.log(요일_메시지.수요일)
+    }
+    else if (day === '목요일') {
+      console.log(요일_메시지.목요일)
+    }
+    else if (day === '금요일') {
+      console.log(요일_메시지.금요일)
+    }
+    else if (day === '토요일') {
+      console.log(요일_메시지.토요일)
+    }
+    else if (day === '일요일') {
+      console.log(요일_메시지.일요일)
+    }
+    else {
+      console.warn('월,화,수,목,금,토,일요일 중 하나를 입력해야 합니다.')
+    }
+    
+  })
+  
+  button.addEventListener('click', () => {
+    const day = input.value.trim()
+    
+    // switch 문
+    switch(day) {
+      case '월요일': 
+        console.log(요일_메시지.월요일); 
+        break
+      case '화요일': 
+        console.log(요일_메시지.화요일); 
+        break
+      case '수요일': 
+        console.log(요일_메시지.수요일); 
+        break
+      case '목요일': 
+        console.log(요일_메시지.목요일); 
+        break
+      case '금요일': 
+        console.log(요일_메시지.금요일); 
+        break
+      case '토요일': 
+        console.log(요일_메시지.토요일); 
+        break
+      case '일요일': 
+        console.log(요일_메시지.일요일); 
+        break
+      default: 
+        console.warn('월,화,수,목,금,토,일요일 중 하나를 입력해야 합니다.')
+    }
+
+    
+  })
+
+  // 평일 / 주말 구분지어 메시지 출력
+  // 월-금 / 토,일
+  // 평일 : '열심히 공부하자'
+  // 주말 : '즐거운 휴식을 하자'
+
+button.addEventListener('click', () => {
+  const day = input.value.trim()
+  
+  // if...else 문
+  if (
+    day === '월요일' ||
+    day === '화요일' ||
+    day === '수요일' ||
+    day === '목요일' ||
+    day === '금요일'
+  ) {
+    console.log('열심히 공부하자')
+  } else if (
+    day === '토요일' ||
+    day === '일요일'
+  ) {
+    console.log('즐거운 휴식을 하자')
+
+  }
+  else {
+    console.warn('월,화,수,목,금,토,일요일 중 하나를 입력해야 합니다.')
+  }
+  
+})
+
+button.addEventListener('click', () => {
+  const day = input.value.trim()
+  
+  // switch 문
+  switch (day) {
+    case '월요일':
+    case '화요일':
+    case '수요일':
+    case '목요일':
+    case '금요일':
+      console.log('열심히 공부하자')
+      break
+    case '토요일':
+    case '일요일':
+      console.log('즐거운 휴식을 하자')
+      break
+  default: 
+    console.warn('월,화,수,목,금,토,일요일 중 하나를 입력해야 합니다.')
+  }
+})
+
+}
 
 console.groupEnd()
 
