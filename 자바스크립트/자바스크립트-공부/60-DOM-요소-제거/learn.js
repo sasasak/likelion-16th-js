@@ -5,12 +5,18 @@
 {
   // 요소 제거
   ;(() => {
-    // const members = document.querySelector('.members')
-    const willRemoveElement = document.querySelector('.members li:nth-child(3)')
+    const members = document.querySelector('.members')
     const removeButton = document.querySelector('.remove-button')
 
+    // removeChild()
     removeButton.addEventListener('click', () => {
-      // members.removeChild(members.children[2])
+      const removedChild = members.removeChild(members.children[2])
+      console.log(removedChild)
+    })
+    
+    // remove()
+    const willRemoveElement = document.querySelector('.members li:nth-child(3)')
+    removeButton.addEventListener('click', () => {
       willRemoveElement.remove()
     })
 
