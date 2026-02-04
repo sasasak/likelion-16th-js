@@ -16,6 +16,26 @@ const users = [
   { name: '서지수', age: 23, job: '학생' },
 ]
 
+// 즉시 실행되는 함수 표현식 (IIFE)
+// Immediate Invoked Function Expression
+
+// (함수값)   : 함수 실행 안함
+// (함수값()) : 함수 실행 함
+// (함수값)() : 함수 실행 함
+;(function () {
+  console.log('연습 1')
+}) // ()
+
+;(function () {
+  console.log('연습 2')
+})()
+
+// example1()
+// example2()
+
+
+
+
 const todaysMenu = [
   { name: '김치찌개', price: 9000 },
   { name: '비빔밥', price: 9500 },
