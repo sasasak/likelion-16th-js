@@ -2,6 +2,30 @@
 // 실습: 요소 제거 및 이동 (remove, removeChild, insertBefore)
 // --------------------------------------------------------------------------
 
+{
+  // 요소 제거
+  ;(() => {
+    // const members = document.querySelector('.members')
+    const willRemoveElement = document.querySelector('.members li:nth-child(3)')
+    const removeButton = document.querySelector('.remove-button')
+
+    removeButton.addEventListener('click', () => {
+      // members.removeChild(members.children[2])
+      willRemoveElement.remove()
+    })
+
+  })()
+}
+
+
+
+
+
+
+
+
+
+
 // [실습 1] 멤버 제거
 // 1. 모든 제거 버튼에 클릭 이벤트를 연결하세요.
 // 2. 클릭된 버튼의 부모 요소인 <li>를 찾아 remove()를 사용해 제거하세요.
