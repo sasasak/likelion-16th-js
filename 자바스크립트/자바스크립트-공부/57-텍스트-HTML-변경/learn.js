@@ -5,7 +5,7 @@
 // [실습 1] 오늘의 생활 수칙 (textContent)
 // 1. 아래 headlines 배열에서 무작위로 하나를 추출하세요.
 // 2. 버튼을 클릭하면 <h2>(또는 출력용 요소)의 텍스트가 변경되도록 작성하세요.
-console.groupCollapsed('1. textContent 실습')
+console.group('1. textContent 실습')
 
 const headlines = [
   '전자레인지에 금속 용기 사용 금지', '생수병은 직사광선 피해서 보관하기',
@@ -30,7 +30,48 @@ const headlines = [
   '공공장소에서는 이어폰 사용하기', '비상연락망은 가족끼리 공유'
 ]
 
-// 이곳에 코드를 작성하세요
+const main = document.getElementById('main-content')
+const heading = main.querySelector('h1')
+
+// textContent 속성
+{
+  // 읽기
+  console.log(heading.textContent)
+
+  // 쓰기
+  heading.textContent = '<em>글자가 기울어질까요?</em> 그대로 HTML이 출력될걸요?'
+
+  console.log(heading.textContent)
+}
+
+// innerHTML 속성
+{
+  // 읽기
+  console.log(heading.innerHTML)
+
+  // 쓰기
+  setTimeout(() => {
+    heading.innerHTML = `
+      <em>글자가 기울어질까요?</em> 
+      HTML 태그로 해석되므로 반영될걸요?
+    `
+
+    console.log('내부 HTML:', heading.innerHTML)
+
+    // outerHTML 속성 읽기
+    console.log('외부 HTML:', heading.outerHTML)
+  }, 2000)
+
+  // outerHTML 속성 쓰기
+  setTimeout(() => {
+    heading.outerHTML = `
+      <strong role="heading" aria-level="1">
+        ${heading.innerHTML}
+      </strong>
+    `
+  }, 4000)
+
+}
 
 console.groupEnd()
 
