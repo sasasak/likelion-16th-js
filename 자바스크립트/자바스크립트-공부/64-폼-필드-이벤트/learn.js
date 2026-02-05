@@ -46,7 +46,65 @@
     console.log('초점이 벗어날 때 blur 이벤트 발생:', input)
   })
 
+}) //()
+
+
+// 체크박스 체크 상태(checked ⭐️) 및 값(value: 기본 값 'on') 접근
+;(() => {
+  
+  const container = document.querySelector('.checkbox-container')
+  const checkboxes = Array
+    .from(container.children) // HTMLCollection → Array
+    .slice(1) // <p> 제외 나머지 .checkbox-field만 수집 (새 배열 반환)
+    .map((fieldElement) => {
+      const checkbox = fieldElement.querySelector('[type="checkbox"]')
+      return checkbox // .checkbox-field > input:checkbox 반환
+    })
+  
+  console.log(checkboxes) // [input#apple, input#grape, input#lemon]
+
+  checkboxes.forEach(checkbox => {
+    // console.log(checkbox.value) // 값: 'on' ????
+    console.log(checkbox.checked) // 체크 유무
+  })
+
+  // Element.hasAttribute(attrName)
+  let checkedList = checkboxes.filter((checkbox) => checkbox.hasAttribute('checked'))
+  // HTMLInputElement.checked
+  checkedList = checkboxes.filter(({ checked }) => checked)
+  // CSS 가상 클래스(Pseudo Class) 선택자 + 전개 구문
+  checkedList = [...container.querySelectorAll(':checked')]
+  console.log(checkedList)
+
+  const firstCheckedBox = checkboxes.find(({ checked }) => checked)
+  console.log(firstCheckedBox)
+
+}) //()
+
+// 체크박스 이벤트 리스너 추가
+;(() => {
+  
+  const container = document.querySelector('.checkbox-container')
+  
+  // 이벤트 위임
+  container.addEventListener('change', (e) => {
+    const checkbox = e.target.closest('[type="checkbox"]')
+    if (!checkbox) return
+
+    // 구조 분해 할당
+    const { id, checked } = checkbox
+    // 향상된 객체 리터럴
+    console.log({ id, checked })
+    
+    // console.log({ 
+    //   id: checkbox.id, 
+    //   checked: checkbox.checked 
+    // })
+  })
+
+
 })()
+
 
 
 // --------------------------------------------------------------------------
