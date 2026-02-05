@@ -51,8 +51,10 @@
     // 클라이언트 측에서 제어
     const emailInput = document.getElementById('userEmail')
     // const { value: emailValue } = emailInput
-    const emailValue = emailInput.value
-    console.log(`사용자가 입력한 이메일 주소는 "${emailValue}"입니다.`)
+    // const emailValue = emailInput.value
+    // console.log(`사용자가 입력한 이메일 주소는 "${emailValue}"입니다.`)
+    const { value } = emailInput // HTMLInputElement { value }
+    console.log(`사용자가 입력한 이메일 주소는 "${value}"입니다.`)
 
     // 직접 초기화
     // emailInput.value = ''
