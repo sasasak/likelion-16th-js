@@ -165,17 +165,26 @@
   })
 
   textarea.addEventListener('input', (e) => {
-
+    console.log('input:', e.currentTarget.value)
   })
 
   textarea.addEventListener('focus', (e) => {
-
+    console.log('focus:', e.currentTarget.value)
   })
 
   textarea.addEventListener('blur', (e) => {
-
+    console.log('blur:', e.currentTarget.value)
   })
 
+  container.addEventListener('focusin', (e) => {
+    const { target } = e
+    console.log('focusin:', target)
+  })
+  
+  container.addEventListener('focusout', (e) => {
+    const { target } = e
+    console.log('focusout:', target)
+  })
 
 })()
 
