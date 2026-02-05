@@ -17,8 +17,7 @@
       class="send-email-form"
       action="https://server-program.url"
       method="GET"
-      style="margin: 32px;"
-    >
+      style="margin: 32px;">
       <div class="form-field">
         <label for="usermail">이메일</label>
         <input type="email" id="usermail" name="email" />
@@ -74,31 +73,21 @@
 
       <hr />
 
-      <section id="practice-form-submit">
-        <h2>📩 폼 제출 및 클라이언트 제어</h2>
-        <p>기본 동작을 방지하고 입력된 데이터를 자바스크립트로 가공해 보세요.</p>
+      <form id="subscribeForm" style="margin-block: 40px;">
+        <div class="form-field">
+          <label for="userEmail">이메일</label>
+          <input
+            id="userEmail"
+            name="userEmail"
+            type="email"
+            placeholder="mail@example.com"
+            required />
+        </div>
+        <button type="submit">구독</button>
+        <button type="reset">초기화</button>
+      </form>
 
-        <form action="/server-url" method="POST" class="user-form">
-          <div class="form-field">
-            <label for="user-mail">이메일 주소</label>
-            <input type="email" id="user-mail" name="email" placeholder="example@mail.com" required />
-          </div>
-
-          <div class="form-field">
-            <label for="user-message">문의 내용</label>
-            <textarea id="user-message" name="message" placeholder="궁금한 점을 적어주세요"></textarea>
-          </div>
-
-          <div class="button-group">
-            <button type="submit" class="btn-submit">보내기 (Submit)</button>
-            <button type="reset" class="btn-reset">초기화</button>
-          </div>
-        </form>
-
-        <output class="form-output">
-          <p>전송 대기 중...</p>
-        </output>
-      </section>
+      <div id="messageBox" aria-live="polite"></div>
 
       <section id="learning-point">
         <h2>💡 학습 포인트</h2>
