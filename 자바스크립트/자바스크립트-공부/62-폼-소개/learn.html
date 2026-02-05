@@ -13,6 +13,20 @@
   <body>
     <a href="#main-content" class="sr-only focusable">본문 바로가기</a>
 
+    <form
+      class="send-email-form"
+      action="https://server-program.url"
+      method="GET"
+      style="margin: 32px;"
+    >
+      <div class="form-field">
+        <label for="usermail">이메일</label>
+        <input type="email" id="usermail" name="email" />
+      </div>
+      <button type="submit">보내기</button>
+      <!-- <input type="submit" value="보내기" /> -->
+    </form>
+
     <main id="main-content" class="prose">
       <header>
         <h1>데이터의 관문: 폼(Form)</h1>
@@ -66,8 +80,8 @@
 
         <form action="/server-url" method="POST" class="user-form">
           <div class="form-field">
-            <label for="usermail">이메일 주소</label>
-            <input type="email" id="usermail" name="email" placeholder="example@mail.com" required />
+            <label for="user-mail">이메일 주소</label>
+            <input type="email" id="user-mail" name="email" placeholder="example@mail.com" required />
           </div>
 
           <div class="form-field">
