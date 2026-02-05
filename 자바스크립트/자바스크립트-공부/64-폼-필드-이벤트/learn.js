@@ -49,7 +49,7 @@
 }) //()
 
 
-// 체크박스 체크 상태(checked ⭐️) 및 값(value: 기본 값 'on') 접근
+// 체크박스 체크 상태(checked ⭐️) 및 값(value: 기본 값 'on') 접근(읽기)
 ;(() => {
   
   const container = document.querySelector('.checkbox-container')
@@ -102,9 +102,54 @@
     // })
   })
 
+}) //()
+
+// 라디오 버튼 체크 상태 및 값 접근(읽기)
+;(() => {
+  
+  const container = document.querySelector('.radio-button-container')
+  const radioControls = Array.from(container.querySelectorAll('[type="radio"]'))
+  const radioValues = radioControls.map(({ value }) => value) // value 속성이 지정되지 않은 경우 기본값: 'on'
+  console.log(radioValues)
+
+  // 가공된 데이터 배열 만들기 목적
+  const radiosChecked = radioControls.map(({ checked }) => checked)
+  console.log(radiosChecked)
+
+  // 배열의 각 요소 순환해 값 출력 목적
+  radioControls.forEach(({ checked }) => console.log(checked))
+  
+  // 배열 내부에서 체크 상태가 참인 라디오 버튼 찾기
+  const checkedRadioButton = radioControls.find(({ checked })=> checked)
+  
+  // 방어적 프로그래밍
+  if (checkedRadioButton) {
+    const { id, checked } = checkedRadioButton
+    console.log({ id, checked })
+  }
+
+  // 배열 내부에서 체크 상태가 참인 것만 필터링
+  const checkedRadios = radioControls.filter(({ checked }) => checked)
+  console.log(checkedRadios)
+
+
+}) //()
+
+// 라디오 버튼 이벤트 리스너 추가
+;(() => {
+
+  const container = document.querySelector('.radio-button-container')
+  const radios = container.querySelectorAll('[type="radio"]') // NodeList { forEach }
+  
+  // 개별 라디오 버튼에 이벤트 리스너 추가 (반복 처리)
+  radios.forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      const { id, checked } = e.currentTarget
+      console.log({ id, checked })
+    })
+  })
 
 })()
-
 
 
 // --------------------------------------------------------------------------
