@@ -48,7 +48,6 @@
 
 }) //()
 
-
 // 체크박스 체크 상태(checked ⭐️) 및 값(value: 기본 값 'on') 접근(읽기)
 ;(() => {
   
@@ -148,6 +147,35 @@
       console.log({ id, checked })
     })
   })
+
+}) //()
+
+// Textarea 속성 접근(읽기)
+// Textarea 이벤트 리스너 추가
+;(() => {
+  
+  const container = document.querySelector('.textarea-container')
+  const textarea = container.querySelector('textarea')
+
+  textarea.value = '   여러 줄\n입력\n합니다.       ' // 쓰기
+  console.log(textarea.value.trim())             // 읽기
+
+  textarea.addEventListener('change', (e) => {
+    console.log('change:', e.currentTarget.value)
+  })
+
+  textarea.addEventListener('input', (e) => {
+
+  })
+
+  textarea.addEventListener('focus', (e) => {
+
+  })
+
+  textarea.addEventListener('blur', (e) => {
+
+  })
+
 
 })()
 
