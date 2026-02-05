@@ -2,6 +2,7 @@
 // 실습: 폼 필드 선택하기 (form.elements)
 // --------------------------------------------------------------------------
 
+// 학습: 폼 필드 접근
 ;(() => {
   const form = document.querySelector('.user-registration-form')
   // HTMLFormElement 객체
@@ -40,6 +41,35 @@
       })
   }) //()
 
+}) //()
+
+// 실습: 로그인 폼
+;(() => {
+
+  // 로그인 폼에 사용자가 입력한 아이디, 비밀번호 값을 읽어와 
+  // 콘솔 패널에 출력합니다. (form.elements 활용)
+
+  const form = document.getElementById('login-form')
+  
+  form.addEventListener('submit', (e) => {
+    // 브라우저 기본 작동 방지
+    e.preventDefault()
+
+    // 폼 컨트롤 콜렉션 접근
+    const formControls = form.elements
+    // 아이디 컨트롤 값
+    const { value: idValue } = formControls.userid
+    // 패스워드 컨트롤 값
+    const { value: passwordValue } = formControls.password
+
+    // 콘솔 패널에 출력
+    console.log({ idValue, passwordValue })
+
+    // 폼 초기화
+    const formElement = e.currentTarget
+    formElement.reset()
+  })
+  
 })()
 
 
