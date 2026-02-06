@@ -5,7 +5,7 @@
 const TIMEOUT = 3 // 3s
 
 // Promise 생성자 함수를 사용해 인스턴스 생성
-const promiseInstance = new Promise((resolve, reject) => {
+const promise = new Promise((resolve, reject) => {
   // console.log(typeof resolve) // 'function'
   // console.log(typeof reject) // 'function'
 
@@ -14,23 +14,60 @@ const promiseInstance = new Promise((resolve, reject) => {
   setTimeout(() => {
     // 아직은 모르는 미결(pending) 상태
     // 둘 중 하나 성공(해결) 또는 실패(거절)
-    if (Math.random() >= 0.05) {
-      resolve()
+    if (Math.random() >= 0.25) {
+      resolve({
+        message: '약속이 이행되었어! 😊',
+        status: 200,
+        statusMessage: '약속이 이행되었습니다.',
+      })
     } else {
-      reject()
+      reject(
+        new Error('약속이... 거절되었어.. 😭'),
+      )
     }
 
   }, TIMEOUT * 1000)
 })
 
+// 로딩바 표시
+showLoading()
+
 // Promise 객체 (생성해야 사용 가능)
 // Promise { then, catch, finally }
 // pending (미결, 보류, pending) 
-promiseInstance
+promise/* 미결 상태인 약속이 이행되거나, 거절되는 것을 확인해 처리한다. */
   // -> fulfilled (이행, 해결, fulfilled) .then(callback)
-  .then(() => console.log('약속이 이행되었어! 😊'))
+  .then((response) => {
+    renderList(response)
+  })
   // -> rejected (거부, 거절, rejected) .catch(callback)
-  .catch(() => console.warn('약속이... 거절되었어.. 😭'))
+  .catch((error) => {
+    printError(error)
+  })
+  .finally(() => {
+    hideLoading()
+    // console.log(`
+    //   약속이 미결 상태에서 비동기 처리 후, 
+    //   이행되거나 거절되거나 상관없이 항상 실행되어요! 
+    //   파이널리~~
+    // `)
+  })
+
+function showLoading() {
+  console.log('로딩바 표시')
+}
+
+function hideLoading() {
+  console.log('로딩바 감춤')
+}
+
+function renderList() {
+  console.log('리스트 렌더링')
+}
+
+function printError() {
+  console.log('오류 메시지 표시')
+}
 
 
 // --------------------------------------------------------------------------
