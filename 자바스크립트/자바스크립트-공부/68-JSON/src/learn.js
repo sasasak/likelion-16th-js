@@ -28,19 +28,55 @@ import './styles/main.css'
   
   const xhr = new XMLHttpRequest()
 
-  xhr.open('GET', 'https://api.github.com/users/yamoo9')
+  xhr.open('GET', 'https://api.github.com/users/yamoo9/repos')
 
+  // 서버에 보낼 데이터
+  const data = {
+    message: '배고파요!'
+  }
+
+  // 요청할 때 보낼 데이터(js 객체 -> json 문자열화)
+  // xhr.send(JSON.stringify(data))
   xhr.send(null)
 
+  // 응답 받은 결과(json 문자열 -> js 객체화)
   xhr.addEventListener('readystatechange', (e) => {
     const { response } = e.currentTarget
-    console.log(response, typeof response)
+    // console.log(response, typeof response)
     // json string -> js object
-    const githubUser = JSON.parse(response)
-    console.table(githubUser)
+    const repos = JSON.parse(response)
+    // 실제 필요한 정보만 데이터 정리(massage)
+    const massagedRepos = repos.map(({ name, visibility, private: priv, url }) => {
+      return {
+        name,
+        visibility,
+        private: priv,
+        url,
+      }
+    })
+
+    console.log(massagedRepos)
   })
 
 })()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // --------------------------------------------------------------------------
 // 핵심 요약
