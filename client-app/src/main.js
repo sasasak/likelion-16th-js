@@ -53,6 +53,19 @@ function readUsers() {
     .finally(() => console.log(`"모든 사용자 정보를 가져왔습니다.`))
 }
 
+// 비동기 함수 (Async function)
+async function readUsersAsync() {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/users`)
+    const allUsers = await response.json()
+    console.log(allUsers)
+  } catch (error) {
+    console.error(error)
+  } finally {
+    console.log(`"모든 사용자 정보를 가져왔습니다.`)
+  }
+}
+
 // --------------------------------------------------------------------------
 // Update (PUT / PATCH)
 function updateUser(
