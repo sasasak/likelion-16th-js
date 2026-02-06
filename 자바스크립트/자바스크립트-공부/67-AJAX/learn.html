@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <title>비동기 통신 마스터: AJAX & XHR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/styles.css" />
-    <link rel="icon" href="./assets/es-logo.png" />
+    <meta name="description" content="검색 엔진 최적화를 위한 적절한 문서 설명 내용 추가" />
+    <link rel="icon" href="/es-logo.png" />
     <style>
       .control-group {
         margin-top: 20px;
@@ -37,11 +37,15 @@
       }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.6/purify.min.js"></script>
-    <script src="./learn.js" defer></script>
+    <script type="module" src="./src/learn.js"></script>
   </head>
 
   <body>
     <a href="#main-content" class="sr-only focusable">본문 바로가기</a>
+
+    <div hidden style="margin: 32px">
+      <button type="button" class="call-ajax">AJAX 호출</button>
+    </div>
 
     <main id="main-content" class="prose">
       <h1>AJAX 비동기 통신 실습</h1>
@@ -52,6 +56,7 @@
       <section>
         <h2>GitHub 사용자 정보 조회</h2>
         <div class="control-group">
+          <label for="github-username">테스트</label>
           <input type="text" id="github-username" placeholder="GitHub ID 입력 (예: yamoo9)" />
           <button type="button" class="button-fetch">데이터 가져오기</button>
         </div>
@@ -59,7 +64,9 @@
 
       <section class="log-area">
         <h3>서버 응답 결과 (결과 데이터)</h3>
-        <output id="response-log">사용자 이름을 입력하고 버튼을 눌러주세요.</output>
+        <output id="response-log" aria-live="polite">
+          사용자 이름을 입력하고 버튼을 눌러주세요.
+        </output>
       </section>
     </main>
   </body>
