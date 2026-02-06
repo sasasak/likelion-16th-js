@@ -9,10 +9,14 @@
  */
 function generateUniqueString(length = 7) {
   // 1. Math.random() : 0~1 사이 난수 생성
+  const randomNumber = Math.random()
   // 2. .toString(36) : 0~9, a~z를 사용하는 36진수로 변환
+  const randomString = randomNumber.toString(36)
   // 3. .substring(2, 2 + length) : 앞의 '0.'을 자르고 원하는 길이만큼 추출
-  
+  return randomString.substring(2, 2 + length)
 }
+
+console.log(generateUniqueString())
 
 const techList = document.querySelector('.web-tech-list')
 const techInput = document.getElementById('tech-input')
@@ -58,3 +62,39 @@ console.groupEnd()
 // - 36진수(.toString(36))는 숫자와 알파벳을 섞어 짧으면서도 강력한 ID를 만듭니다.
 // - substring(2)를 쓰는 이유는 소수점 앞의 '0.'을 제거하기 위해서입니다.
 // --------------------------------------------------------------------------
+
+// reduce 버전 + innerHTML
+;(() => {
+  
+  const list = document.querySelector('.web-tech-list')
+  const webTeches = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Vite', 'Webpack', 'Jest', 'Vitest', 'React', 'Next.js', 'Supabase']
+
+  const listChildrenCode =webTeches.reduce((htmlCode, curWebTech) => {
+    const uniqueId = generateUniqueString()
+    htmlCode += `<li id="tech-${uniqueId}">${curWebTech}</li>`
+    return htmlCode
+  }, '')
+
+  list.innerHTML = listChildrenCode
+
+})
+
+// DocumentFragment 버전 + append()
+;(() => {
+  
+  const webTeches = ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Vite', 'Webpack', 'Jest', 'Vitest', 'React', 'Next.js', 'Supabase']
+  
+  const fragment = new DocumentFragment() // 가상 DOM 컨테이너 (메모리, 매우 가벼움)
+  const list = document.querySelector('.web-tech-list')
+  
+  webTeches.forEach((techName) => {
+    const item = document.createElement('li')
+    item.textContent = techName
+    item.id = `tech-${generateUniqueString()}`
+    fragment.append(item) // 가상 DOM 컨테이너 내부 마지막 자식 요소로 삽입 (가벼움)
+  })
+
+  // 반복이 끝난 후, fragment 내부에 그려진 모든 li 아이템을 한 번에 list에 삽입 (1번만 그림 : 성능 최적화!)
+  list.append(fragment)
+
+})()
