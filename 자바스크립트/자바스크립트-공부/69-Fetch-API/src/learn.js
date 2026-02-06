@@ -79,15 +79,26 @@ const ENDPOINT = 'https://api.github.com/users/yamoo9'
 
   // 화면에 리스트 렌더링(그림 그리기)
   function renderList(data) {
+    const repoList = document.querySelector('.repo-list')
     const fragment = new DocumentFragment()
+
     const renderedListFragment = data.reduce((fragment, currentItem) => {
-      console.log(currentItem)
+      const { name, url, visibility } = currentItem
+      const item = document.createElement('li')
+      const link = document.createElement('a')
+      link.setAttribute('href', url)
+      link.dataset.visibility = visibility ? 'public' : 'private'
+      link.textContent = name
+      item.append(link)
+      fragment.append(item)
       return fragment
     }, fragment)
 
-    console.log(renderedListFragment)
+    repoList.append(renderedListFragment)
   }
-})()
+}) //()
+
+
 
 // --------------------------------------------------------------------------
 // 핵심 요약
